@@ -1,0 +1,30 @@
+Volume control
+pacmixer - one to rule them all
+alsamixer - global control
+
+Power mode control
+```powerprofilesctl get | list | set mode```
+
+Pacman update
+```pacman -Syu```
+
+File managers
+nnn
+vifm
+
+Random tools
+darkman - dark theme switching
+echo 150 | sudo tee /sys/class/backlight/intel_backlight/brightness
+# Enable Alacritty on my pi4
+infocmp | ssh "$user@$host" 'tic -x /dev/stdin'
+
+## TODO
+natural scrolling
+battery
+brightness
+autostart apps at boot - /etc/xdg/autostart
+test notifications
+default tiling
+screen zoom
+Alacritty config
+
