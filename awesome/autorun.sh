@@ -21,6 +21,8 @@ run nm-applet
 run light-locker --lock-on-lid # usage: light-locker-command -l
 run thunar --daemon
 run wluma
+run syncthing
+run eval $(ssh-agent)
 # /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 if (command -v system-config-printer-applet && ! pgrep applet.py ); then

@@ -17,6 +17,19 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- Alt + Tab switched
+local switcher = require("awesome-switcher")
+local lain = require("lain")
+
+local DOTFILES = os.getenv("DOTFILES")
+
+-- AwesomeWM widgets
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+local net_speed_widget = require("awesome-wm-widgets.net-speed-widget.net-speed")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -27,6 +40,11 @@ if awesome.startup_errors then
         title = "Oops, there were errors during startup!",
         text = awesome.startup_errors
     })
+end
+
+local function round(num, numDecimalPlaces)
+    local mult = 10 ^ (numDecimalPlaces or 0)
+    return math.floor(num * mult + 0.5) / mult
 end
 
 -- Handle runtime errors after startup
@@ -55,7 +73,7 @@ beautiful.init(theme_path)
 
 -- My wallpaper
 -- absolute path
-beautiful.wallpaper = "/home/petr/Pictures/Wallpapers/Gollum_wallpaper.jpg"
+beautiful.wallpaper = string.format("%s/awesome/wallpapers/main", DOTFILES)
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -63,6 +81,7 @@ terminal = "alacritty"
 -- terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
+exploler = "thunar"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -73,19 +92,19 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.magnifier,
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.tile.bottom,
+    -- awful.layout.suit.tile.top,
+    -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -126,14 +145,50 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- Create a textclock widget
+-- Create a textclock widget and calendar
 mytextclock = wibox.widget.textclock()
+local cw = calendar_widget({
+    placement = 'top_right',
+})
+mytextclock:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
 
 -- Battery watch
-local mybattery = awful.widget.watch("bash -c \"acpi -b | cut -d ',' -f2 | tr -d ' '\"")
+-- local mybattery = awful.widget.watch("bash -c \"acpi -b | cut -d ',' -f2 | tr -d ' '\"")
+local mybattery = awful.widget.watch(
+"bash -c \"echo \\\"$(acpi -b | cut -d ',' -f2 | tr -d ' ') $(powerprofilesctl get | cut -c1-1)\\\"\""
+)
+mybattery:connect_signal("button::press", function(_)
+    awful.spawn.with_shell(
+    'if [[ $(powerprofilesctl get) = "balanced" ]]; ' ..
+    'then ' ..
+    '    powerprofilesctl set power-saver; ' ..
+    'else ' ..
+    '    powerprofilesctl set balanced; ' ..
+    'fi')
+end)
 
--- Volume
-local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
+
+-- CPU frequency
+local my_cpu_frequency = awful.widget.watch(
+    "bash -c \"cat /proc/cpuinfo | grep MHz | cut -d ':' -f2 | cut -d '.' -f1 | sort -nr | head -n 1\"",
+    2,
+    function(widget, stdout)
+        local number = tonumber(stdout) / 1000
+        widget:set_text(round(number, 1) .. "GHz")
+    end
+)
+local my_cpu_temp = awful.widget.watch(
+-- Yeah, this code works only in range 10..<99
+    'bash -c "sensors | grep \'Package id\' | grep -Eo \'[0-9]{2}\' | head -n 1"',
+    2,
+    function(widget, stdout)
+        widget:set_text(tonumber(stdout) .. "°C")
+    end)
+
+
 
 
 -- Create a wibox for each screen and add it
@@ -188,6 +243,9 @@ local function set_wallpaper(s)
     end
 end
 
+
+local main_screen_tags = { "YT", "DC", "Soc", "Home", "Work", "6", "7", "8", "9" }
+
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -196,7 +254,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    awful.tag(main_screen_tags, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -230,15 +288,50 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            -- mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
         mytasklist, -- Middle widget
         {           -- Right widgets
+            spacing = 4,
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
+
+            net_speed_widget(),
+
+            -- RAM
+            ram_widget(),
+            lain.widget.mem({
+                settings = function()
+                    widget:set_markup(
+                        round(mem_now.used / 1024, 1) .. " / "
+                        .. round(mem_now.swapused / 1024, 1)
+                        .. " (" .. round(mem_now.srec / 1024, 1) .. ") GiB")
+                end
+            }),
+
+            -- CPU
+            cpu_widget({
+                width = 42,
+                step_width = 2,
+                step_spacing = 0,
+                color = '#434c5e'
+            }),
+            lain.widget.cpu({
+                settings = function()
+                    widget:set_markup(cpu_now.usage .. "%")
+                end
+            }),
+            my_cpu_frequency,
+            my_cpu_temp,
+            lain.widget.sysload({
+                settings = function()
+                    widget:set_markup(load_1 .. "/" .. load_5 .. "/" .. load_15)
+                end
+            }),
+
             volume_widget {
                 widget_type = 'arc'
             },
@@ -334,6 +427,11 @@ globalkeys = gears.table.join(
         { description = "select next", group = "layout" }),
     awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
         { description = "select previous", group = "layout" }),
+    -- And mine added
+    awful.key({ "Control", "Mod1" }, "t", function() awful.spawn(terminal) end,
+        { description = "open a terminal", group = "launcher" }),
+    awful.key({ modkey }, "e", function() awful.spawn(exploler) end,
+        { description = "open a file explorer", group = "launcher" }),
 
     awful.key({ modkey, "Control" }, "n",
         function()
@@ -366,9 +464,10 @@ globalkeys = gears.table.join(
         { description = "show the menubar", group = "launcher" }),
 
     -- My custom added
-    -- Screen shot
+    -- Screenshot
     awful.key({}, "Print", function() awful.util.spawn("flameshot gui", false) end),
     awful.key({ "Control" }, "Print", function() awful.util.spawn("flameshot full", false) end),
+
     -- Brightness control
     awful.key({}, "XF86MonBrightnessDown", function()
         awful.util.spawn("xbacklight -dec 10")
@@ -376,6 +475,13 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86MonBrightnessUp", function()
         awful.util.spawn("xbacklight -inc 10")
     end),
+    awful.key({ "Shift" }, "XF86MonBrightnessDown", function()
+        awful.util.spawn("xbacklight -dec .5")
+    end),
+    awful.key({ "Shift" }, "XF86MonBrightnessUp", function()
+        awful.util.spawn("xbacklight -inc .5")
+    end),
+
     -- Sound control
     -- awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -D pulse sset Master 2%+", false) end),
     -- awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -D pulse sset Master 2%-", false) end),
@@ -386,7 +492,17 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioLowerVolume", function() volume_widget:dec(2) end),
     awful.key({ "Shift" }, "XF86AudioRaiseVolume", function() volume_widget:inc(10) end),
     awful.key({ "Shift" }, "XF86AudioLowerVolume", function() volume_widget:dec(10) end),
-    awful.key({}, "XF86AudioMute", function() volume_widget:toggle() end)
+    awful.key({}, "XF86AudioMute", function() volume_widget:toggle() end),
+    --
+    -- Alt Tab support
+    awful.key({ "Mod1", }, "Tab",
+        function()
+            switcher.switch(1, "Mod1", "Alt_L", "Shift", "Tab")
+        end),
+    awful.key({ "Mod1", "Shift" }, "Tab",
+        function()
+            switcher.switch(-1, "Mod1", "Alt_L", "Shift", "Tab")
+        end)
 )
 
 clientkeys = gears.table.join(
@@ -529,7 +645,7 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA", -- Firefox addon DownThemAll.
+                "DTA",   -- Firefox addon DownThemAll.
                 "copyq", -- Includes session name in class.
                 "pinentry",
             },
@@ -538,7 +654,7 @@ awful.rules.rules = {
                 "Blueman-manager",
                 "Gpick",
                 "Kruler",
-                "MessageWin", -- kalarm.
+                "MessageWin",  -- kalarm.
                 "Sxiv",
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "Wpa_gui",
@@ -551,9 +667,9 @@ awful.rules.rules = {
                 "Event Tester", -- xev.
             },
             role = {
-                "AlarmWindow", -- Thunderbird's calendar.
+                "AlarmWindow",   -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
-                "pop-up",  -- e.g. Google Chrome's (detached) Developer Tools.
+                "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
             }
         },
         properties = { floating = true }
@@ -566,9 +682,35 @@ awful.rules.rules = {
         properties = { titlebars_enabled = true }
     },
 
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
+    -- Set some clients to always map on their tags on screen 1.
+    {
+        rule = { class = "firefox" },
+        properties = { screen = 1, tag = main_screen_tags[4] }
+    },
+    {
+        rule = { class = "thunderbird" },
+        properties = { screen = 1, tag = main_screen_tags[4] }
+    },
+    {
+        rule = { class = "whatsapp" },
+        properties = { screen = 1, tag = main_screen_tags[3] }
+    },
+    {
+        rule = { class = "TelegramDesktop" },
+        properties = { screen = 1, tag = main_screen_tags[3] }
+    },
+    {
+        rule = { class = "Caprine" },
+        properties = { screen = 1, tag = main_screen_tags[3] }
+    },
+    {
+        rule = { class = "discord" },
+        properties = { screen = 1, tag = main_screen_tags[2] }
+    },
+    {
+        rule = { class = "YouTube Music" },
+        properties = { screen = 1, tag = main_screen_tags[1] }
+    },
 }
 -- }}}
 
@@ -639,10 +781,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 
-
-
-
-
 awful.spawn.with_shell(
     'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
     'xrdb -merge <<< "awesome.started:true";' ..
@@ -651,3 +789,7 @@ awful.spawn.with_shell(
 )
 
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+awful.spawn.with_shell(
+    string.format("picom -b --config %s/awesome/picom.conf", DOTFILES)
+)
+

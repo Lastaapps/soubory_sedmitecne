@@ -1,0 +1,36 @@
+
+alias cdssd="cd /mnt/space/projects"
+alias cdcvut="cd ~/Documents/CVUT/current"
+alias cdkeil="cd ~/.wine/drive_c/Keil"
+alias pinggoogle="ping -O google.com; ping -O 8.8.8.8"
+alias tmp="vim ~/tmp/tmp.md"
+alias mv="mv -i"
+alias lbc="bc -l"
+
+alias libu="./gradlew --no-configuration-cache versionCatalogUpdate --interactive"
+alias liba="./gradlew --no-configuration-cache versionCatalogApplyUpdates"
+alias wrapperu="./gradlew wrapper --no-configuration-cache --gradle-version"
+
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
+
+
+export PATH="$PATH:$HOME/.local/bin"
+export GPG_TTY=$(tty)
+export PINENTRY_MODE=ncurses
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
