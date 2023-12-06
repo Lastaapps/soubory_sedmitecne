@@ -440,11 +440,13 @@ lspconfig.ltex.setup {
 }
 
 -- Typst
-require 'lspconfig'.typst_lsp.setup {
+lspconfig.typst_lsp.setup {
     filetypes = { "typst" },
     root_dir = lspconfig.util.root_pattern('.git', '*'),
 }
 
+-- GoLang (gopls)
+lspconfig.gopls.setup{}
 
 
 -- -- Vimspector options
