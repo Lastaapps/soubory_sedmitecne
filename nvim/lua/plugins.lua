@@ -14,6 +14,8 @@ return require('packer').startup(function(use)
   --
   -- Saves session state
   use "tpope/vim-obsession"
+  -- Transparent background
+  use "xiyaowong/transparent.nvim"
 
   -- --- Utils ----------------------------------------------------------------
   -- Treesitter
