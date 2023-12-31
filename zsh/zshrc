@@ -10,6 +10,7 @@ alias lbc="bc -l"
 alias libu="./gradlew --no-configuration-cache versionCatalogUpdate --interactive"
 alias liba="./gradlew --no-configuration-cache versionCatalogApplyUpdates"
 alias wrapperu="./gradlew wrapper --no-configuration-cache --gradle-version"
+alias pracuj="history | tail -n 1 | tr -s ' ' | cut -d ' ' -f3- | xargs sudo"
 
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 

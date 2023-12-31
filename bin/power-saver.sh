@@ -1,7 +1,7 @@
 #!/bin/bash
 
 limit=2
-for name in "caprine" "Discord" "youtube-music"
+for name in "caprine" "Discord" # "youtube-music"
 do
     for pid in $(pgrep "$name")
     do

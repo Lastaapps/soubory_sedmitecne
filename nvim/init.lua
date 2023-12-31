@@ -448,6 +448,9 @@ lspconfig.typst_lsp.setup {
 -- GoLang (gopls)
 lspconfig.gopls.setup{}
 
+-- Zig (zls)
+lspconfig.zls.setup{}
+
 
 -- -- Vimspector options
 -- vim.cmd([[
