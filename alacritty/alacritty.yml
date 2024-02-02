@@ -13,8 +13,8 @@
 
 import:
   # Theme setup, package: alacritty-theme-git
-  - /usr/share/alacritty/themes/blood_moon.yaml
-  # - /usr/share/alacritty/themes/papercolor_dark.yaml
+  - /usr/share/alacritty/themes/blood_moon.toml
+  # - /usr/share/alacritty/themes/papercolor_dark.toml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables

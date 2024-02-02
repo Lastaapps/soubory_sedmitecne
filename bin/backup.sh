@@ -18,7 +18,6 @@ TOBACKUP=(\
 "/mnt/d/Dokumenty/Dokumenty" \
 "/mnt/d/Android files sync" \
 "/mnt/space/projects" \
-"/mnt/f/Arduino" \
 "/mnt/f/AndroidStudioProjects" \
 "/mnt/f/NetBeansProjects" \
 # "/mnt/f/GitHub" \
