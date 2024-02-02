@@ -1,0 +1,23 @@
+# https://clangd.llvm.org/config.html
+
+CompileFlags:
+  Add: [
+    -Wall,
+    -pedantic,
+    --std=gnu++20,
+  ]
+
+Index:
+  StandardLibrary: Yes
+
+Diagnostics:
+  ClangTidy:
+    Add: [
+      modernize*,
+      readability*,
+      performance*,
+      misc*,
+      cppcoreguidelines*,
+      bugprone*,
+    ]
+
