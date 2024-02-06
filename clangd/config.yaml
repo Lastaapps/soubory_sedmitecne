@@ -2,6 +2,7 @@
 
 CompileFlags:
   Add: [
+    -xc++,
     -Wall,
     -pedantic,
     --std=gnu++20,
@@ -19,5 +20,8 @@ Diagnostics:
       misc*,
       cppcoreguidelines*,
       bugprone*,
+    ]
+    Remove: [
+      bugprone-easily-swappable-parameters,
     ]
 

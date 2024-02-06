@@ -122,6 +122,8 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- clangd extensions
+  use 'p00f/clangd_extensions.nvim'
 
 
 
