@@ -82,6 +82,10 @@ return require('packer').startup(function(use)
   use 'Xuyuanp/nerdtree-git-plugin'
 
 
+  -- --- Tmux integration -----------------------------------------------------
+  use 'christoomey/vim-tmux-navigator'
+
+
   -- --- IDE ------------------------------------------------------------------
   use 'neovim/nvim-lspconfig'
 
