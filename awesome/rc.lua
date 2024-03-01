@@ -704,6 +704,10 @@ awful.rules.rules = {
         properties = { screen = 1, tag = main_screen_tags[3] }
     },
     {
+        rule = { class = "Element" },
+        properties = { screen = 1, tag = main_screen_tags[3] }
+    },
+    {
         rule = { class = "discord" },
         properties = { screen = 1, tag = main_screen_tags[2] }
     },

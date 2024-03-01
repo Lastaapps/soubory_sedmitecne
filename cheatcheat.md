@@ -25,7 +25,3 @@
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-69} | head -n 1
 openssl rand -base64 32
 
-## TODO
-Alacritty config
-tmux
-
