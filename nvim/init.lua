@@ -433,6 +433,7 @@ vim.api.nvim_exec([[
 
 -- English - the worst of them all
 lspconfig.ltex.setup {
+    capabilities = capabilities,
     -- on_attach = on_attach,
     cmd = { "ltex-ls" },
     flags = { debounce_text_changes = 300 },
@@ -441,16 +442,25 @@ lspconfig.ltex.setup {
 
 -- Typst
 lspconfig.typst_lsp.setup {
+    capabilities = capabilities,
     filetypes = { "typst" },
     root_dir = lspconfig.util.root_pattern('.git', '*'),
 }
 
 -- GoLang (gopls)
-lspconfig.gopls.setup{}
+lspconfig.gopls.setup {
+    lspconfig.gopls.setup {}
+}
 
 -- Zig (zls)
-lspconfig.zls.setup{}
+lspconfig.zls.setup {
+    lspconfig.gopls.setup {}
+}
 
+-- GLSL - OpenGL
+lspconfig.glsl_analyzer.setup {
+    lspconfig.gopls.setup {}
+}
 
 -- -- Vimspector options
 -- vim.cmd([[
