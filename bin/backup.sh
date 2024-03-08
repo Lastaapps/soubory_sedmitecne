@@ -41,6 +41,11 @@ $COMMAND $ARGS $EXCLUDE $FILENAME "${TOBACKUP[@]}"
 
 echo
 echo Done! Result code: $?
+
+echo Scheduled defragmentation
+fsck -t ntfs /dev/sda2
+fsck -t ntfs /dev/sda3
+
 read -p "Press the Enter key to exit"
 exit
 

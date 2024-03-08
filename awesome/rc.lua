@@ -81,7 +81,9 @@ terminal = "alacritty"
 -- terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
-exploler = "thunar"
+-- exploler = "thunar"
+exploler = "ranger"
+emojies = "smile"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
@@ -158,16 +160,16 @@ mytextclock:connect_signal("button::press",
 -- Battery watch
 -- local mybattery = awful.widget.watch("bash -c \"acpi -b | cut -d ',' -f2 | tr -d ' '\"")
 local mybattery = awful.widget.watch(
-"bash -c \"echo \\\"$(acpi -b | cut -d ',' -f2 | tr -d ' ') $(powerprofilesctl get | cut -c1-1)\\\"\""
+    "bash -c \"echo \\\"$(acpi -b | cut -d ',' -f2 | tr -d ' ') $(powerprofilesctl get | cut -c1-1)\\\"\""
 )
 mybattery:connect_signal("button::press", function(_)
     awful.spawn.with_shell(
-    'if [[ $(powerprofilesctl get) = "balanced" ]]; ' ..
-    'then ' ..
-    '    powerprofilesctl set power-saver; ' ..
-    'else ' ..
-    '    powerprofilesctl set balanced; ' ..
-    'fi')
+        'if [[ $(powerprofilesctl get) = "balanced" ]]; ' ..
+        'then ' ..
+        '    powerprofilesctl set power-saver; ' ..
+        'else ' ..
+        '    powerprofilesctl set balanced; ' ..
+        'fi')
 end)
 
 
@@ -432,6 +434,8 @@ globalkeys = gears.table.join(
         { description = "open a terminal", group = "launcher" }),
     awful.key({ modkey }, "e", function() awful.spawn(exploler) end,
         { description = "open a file explorer", group = "launcher" }),
+    awful.key({ modkey }, ";", function() awful.spawn(emojies) end,
+        { description = "open the emoji keyboard", group = "launcher" }),
 
     awful.key({ modkey, "Control" }, "n",
         function()
@@ -444,6 +448,8 @@ globalkeys = gears.table.join(
             end
         end,
         { description = "restore minimized", group = "client" }),
+    awful.key({ modkey, }, "o", awful.client.movetoscreen,
+        { description = "Move to the other screen", group = "layout" }),
 
     -- Prompt
     awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
@@ -796,4 +802,3 @@ awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 awful.spawn.with_shell(
     string.format("picom -b --config %s/awesome/picom.conf", DOTFILES)
 )
-
