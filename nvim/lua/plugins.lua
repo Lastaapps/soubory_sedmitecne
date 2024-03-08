@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
   -- --- NVim -----------------------------------------------------------------
   -- Adds coroutines
   use "nvim-lua/plenary.nvim"
-  --
+
   -- Saves session state
   use "tpope/vim-obsession"
   -- Transparent background
@@ -25,6 +25,9 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  -- FZF
+  -- CTRL-T / CTRL-X / CTRL-V - tab, hsplit, vsplit
+  use "junegunn/fzf.vim"
 
 
   -- --- Productivity tools ---------------------------------------------------
@@ -68,10 +71,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- VimSpector
-  -- Debugger inside vim
-  -- use 'puremourning/vimspector'
-
 
   -- Theme
   use 'jacoborus/tender.vim'
@@ -98,15 +97,24 @@ return require('packer').startup(function(use)
   -- use 'hrsh7th/cmp-omni'
 
   -- Snipping engine (required)
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
 
   -- Autocomplete NVim lua api
-  use 'hrsh7th/cmp-nvim-lua'
-  -- Add dictionary support
-  use 'uga-rosa/cmp-dictionary'
+  use 'folke/neodev.nvim'
+  -- use 'hrsh7th/cmp-nvim-lua'
+
   -- Add spelling support
   use 'f3fora/cmp-spell'
+
+
+  -- Debugging
+  -- NVim debugger
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
+  use 'theHamsta/nvim-dap-virtual-text'
+
+  use 'mfussenegger/nvim-dap-python'
 
 
 
@@ -115,15 +123,18 @@ return require('packer').startup(function(use)
   -- Kotlin - better Kotlin support
   use 'udalov/kotlin-vim'
 
-  -- Rust tools
-  use 'simrat39/rust-tools.nvim'
+  -- Rust
   use {
     'saecki/crates.nvim',
-    tag = 'v0.3.0',
+    tag = 'stable',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-        require('crates').setup()
+      require('crates').setup()
     end,
+  }
+  use {
+    'mrcjkb/rustaceanvim',
+    ft = { 'rust' },
   }
 
   -- clangd extensions
