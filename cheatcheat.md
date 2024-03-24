@@ -20,6 +20,8 @@
 ```echo 150 | sudo tee /sys/class/backlight/intel_backlight/brightness```
 ### Enable Alacritty on my pi4
 ```infocmp | ssh "$user@$host" 'tic -x /dev/stdin'```
+### Nvidia top
+nvidia-smi
 
 ## Random
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-69} | head -n 1

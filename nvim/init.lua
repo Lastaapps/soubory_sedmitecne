@@ -151,7 +151,7 @@ local function goto_definition(split_cmd)
     return handler
 end
 
-vim.lsp.handlers["textDocument/definition"] = goto_definition('split')
+vim.lsp.handlers["textDocument/definition"] = goto_definition('vertical') -- split
 
 
 -- NVim-cmp setup -------------------------------------------------------------------
@@ -512,17 +512,25 @@ lspconfig.typst_lsp.setup {
 
 -- GoLang (gopls)
 lspconfig.gopls.setup {
-    lspconfig.gopls.setup {}
+    capabilities = capabilities,
 }
 
 -- Zig (zls)
 lspconfig.zls.setup {
-    lspconfig.gopls.setup {}
+    capabilities = capabilities,
 }
 
 -- GLSL - OpenGL
 lspconfig.glsl_analyzer.setup {
-    lspconfig.gopls.setup {}
+    capabilities = capabilities,
+}
+
+-- CMake
+-- lspconfig.cmake.setup {
+--     capabilities = capabilities,
+-- }
+lspconfig.neocmake.setup {
+    capabilities = capabilities,
 }
 
 
@@ -568,32 +576,32 @@ dap.adapters.codelldb = {
 }
 
 -- Language specific launch options
--- dap.configurations.c = {
---     {
---         name = "Launch",
---         type = "gdb",
---         request = "launch",
---         program = function()
---             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---         end,
---         cwd = "${workspaceFolder}",
---         stopAtBeginningOfMainSubprogram = false,
---     },
--- }
-dap.configurations.cpp = {
-  {
-    name = "Launch file",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  },
+dap.configurations.c = {
+    {
+        name = "Launch",
+        type = "gdb",
+        request = "launch",
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = "${workspaceFolder}",
+        stopAtBeginningOfMainSubprogram = false,
+    },
 }
-dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
+-- dap.configurations.cpp = {
+--   {
+--     name = "Launch file",
+--     type = "codelldb",
+--     request = "launch",
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopOnEntry = false,
+--   },
+-- }
+-- dap.configurations.c = dap.configurations.cpp
+-- dap.configurations.rust = dap.configurations.cpp
 dap.configurations.python = {
     type = 'python',
     request = 'launch',

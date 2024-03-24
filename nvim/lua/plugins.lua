@@ -29,6 +29,9 @@ return require('packer').startup(function(use)
   -- CTRL-T / CTRL-X / CTRL-V - tab, hsplit, vsplit
   use "junegunn/fzf.vim"
 
+  -- Discord Ritch Presence
+  use 'andweeb/presence.nvim'
+
 
   -- --- Productivity tools ---------------------------------------------------
   -- Kommentary

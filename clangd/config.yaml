@@ -2,7 +2,6 @@
 
 CompileFlags:
   Add: [
-    -xc++,
     -Wall,
     -pedantic,
     --std=gnu++20,
