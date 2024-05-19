@@ -39,6 +39,7 @@ autocmd BufReadPost *.typ setlocal filetype=typst
 autocmd BufReadPost *.tera setlocal filetype=htmldjango
 autocmd BufReadPost *.tera.html setlocal filetype=htmldjango
 autocmd BufReadPost *.html.tera setlocal filetype=htmldjango
+autocmd BufReadPost *.frag,*.vert,*.fp,*.vp,*.glsl setlocal filetype=glsl
 
 autocmd FileType verilog setlocal ts=2 sts=2 sw=2 expandtab
 ]], true)
@@ -151,7 +152,7 @@ local function goto_definition(split_cmd)
     return handler
 end
 
-vim.lsp.handlers["textDocument/definition"] = goto_definition('vertical') -- split
+vim.lsp.handlers["textDocument/definition"] = goto_definition('vsplit') -- split
 
 
 -- NVim-cmp setup -------------------------------------------------------------------
@@ -357,10 +358,10 @@ lspconfig.kotlin_language_server.setup {
 }
 
 -- Python
--- lspconfig.pyright.setup {
---     capabilities = capabilities,
---     root_dir = lspconfig.util.root_pattern('.git', '.venv'),
--- }
+lspconfig.pyright.setup {
+    capabilities = capabilities,
+    root_dir = lspconfig.util.root_pattern('.git', '.venv'),
+}
 -- lspconfig.ruff_lsp.setup {
 --   capabilities = capabilities,
 --   root_dir = lspconfig.util.root_pattern('.git', '.venv'),
@@ -370,19 +371,19 @@ lspconfig.kotlin_language_server.setup {
 --     }
 --   }
 -- }
-lspconfig.pylsp.setup {
-    capabilities = capabilities,
-    -- settings = {
-    --   pylsp = {
-    --     plugins = {
-    --       pycodestyle = {
-    --         ignore = {'W391'},
-    --         maxLineLength = 100
-    --       }
-    --     }
-    --   }
-    -- }
-}
+-- lspconfig.pylsp.setup {
+--     capabilities = capabilities,
+--     -- settings = {
+--     --   pylsp = {
+--     --     plugins = {
+--     --       pycodestyle = {
+--     --         ignore = {'W391'},
+--     --         maxLineLength = 100
+--     --       }
+--     --     }
+--     --   }
+--     -- }
+-- }
 
 
 -- Lua
@@ -479,9 +480,9 @@ lspconfig.racket_langserver.setup {
 }
 
 -- Rust
--- lspconfig.rust_analyzer.setup {
---     capabilities = capabilities,
--- }
+lspconfig.rust_analyzer.setup {
+    capabilities = capabilities,
+}
 
 -- generate tags
 -- https://github.com/dan-t/rusty-tags
@@ -510,10 +511,12 @@ lspconfig.typst_lsp.setup {
     root_dir = lspconfig.util.root_pattern('.git', '*'),
 }
 
--- GoLang (gopls)
+-- GoLang
 lspconfig.gopls.setup {
     capabilities = capabilities,
 }
+require('go').setup({})
+require('dap-go').setup({})
 
 -- Zig (zls)
 lspconfig.zls.setup {
@@ -645,9 +648,6 @@ dap_python.test_runner = 'pytest'
 vim.keymap.set('n', '<Leader>df', function() dap_python.test_method() end)
 vim.keymap.set('n', '<Leader>dc', function() dap_python.test_class() end)
 vim.keymap.set('v', '<Leader>ds', function() dap_python.debug_selection() end)
-
-
-
 
 
 

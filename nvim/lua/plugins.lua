@@ -32,6 +32,8 @@ return require('packer').startup(function(use)
   -- Discord Ritch Presence
   use 'andweeb/presence.nvim'
 
+  -- Better notifications
+  use 'rcarriga/nvim-notify'
 
   -- --- Productivity tools ---------------------------------------------------
   -- Kommentary
@@ -114,6 +116,7 @@ return require('packer').startup(function(use)
   -- Debugging
   -- NVim debugger
   use 'mfussenegger/nvim-dap'
+  use 'nvim-neotest/nvim-nio'
   use 'rcarriga/nvim-dap-ui'
   use 'theHamsta/nvim-dap-virtual-text'
 
@@ -139,6 +142,10 @@ return require('packer').startup(function(use)
     'mrcjkb/rustaceanvim',
     ft = { 'rust' },
   }
+
+  -- GoLang
+  use 'crispgm/nvim-go'
+  use 'leoluz/nvim-dap-go'
 
   -- clangd extensions
   use 'p00f/clangd_extensions.nvim'
