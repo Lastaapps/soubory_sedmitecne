@@ -89,6 +89,9 @@ return require('packer').startup(function(use)
   -- --- Tmux integration -----------------------------------------------------
   use 'christoomey/vim-tmux-navigator'
 
+  -- --- Zoxide integration ---------------------------------------------------
+  use 'nanotee/zoxide.vim'
+
 
   -- --- IDE ------------------------------------------------------------------
   use 'neovim/nvim-lspconfig'
@@ -111,6 +114,29 @@ return require('packer').startup(function(use)
 
   -- Add spelling support
   use 'f3fora/cmp-spell'
+
+  -- AI
+  use {
+    "Exafunction/codeium.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({
+      })
+    end
+  }
+
+  -- Snippets
+  use {
+  "iurimateus/luasnip-latex-snippets.nvim",
+  requires = { "L3MON4D3/LuaSnip", "nvim-treesitter/nvim-treesitter" },
+  config = function()
+    require('luasnip-latex-snippets').setup({ use_treesitter = true })
+    require("luasnip").config.setup { enable_autosnippets = true }
+  end,
+}
 
 
   -- Debugging
@@ -144,11 +170,22 @@ return require('packer').startup(function(use)
   }
 
   -- GoLang
-  use 'crispgm/nvim-go'
+  use 'ray-x/go.nvim'
   use 'leoluz/nvim-dap-go'
 
   -- clangd extensions
   use 'p00f/clangd_extensions.nvim'
+
+  -- Python
+  use {
+    'roobert/f-string-toggle.nvim',
+    config = function()
+      require("f-string-toggle").setup({
+        key_binding = "<leader>f",
+        key_binding_desc = "Toggle f-string"
+      })
+    end,
+  }
 
 
 

@@ -29,6 +29,9 @@ vim.opt.spell = true
 vim.opt.exrc = true
 vim.g.mapleader = ','
 
+-- Enables loading of external scrips (.nvim.lua), see :help exrc
+vim.o.exrc = true
+
 vim.api.nvim_exec([[
 syntax on
 filetype plugin on
@@ -203,8 +206,9 @@ cmp.setup({
         end, { 'i', 's' }),
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'codeium' },
+        { name = 'nvim_lsp' },
     }, {
         { name = 'buffer' },
         -- { name = 'omni', priority = 70, },
@@ -362,15 +366,6 @@ lspconfig.pyright.setup {
     capabilities = capabilities,
     root_dir = lspconfig.util.root_pattern('.git', '.venv'),
 }
--- lspconfig.ruff_lsp.setup {
---   capabilities = capabilities,
---   root_dir = lspconfig.util.root_pattern('.git', '.venv'),
---   init_options = {
---     settings = {
---       args = {},
---     }
---   }
--- }
 -- lspconfig.pylsp.setup {
 --     capabilities = capabilities,
 --     -- settings = {
@@ -424,33 +419,40 @@ lspconfig.dockerls.setup {
 }
 
 -- LaTex, Tex
+-- https://github.com/latex-lsp/texlab/wiki/Configuration
 lspconfig.texlab.setup {
-    capabilities = capabilities,
-    settings = {
-        texlab = {
-            auxDirectory = ".",
-            bibtexFormatter = "texlab",
-            build = {
-                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-                executable = "latexmk",
-                forwardSearchAfter = false,
-                onSave = false
-            },
-            chktex = {
-                onEdit = false,
-                onOpenAndSave = false
-            },
-            diagnosticsDelay = 300,
-            formatterLineLength = 80,
-            forwardSearch = {
-                args = {}
-            },
-            latexFormatter = "latexindent",
-            latexindent = {
-                modifyLineBreaks = false
-            }
-        }
+  capabilities = capabilities,
+  before_init = function(params)
+    params.processId = vim.NIL
+  end,
+  settings = {
+    texlab = {
+      build = {
+        args = {
+          "-pdf",
+          "-interaction=nonstopmode",
+          "-synctex=1",
+          "-auxdir=build",
+          "%f",
+        },
+        auxDirectory = "build",
+        logDirectory = "build",
+        onSave = true,
+        useFileList = true,
+        forwardSearchAfter = true,
+      },
+      chktex = {
+        onEdit = true,
+        onOpenAndSave = true,
+      },
+      latexindent = {
+        args = { '-l' },
+      },
+      experimental = {
+          followPackageLinks = true,
+      },
     }
+  }
 }
 
 -- YAML
