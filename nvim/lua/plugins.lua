@@ -187,6 +187,9 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- English
+  use 'barreiroleo/ltex_extra.nvim'
+
 
 
   -- --- For the future use ---------------------------------------------------

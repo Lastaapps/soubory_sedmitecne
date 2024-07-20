@@ -498,10 +498,35 @@ vim.api.nvim_exec([[
 lspconfig.ltex.setup {
     capabilities = capabilities,
     flags = { debounce_text_changes = 300 },
+    on_attach = function(client, bufnr)
+        require("ltex_extra").setup {
+            load_langs = { "en-US" },
+            log_lever = "error",
+            path = "ltex",
+        }
+    end,
     settings = {
         ltex = {
+            -- https://valentjn.github.io/ltex/settings.html
             language = "en-US",
-            enabled = { "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd", "context", "html", "xhtml" }
+            completionEnabled = true,
+            enabled = {
+                "python", "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd", "context", "html", "xhtml"
+            },
+            additional_rules = {
+                enablePickyRules = true,
+            },
+            -- Easily causes to many requests
+            -- languageToolHttpServerUri = "https://api.languagetool.org/",
+            -- languageToolOrg = {
+            --     username = "",
+            --     apiKey = "",
+            -- },
+
+            -- possibly not working
+            ltexls = {
+                logLevel = "config",
+            },
         },
     },
 }
