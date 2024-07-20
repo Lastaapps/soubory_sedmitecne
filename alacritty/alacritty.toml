@@ -14,7 +14,7 @@ opacity = 0.90
 # startup_mode = "Fullscreen"
 
 [font]
-size = 9.0
+size = 8.0
 
 [keyboard]
 bindings=[{ key = "N", mods = "Control|Shift", action = "SpawnNewInstance" },]

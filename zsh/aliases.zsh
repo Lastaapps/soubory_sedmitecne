@@ -8,6 +8,7 @@ alias lbc="bc -l"
 alias xclip="xclip -sel c"
 alias cat="bat"
 alias nvidia-smi="watch -n .5 nvidia-smi"
+function cd() { zoxide "$@"; }
 
 alias libu="./gradlew --no-configuration-cache versionCatalogUpdate --interactive"
 alias liba="./gradlew --no-configuration-cache versionCatalogApplyUpdates"

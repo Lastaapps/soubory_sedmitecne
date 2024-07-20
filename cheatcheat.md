@@ -3,6 +3,7 @@
 ## Volume control
 ```pacmixer - one to rule them all```
 ```alsamixer - global control```
+```pavucontrol - sound congroll GUI```
 
 ## Power mode control
 ```powerprofilesctl get | list | set mode```
@@ -26,4 +27,15 @@ nvidia-smi
 ## Random
 cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-69} | head -n 1
 openssl rand -base64 32
+lolcat
+scc
+
+## Fun
+nyancat
+sl
+asciiquarium
+cmatrix
+fortune (fortune-mod)
+pipes.sh
+aafire
 

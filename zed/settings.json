@@ -25,6 +25,17 @@
           "command": "clippy"
         }
       }
+    },
+    "pyright": {}
+  },
+  "languages": {
+    "Python": {
+      "format_on_save": {
+        "external": {
+          "command": "black",
+          "arguments": ["-"]
+        }
+      }
     }
   },
   "inlay_hints": {
