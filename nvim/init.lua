@@ -22,6 +22,7 @@ vim.opt.wrap = false
 vim.opt.sidescroll = 1
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
+-- vim.opt.expandtab = true
 vim.opt.fileformat = 'unix'
 vim.opt.spelllang = { 'en_us', 'cs' }
 vim.opt.spell = true
@@ -31,6 +32,9 @@ vim.g.mapleader = ','
 
 -- Enables loading of external scrips (.nvim.lua), see :help exrc
 vim.o.exrc = true
+
+-- Prevents autocompletion items to be automatically selected
+vim.opt.completeopt = 'menu,menuone,preview,noinsert' -- ,noselect
 
 vim.api.nvim_exec([[
 syntax on
@@ -66,8 +70,8 @@ colorscheme tender
 )
 
 local opts = { noremap = true, silent = true }
-vim.api.nvim_set_keymap("n", "<S-l>", ":bn<CR>", opts)
-vim.api.nvim_set_keymap("n", "<S-h>", ":bp<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<S-h>", ":bn<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<S-l>", ":bp<CR>", opts)
 
 --- Tree sitter ---------------------------------------------------------------
 require('nvim-treesitter.configs').setup {
@@ -157,8 +161,29 @@ end
 
 vim.lsp.handlers["textDocument/definition"] = goto_definition('vsplit') -- split
 
+-- Telescope -------------------------------------------------------------------
+local tel_builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', tel_builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', tel_builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', tel_builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', tel_builtin.help_tags, {})
 
--- NVim-cmp setup -------------------------------------------------------------------
+local telescope = require('telescope')
+telescope.setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  },
+}
+-- Load extensions
+telescope.load_extension('fzf')
+
+
+-- NVim-cmp setup --------------------------------------------------------------
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -183,37 +208,36 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-                -- elseif luasnip.expand_or_jumpable() then
-                -- luasnip.expand_or_jump()
-            elseif has_words_before() then
-                cmp.complete()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-                -- elseif luasnip.jumpable(-1) then
-                --     luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
+        -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        -- ['<Tab>'] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_next_item()
+        --         -- elseif luasnip.expand_or_jumpable() then
+        --         -- luasnip.expand_or_jump()
+        --     elseif has_words_before() then
+        --         cmp.complete()
+        --     else
+        --         fallback()
+        --     end
+        -- end, { 'i', 's' }),
+        -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --         -- elseif luasnip.jumpable(-1) then
+        --         --     luasnip.jump(-1)
+        --     else
+        --         fallback()
+        --     end
+        -- end, { 'i', 's' }),
     }),
     sources = cmp.config.sources({
-        { name = 'luasnip' },
-        { name = 'codeium' },
-        { name = 'nvim_lsp' },
-    }, {
-        { name = 'buffer' },
+        { name = 'luasnip', priority = 100 },
+        { name = 'nvim_lsp', priority = 60 },
+        { name = 'codeium', priority = 50 },
+    -- }, {
+        { name = 'buffer', priority = 40, max_item_count = 5 },
         -- { name = 'omni', priority = 70, },
         { name = 'spell',  priority = 10, keyword_length = 2, },
-        { name = 'buffer', priority = 30, },
         { name = 'path',   priority = 20, },
     })
 })
@@ -515,6 +539,8 @@ lspconfig.ltex.setup {
             },
             additional_rules = {
                 enablePickyRules = true,
+                languageModel = "~/language_tool_models/ngrams",
+                word2VecModel = "~/language_tool_models/neuralnetwork",
             },
             -- Easily causes to many requests
             -- languageToolHttpServerUri = "https://api.languagetool.org/",
@@ -525,7 +551,8 @@ lspconfig.ltex.setup {
 
             -- possibly not working
             ltexls = {
-                logLevel = "config",
+                -- logLevel = "config",
+                logLevel = "finest",
             },
         },
     },
@@ -561,6 +588,14 @@ lspconfig.glsl_analyzer.setup {
 -- }
 lspconfig.neocmake.setup {
     capabilities = capabilities,
+}
+
+-- SQL
+lspconfig.sqls.setup{
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+        require('sqls').on_attach(client, bufnr)
+    end
 }
 
 

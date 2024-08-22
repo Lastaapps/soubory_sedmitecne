@@ -802,3 +802,7 @@ awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 awful.spawn.with_shell(
     string.format("picom -b --config %s/awesome/picom.conf", DOTFILES)
 )
+awful.spawn.with_shell(
+    "while true; do if [[ \"$PRIMARY_TO_CLIP\" != \"$(xsel -bo)\" ]]; then xsel -bo | xsel -pi; PRIMARY_TO_CLIP=$(xsel -bo); fi; sleep 0.5; done"
+)
+
