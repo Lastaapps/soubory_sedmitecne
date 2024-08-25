@@ -16,6 +16,8 @@ return require('packer').startup(function(use)
   use "tpope/vim-obsession"
   -- Transparent background
   use "xiyaowong/transparent.nvim"
+  -- Images support
+  use "3rd/image.nvim"
 
   -- --- Utils ----------------------------------------------------------------
   -- Treesitter
@@ -128,22 +130,27 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- Telescope
+  -- Telescope, Harpoon
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { 'nvim-lua/plenary.nvim' },
+    requires = { { 'nvim-lua/plenary.nvim' } },
   }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
+  use {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    requires = { { "nvim-lua/plenary.nvim" } },
+  }
 
   -- Snippets
   use {
-  "iurimateus/luasnip-latex-snippets.nvim",
-  requires = { "L3MON4D3/LuaSnip", "nvim-treesitter/nvim-treesitter" },
-  config = function()
-    require('luasnip-latex-snippets').setup({ use_treesitter = true })
-    require("luasnip").config.setup { enable_autosnippets = true }
-  end,
-}
+    "iurimateus/luasnip-latex-snippets.nvim",
+    requires = { "L3MON4D3/LuaSnip", "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require('luasnip-latex-snippets').setup({ use_treesitter = true })
+      require("luasnip").config.setup { enable_autosnippets = true }
+    end,
+  }
 
 
   -- Debugging

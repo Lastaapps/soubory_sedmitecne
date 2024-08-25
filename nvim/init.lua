@@ -110,6 +110,20 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'Buf
     end
 })
 
+-- Images
+-- not needed in case I switch to the kitty terminal
+require("image").setup({
+  backend = "ueberzug",
+  -- recommended by Molten
+  max_width = 100, -- tweak to preference
+  max_height = 12, -- ^
+  max_height_window_percentage = math.huge, -- this is necessary for a good experience
+  max_width_window_percentage = math.huge,
+  window_overlap_clear_enabled = true,
+  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" }
+})
+
+
 -- Fzf config
 vim.api.nvim_set_keymap("n", "<A-f>f", ":Files<CR>", opts)
 vim.api.nvim_set_keymap("n", "<A-f>c", ":RG<CR>", opts)
@@ -167,9 +181,25 @@ vim.keymap.set('n', '<leader>ff', tel_builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', tel_builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', tel_builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', tel_builtin.help_tags, {})
+-- <C-x> go to file selection as a split   
+-- <C-v> go to file selection as a vsplit   
+-- <C-t> go to a file in a new tab
 
 local telescope = require('telescope')
 telescope.setup {
+  defaults = {
+    mappings = {
+      i = {
+        -- Select the option under cursor
+        ["<C-y>"] = "select_default",
+        -- map actions.which_key to <C-h> (default: <C-/>)
+        -- actions.which_key shows the mappings for your picker,
+        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+        ["<C-h>"] = "which_key",
+      }
+    }
+  },
+  pickers = {},
   extensions = {
     fzf = {
       fuzzy = true,
@@ -181,6 +211,41 @@ telescope.setup {
 }
 -- Load extensions
 telescope.load_extension('fzf')
+
+local harpoon = require("harpoon")
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<C-5>", function() harpoon:list():select(5) end)
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+
+-- Telescope UI for Harpoon
+local tel_conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+    local file_paths = {}
+    for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+    end
+
+    require("telescope.pickers").new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+            results = file_paths,
+        }),
+        previewer = tel_conf.file_previewer({}),
+        sorter = tel_conf.generic_sorter({}),
+    }):find()
+end
+vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
+    { desc = "Open harpoon window" })
 
 
 -- NVim-cmp setup --------------------------------------------------------------
