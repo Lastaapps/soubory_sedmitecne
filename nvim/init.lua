@@ -663,6 +663,11 @@ lspconfig.sqls.setup{
     end
 }
 
+-- Scala
+local metals_config = require("metals").bare_config()
+metals_config.on_attach = function(client, bufnr)
+-- your on_attach function
+end
 
 
 
@@ -737,6 +742,25 @@ dap.configurations.python = {
     request = 'launch',
     name = 'My custom launch configuration',
     program = '${file}',
+}
+dap.configurations.scala = {
+  {
+    type = "scala",
+    request = "launch",
+    name = "RunOrTest",
+    metals = {
+      runType = "runOrTestFile",
+      --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+    },
+  },
+  {
+    type = "scala",
+    request = "launch",
+    name = "Test Target",
+    metals = {
+      runType = "testTarget",
+    },
+  },
 }
 
 

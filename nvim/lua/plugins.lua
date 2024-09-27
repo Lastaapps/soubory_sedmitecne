@@ -204,6 +204,23 @@ return require('packer').startup(function(use)
   -- SQL
   use 'nanotee/sqls.nvim'
 
+  -- Scala
+  use {
+    "scalameta/nvim-metals",
+    requires = { 'nvim-lua/plenary.nvim' },
+    ft = { "scala", "sbt", "java" },
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = self.ft,
+        callback = function()
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end
+  }
+
   -- English
   use 'barreiroleo/ltex_extra.nvim'
 
