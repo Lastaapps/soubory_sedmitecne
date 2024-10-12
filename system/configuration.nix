@@ -6,8 +6,6 @@
 
 {
   imports = [
-    ./hardware-configuration.nix     # Include the results of the hardware scan.
-    ./home-manager.nix
     ./modules
   ];
 
@@ -15,8 +13,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "msi"; # Define your hostname.
-  # networking.wireless.enable = true; # wpa-suplicant, conflicts with Network Manager
+  networking.hostName = "msi";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -24,14 +21,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  # networking.wireless.networks.eduroam = {
-  #   auth = ''
-  #     key_mgmt=WPA-EAP
-  #     eap=PWD
-  #     identity="lastope2@cvut.cz"
-  #     password="password"
-  #   '';
-  # };
+  # networking.wireless.enable = true; # wpa-suplicant, conflicts with Network Manager
 
   # Set your time zone.
   time.timeZone = "Europe/Tallinn";
@@ -178,9 +168,6 @@
   #   enableSSHSupport = true;
   # };
 
-  # Make nix less anoying
-  nix.extraOptions = ''experimental-features = nix-command flakes'';
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -191,6 +178,10 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  # Make nix less anoying
+  nix.extraOptions = ''experimental-features = nix-command flakes'';
+  nix.optimise.automatic = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
