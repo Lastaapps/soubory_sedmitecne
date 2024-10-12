@@ -1,0 +1,5 @@
+arduino15/**
+!arduino15/preferences.txt
+arduinoIDE/**
+!arduinoIDE/settings.json
+

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Caprine
+GenericName=IM Client
+Comment=Unofficial Facebook Messenger app
+Icon=caprine
+Exec=bash -c "$HOME/bin/wait-for-internet.sh caprine"
+Categories=GTK;InstantMessaging;Network;
+StartupNotify=true
+Terminal=false

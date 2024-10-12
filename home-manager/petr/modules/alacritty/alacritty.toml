@@ -1,0 +1,21 @@
+# Theme setup, package: alacritty-theme-git
+import = ["/usr/share/alacritty/themes/blood_moon.toml"]
+# import = ["/usr/share/alacritty/themes/papercolor_dark.toml"]
+
+[shell]
+# program = "tmux"
+# args = ["new-session", "-A", "-s", "main"]
+program = "/bin/zsh"
+args = ["-l"]
+
+[window]
+decorations = "None"
+opacity = 0.90
+# startup_mode = "Fullscreen"
+
+[font]
+size = 8.0
+
+[keyboard]
+bindings=[{ key = "N", mods = "Control|Shift", action = "SpawnNewInstance" },]
+

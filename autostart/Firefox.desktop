@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=firefox
-Icon=firefox
-Exec=firefox
-Terminal=false
-Type=Application
-X-GNOME-Autostart-enabled=true

@@ -1,0 +1,3 @@
+
+export $(envsubst < "$HOME/.env")
+
