@@ -1,13 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  # home.file = {
-  #   "${config.xdg.configHome}/alacritty" = {
-  #     source = ./alacritty;
-  #     recursive = true;
-  #   };
-  # };
-
   home.packages = with pkgs; [
     alacritty
     alacritty-theme
@@ -17,16 +10,19 @@
     enable = true;
 
     settings = {
-      import = ["${pkgs.alacritty-theme}/usr/share/alacritty/themes/blood_moon.toml"];
+      import = [
+      "${pkgs.alacritty-theme}/blood_moon.toml"
+      # "${pkgs.alacritty-theme}/papercolor_dark.toml"
+      ];
       
       # env.TERM = "xterm-256color";
       window = {
-        decorations = "None";
+        # decorations = "None";
 	opacity = 0.90;
 	# startup_mode = "Fullscreen";
       };
       font = {
-        size = 8;
+        size = 10.0;
       };
       # selection.save_to_clipboard = true;
       shell = {
