@@ -1,0 +1,5 @@
+{...}:
+
+{
+  imports = [ ./nextcloud-client.nix ];
+}

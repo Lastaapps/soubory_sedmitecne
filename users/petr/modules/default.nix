@@ -6,7 +6,7 @@
     ./git.nix
     ./gpg-agent.nix
     ./gtk.nix
-    ./nextcloud-client.nix
+    ./nextcloud-client
     ./ssh.nix
   ];
 }

@@ -51,11 +51,6 @@
   # Use this section for mutable configurations
   # Used mostly for the GUI applications
   home.activation = {
-    # TODO do as root
-    lnNextcloud = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        setfact -R -m u:petr:rw /etc/nixos/modules/Nextcloud
-	run ln -s $VERBOSE_ARG ${builtins.toPath /etc/nixos/modules/Nextcloud} ${config.xdg.configHome} || true
-    '';
     # TODO refactor
     lnNvim = lib.hm.dag.entryAfter ["writeBoundary"] ''
         setfact -R -m u:petr:rw /etc/nixos/modules/nvim
