@@ -17,20 +17,18 @@ EXCLUDE="$EXCLUDE_MINECRAFT $EXCLUDE_PROGRAMMING $EXCLUDE_GENERAL"
 TOBACKUP=(\
 "/mnt/d/Dokumenty/Dokumenty" \
 "/mnt/d/Android files sync" \
-"/mnt/space/projects" \
 "/mnt/f/AndroidStudioProjects" \
 "/mnt/f/NetBeansProjects" \
-# "/mnt/f/GitHub" \
-# "/mnt/f/Node.js" \
 "/mnt/f/Archive" \
 "/mnt/f/eagle" \
-"/mnt/space/jar_files" \
 "/mnt/d/Dokumenty/Minecraft" \
-"/mnt/space/minecraft/saves" \
-"/mnt/space/BFME_I" \
-"/mnt/space/BFME_II" \
-"/mnt/space/BFME_ROTWK" \
 "/home/petr/dotfiles" \
+"/home/petr/Projects" \
+# "/mnt/space/minecraft/saves" \
+# "/mnt/space/BFME_I" \
+# "/mnt/space/BFME_II" \
+# "/mnt/space/BFME_ROTWK" \
+# "/mnt/space/jar_files" \
 )
 
 printf "Backing up these folders:\n"
