@@ -1,10 +1,8 @@
 #!/bin/sh
 
-set -e
-
 pushd ~/dotfiles > /dev/null
 
-sudo nixos-rebuild switch --flake .#${1}
+nixos-rebuild dry-build --flake .#${1}
 
 popd > /dev/null
 

@@ -157,6 +157,7 @@
     ls = "ls --color=tty";
     vim = "nvim";
     rm = "rm -i";
+    ns = "nix-shell";
   };
 
 

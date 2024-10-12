@@ -16,4 +16,7 @@ nmcli con up SiliconHill --ask
 You may need to change the interface name.
 Then run `nm-connection-editor`, add radius servers (`radius.cvut.cz`, `sh.cvut.cz`) and system certificate bundle `/etc/ssl/certs/ca-bundle.crt`.
 
+## Inspiration
+- https://gitlab.com/vesecky.tomas/thompson-nix
+- https://github.com/wiltaylor/dotfiles/
 

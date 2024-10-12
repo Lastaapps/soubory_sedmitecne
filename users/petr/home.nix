@@ -10,14 +10,9 @@
   home.username = "petr";
   home.homeDirectory = "/home/petr";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.sessionVariables = {
+    EDITOR = "neovim";
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -88,79 +83,15 @@
   #
   #  /etc/profiles/per-user/petr/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    EDITOR = "neovim";
-  };
 
-  gtk.gtk3.bookmarks = [
-    "file:///home/petr/Documents"
-    "file:///home/petr/Music"
-    "file:///home/petr/Pictures"
-    "file:///home/petr/Videos"
-    "file:///home/petr/Downloads"
-    "file:/// /"
-    "file:///home/petr/Documents/CVUT CVUT"
-    "file:///mnt/d/Android%20files%20sync Android"
-    "file:///mnt/d/Android%20files%20sync/DCIM/Memes"
-    "file:///home/petr/projects Projects"
-    "file:///mnt/d D: Data"
-    "file:///mnt/f F: Programs"
-    "file:///mnt/d/Dokumenty/Filmy"
-  ];
-
-  # programs.alacritty = {
-  #   enable = true;
-  #   # custom settings
-  #   settings = {
-  #     env.TERM = "xterm-256color";
-  #     font = {
-  #       size = 12;
-  #       draw_bold_text_with_bright_colors = true;
-  #     };
-  #     scrolling.multiplier = 5;
-  #     selection.save_to_clipboard = true;
-  #   };
-  # };
-
-  programs.ssh.enable = true;
-  programs.ssh.matchBlocks = {
-    "pi4" = {
-      hostname = "lastope2.sh.cvut.cz";
-      user = "admin";
-      identityFile = "/home/petr/.ssh/pi4";
-      port = 56943;
-    };
-    "github.com" = {
-      hostname = "github.com";
-      user = "git";
-      identityFile = "/home/petr/.ssh/github";
-    };
-    "gitlab.fit.cvut.cz" = {
-      hostname = "gitlab.fit.cvut.cz";
-      user = "lastope2";
-      identityFile = "/home/petr/.ssh/gitlab_fit";
-    };
-    "git.sh.cvut.cz" = {
-      hostname = "git.sh.cvut.cz";
-      user = "lastope2";
-      identityFile = "/home/petr/.ssh/gitlab_sh";
-    };
-    # "fray" = {
-    #   hostname = "fray1.fit.cvut.cz";
-    #   user = "lastope2";
-    #   hostKeyAlgorithms = [ "+ssh-rsa" ];
-    #   publicAcceptedKeyTypes = [ "+ssh-rsa" ];
-    # };
-  };
-
-  services.nextcloud-client.enable = true;
-  services.nextcloud-client.startInBackground = true;
-
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 1800;
-    enableSshSupport = true;
-  };
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "24.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
