@@ -1,12 +1,19 @@
 {...}:
 {
   imports = [
-    ./alacritty.nix
+    ./languages
+    ./nextcloud-client
+
     ./bin.nix
+
+    ./alacritty.nix
+    ./bat.nix
+    ./zoxide.nix
+
     ./git.nix
     ./gpg-agent.nix
     ./gtk.nix
-    ./nextcloud-client
+    ./nvim
     ./ssh.nix
   ];
 }

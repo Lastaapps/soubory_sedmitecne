@@ -68,7 +68,7 @@
   #  /etc/profiles/per-user/petr/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "neovim";
   };
 
   # Let Home Manager install and manage itself.

@@ -6,11 +6,6 @@
 
 -- vim.api.nvim_command('set number')
 
-
--- Packer
-require('plugins')
-
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.tabstop = 4
@@ -28,7 +23,7 @@ vim.opt.spelllang = { 'en_us', 'cs' }
 vim.opt.spell = true
 -- To enable overriding these configurations per project
 vim.opt.exrc = true
-vim.g.mapleader = ','
+-- vim.g.mapleader = ',' -- net in the NixOS config, has to be set before loading lazy.nvim
 
 -- Enables loading of external scrips (.nvim.lua), see :help exrc
 vim.o.exrc = true
@@ -74,33 +69,6 @@ local opts = { noremap = true, silent = true }
 -- vim.api.nvim_set_keymap("n", "<S-l>", ":bp<CR>", opts)
 
 --- Tree sitter ---------------------------------------------------------------
-require('nvim-treesitter.configs').setup {
-    ensure_installed = "all",
-    auto_install = true,
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
-    ident = { enable = true },
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil,
-    },
-    matchup = {
-        enable = true,
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            -- set to `false` to disable one of the mappings
-            init_selection = "gnn",
-            scope_incremental = "grc",
-            node_incremental = "grn",
-            node_decremental = "grm",
-        },
-    },
-}
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
     group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
     callback = function()
@@ -175,77 +143,7 @@ end
 
 vim.lsp.handlers["textDocument/definition"] = goto_definition('vsplit') -- split
 
--- Telescope -------------------------------------------------------------------
-local tel_builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', tel_builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', tel_builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', tel_builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', tel_builtin.help_tags, {})
--- <C-x> go to file selection as a split   
--- <C-v> go to file selection as a vsplit   
--- <C-t> go to a file in a new tab
 
-local telescope = require('telescope')
-telescope.setup {
-  defaults = {
-    mappings = {
-      i = {
-        -- Select the option under cursor
-        ["<C-y>"] = "select_default",
-        -- map actions.which_key to <C-h> (default: <C-/>)
-        -- actions.which_key shows the mappings for your picker,
-        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-h>"] = "which_key",
-      }
-    }
-  },
-  pickers = {},
-  extensions = {
-    fzf = {
-      fuzzy = true,
-      override_generic_sorter = true,
-      override_file_sorter = true,
-      case_mode = "smart_case",
-    }
-  },
-}
--- Load extensions
-telescope.load_extension('fzf')
-
-local harpoon = require("harpoon")
-harpoon:setup()
-
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
-vim.keymap.set("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-
-vim.keymap.set("n", "<C-1>", function() harpoon:list():select(1) end)
-vim.keymap.set("n", "<C-2>", function() harpoon:list():select(2) end)
-vim.keymap.set("n", "<C-3>", function() harpoon:list():select(3) end)
-vim.keymap.set("n", "<C-4>", function() harpoon:list():select(4) end)
-vim.keymap.set("n", "<C-5>", function() harpoon:list():select(5) end)
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
-vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
-
--- Telescope UI for Harpoon
-local tel_conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-    local file_paths = {}
-    for _, item in ipairs(harpoon_files.items) do
-        table.insert(file_paths, item.value)
-    end
-
-    require("telescope.pickers").new({}, {
-        prompt_title = "Harpoon",
-        finder = require("telescope.finders").new_table({
-            results = file_paths,
-        }),
-        previewer = tel_conf.file_previewer({}),
-        sorter = tel_conf.generic_sorter({}),
-    }):find()
-end
-vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
-    { desc = "Open harpoon window" })
 
 
 -- NVim-cmp setup --------------------------------------------------------------
@@ -255,7 +153,6 @@ local has_words_before = function()
 end
 
 local cmp = require('cmp')
-local lspconfig = require('lspconfig')
 local ls = require('luasnip')
 
 cmp.setup({
@@ -309,16 +206,6 @@ cmp.setup({
 
 
 
--- LuaSnip shortcuts
-vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-L>", function() ls.jump(1) end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-J>", function() ls.jump(-1) end, { silent = true })
-
-vim.keymap.set({ "i", "s" }, "<C-E>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
-end, { silent = true })
 
 
 
@@ -423,252 +310,256 @@ cmp.setup.cmdline(':', {
     })
 })
 
+local configureLanguageServers = function()
+    local lspconfig = require('lspconfig')
+    -- Connection to LSP hrsh7th/cmp-nvim-lsp --------------------------------------
+    local capabilities = require('cmp_nvim_lsp').default_capabilities(
+    -- vim.lsp.protocol.make_client_capabilities()
+    )
 
--- Connection to LSP hrsh7th/cmp-nvim-lsp --------------------------------------
-local capabilities = require('cmp_nvim_lsp').default_capabilities(
--- vim.lsp.protocol.make_client_capabilities()
-)
-
--- C/C++
-lspconfig.clangd.setup {
-    capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern(
-        '.clangd',
-        '.clang-tidy',
-        '.clang-format',
-        'compile_commands.json',
-        'compile_flags.txt',
-        'configure.ac',
-        'Makefile',
-        '.git'
-    ),
-}
-
--- Kotlin
-lspconfig.kotlin_language_server.setup {
-    capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern('settings.gradle.kts', 'settings.gradle', '.git', '*'),
-}
-
--- Python
-lspconfig.pyright.setup {
-    capabilities = capabilities,
-    root_dir = lspconfig.util.root_pattern('.git', '.venv'),
-}
--- lspconfig.pylsp.setup {
---     capabilities = capabilities,
---     -- settings = {
---     --   pylsp = {
---     --     plugins = {
---     --       pycodestyle = {
---     --         ignore = {'W391'},
---     --         maxLineLength = 100
---     --       }
---     --     }
---     --   }
---     -- }
--- }
-
-
--- Lua
-lspconfig.lua_ls.setup {
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-            },
-            diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-            },
-            workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-                -- Remove some weird message
-                checkThirdParty = false,
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-                enable = false,
-            },
-        },
-    },
-}
-
--- Bash
-lspconfig.bashls.setup {
-    capabilities = capabilities,
-}
-
--- Docker
-lspconfig.dockerls.setup {
-    capabilities = capabilities,
-}
-
--- LaTex, Tex
--- https://github.com/latex-lsp/texlab/wiki/Configuration
-lspconfig.texlab.setup {
-  capabilities = capabilities,
-  before_init = function(params)
-    params.processId = vim.NIL
-  end,
-  settings = {
-    texlab = {
-      build = {
-        args = {
-          "-pdf",
-          "-interaction=nonstopmode",
-          "-synctex=1",
-          "-auxdir=build",
-          "%f",
-        },
-        auxDirectory = "build",
-        logDirectory = "build",
-        onSave = true,
-        useFileList = true,
-        forwardSearchAfter = true,
-      },
-      chktex = {
-        onEdit = true,
-        onOpenAndSave = true,
-      },
-      latexindent = {
-        args = { '-l' },
-      },
-      experimental = {
-          followPackageLinks = true,
-      },
+    -- C/C++
+    lspconfig.clangd.setup {
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern(
+            '.clangd',
+            '.clang-tidy',
+            '.clang-format',
+            'compile_commands.json',
+            'compile_flags.txt',
+            'configure.ac',
+            'Makefile',
+            '.git'
+        ),
     }
-  }
-}
 
--- YAML
-lspconfig.yamlls.setup {
-    capabilities = capabilities,
-    settings = {
-        yaml = {
-            schemas = {
-                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-                -- ["../path/relative/to/file.yml"] = "/.github/workflows/*",
-                -- ["/path/from/root/of/project"] = "/.github/workflows/*",
-                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+    -- Kotlin
+    lspconfig.kotlin_language_server.setup {
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern('settings.gradle.kts', 'settings.gradle', '.git', '*'),
+    }
+
+    -- Python
+    lspconfig.pyright.setup {
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern('.git', '.venv'),
+    }
+    -- lspconfig.pylsp.setup {
+    --     capabilities = capabilities,
+    --     -- settings = {
+    --     --   pylsp = {
+    --     --     plugins = {
+    --     --       pycodestyle = {
+    --     --         ignore = {'W391'},
+    --     --         maxLineLength = 100
+    --     --       }
+    --     --     }
+    --     --   }
+    --     -- }
+    -- }
+
+
+    -- Lua
+    lspconfig.lua_ls.setup {
+        capabilities = capabilities,
+        settings = {
+            Lua = {
+                runtime = {
+                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                    version = 'LuaJIT',
+                },
+                diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = { 'vim' },
+                },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    -- Remove some weird message
+                    checkThirdParty = false,
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                    enable = false,
+                },
             },
         },
     }
-}
 
--- Verilog
-lspconfig.svls.setup {
-    capabilities = capabilities,
-    -- root_dir = lspconfig.util.root_pattern('.git', '*'),
-}
+    -- Bash
+    lspconfig.bashls.setup {
+        capabilities = capabilities,
+    }
 
--- Racket
-lspconfig.racket_langserver.setup {
-    capabilities = capabilities,
-}
+    -- Docker
+    lspconfig.dockerls.setup {
+        capabilities = capabilities,
+    }
 
--- Rust
-lspconfig.rust_analyzer.setup {
-    capabilities = capabilities,
-}
-
--- generate tags
--- https://github.com/dan-t/rusty-tags
-vim.api.nvim_exec([[
-    autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
-    autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
-]], true)
-
-
--- English - the worst of them all
-lspconfig.ltex.setup {
-    capabilities = capabilities,
-    flags = { debounce_text_changes = 300 },
-    on_attach = function(client, bufnr)
-        require("ltex_extra").setup {
-            load_langs = { "en-US" },
-            log_lever = "error",
-            path = "ltex",
+    -- LaTex, Tex
+    -- https://github.com/latex-lsp/texlab/wiki/Configuration
+    lspconfig.texlab.setup {
+        capabilities = capabilities,
+        before_init = function(params)
+            params.processId = vim.NIL
+        end,
+        settings = {
+            texlab = {
+                build = {
+                    args = {
+                        "-pdf",
+                        "-interaction=nonstopmode",
+                        "-synctex=1",
+                        "-auxdir=build",
+                        "%f",
+                    },
+                    auxDirectory = "build",
+                    logDirectory = "build",
+                    onSave = true,
+                    useFileList = true,
+                    forwardSearchAfter = true,
+                },
+                chktex = {
+                    onEdit = true,
+                    onOpenAndSave = true,
+                },
+                latexindent = {
+                    args = { '-l' },
+                },
+                experimental = {
+                    followPackageLinks = true,
+                },
+            }
         }
-    end,
-    settings = {
-        ltex = {
-            -- https://valentjn.github.io/ltex/settings.html
-            language = "en-US",
-            completionEnabled = true,
-            enabled = {
-                "python", "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd", "context", "html", "xhtml"
-            },
-            additional_rules = {
-                enablePickyRules = true,
-                languageModel = "~/language_tool_models/ngrams",
-                word2VecModel = "~/language_tool_models/neuralnetwork",
-            },
-            -- Easily causes to many requests
-            -- languageToolHttpServerUri = "https://api.languagetool.org/",
-            -- languageToolOrg = {
-            --     username = "",
-            --     apiKey = "",
-            -- },
+    }
 
-            -- possibly not working
-            ltexls = {
-                -- logLevel = "config",
-                logLevel = "finest",
+    -- YAML
+    lspconfig.yamlls.setup {
+        capabilities = capabilities,
+        settings = {
+            yaml = {
+                schemas = {
+                    ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                    -- ["../path/relative/to/file.yml"] = "/.github/workflows/*",
+                    -- ["/path/from/root/of/project"] = "/.github/workflows/*",
+                    ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+                },
+            },
+        }
+    }
+
+    -- Verilog
+    lspconfig.svls.setup {
+        capabilities = capabilities,
+        -- root_dir = lspconfig.util.root_pattern('.git', '*'),
+    }
+
+    -- Racket
+    lspconfig.racket_langserver.setup {
+        capabilities = capabilities,
+    }
+
+    -- Rust
+    lspconfig.rust_analyzer.setup {
+        capabilities = capabilities,
+    }
+
+    -- generate tags
+    -- https://github.com/dan-t/rusty-tags
+    vim.api.nvim_exec([[
+        autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+        autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+    ]], true)
+
+
+    -- English - the worst of them all
+    lspconfig.ltex.setup {
+        capabilities = capabilities,
+        flags = { debounce_text_changes = 300 },
+        on_attach = function(client, bufnr)
+            require("ltex_extra").setup {
+                load_langs = { "en-US" },
+                log_lever = "error",
+                path = "ltex",
+            }
+        end,
+        settings = {
+            ltex = {
+                -- https://valentjn.github.io/ltex/settings.html
+                language = "en-US",
+                completionEnabled = true,
+                enabled = {
+                    "python", "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd", "context", "html", "xhtml"
+                },
+                additional_rules = {
+                    enablePickyRules = true,
+                    languageModel = "~/language_tool_models/ngrams",
+                    word2VecModel = "~/language_tool_models/neuralnetwork",
+                },
+                -- Easily causes to many requests
+                -- languageToolHttpServerUri = "https://api.languagetool.org/",
+                -- languageToolOrg = {
+                --     username = "",
+                --     apiKey = "",
+                -- },
+
+                -- possibly not working
+                ltexls = {
+                    -- logLevel = "config",
+                    logLevel = "finest",
+                },
             },
         },
-    },
-}
+    }
 
--- Typst
-lspconfig.typst_lsp.setup {
-    capabilities = capabilities,
-    filetypes = { "typst" },
-    root_dir = lspconfig.util.root_pattern('.git', '*'),
-}
+    -- Typst
+    lspconfig.typst_lsp.setup {
+        capabilities = capabilities,
+        filetypes = { "typst" },
+        root_dir = lspconfig.util.root_pattern('.git', '*'),
+    }
 
--- GoLang
-lspconfig.gopls.setup {
-    capabilities = capabilities,
-}
-require('go').setup({})
-require('dap-go').setup({})
+    -- GoLang
+    lspconfig.gopls.setup {
+        capabilities = capabilities,
+    }
+    require('go').setup({})
+    require('dap-go').setup({})
 
--- Zig (zls)
-lspconfig.zls.setup {
-    capabilities = capabilities,
-}
+    -- Zig (zls)
+    lspconfig.zls.setup {
+        capabilities = capabilities,
+    }
 
--- GLSL - OpenGL
-lspconfig.glsl_analyzer.setup {
-    capabilities = capabilities,
-}
+    -- GLSL - OpenGL
+    lspconfig.glsl_analyzer.setup {
+        capabilities = capabilities,
+    }
 
--- CMake
--- lspconfig.cmake.setup {
---     capabilities = capabilities,
--- }
-lspconfig.neocmake.setup {
-    capabilities = capabilities,
-}
+    -- CMake
+    -- lspconfig.cmake.setup {
+    --     capabilities = capabilities,
+    -- }
+    lspconfig.neocmake.setup {
+        capabilities = capabilities,
+    }
 
--- SQL
-lspconfig.sqls.setup{
-    capabilities = capabilities,
-    on_attach = function(client, bufnr)
-        require('sqls').on_attach(client, bufnr)
-    end
-}
+    -- SQL
+    lspconfig.sqls.setup {
+        capabilities = capabilities,
+        on_attach = function(client, bufnr)
+            require('sqls').on_attach(client, bufnr)
+        end
+    }
 
--- Scala
-local metals_config = require("metals").bare_config()
-metals_config.on_attach = function(client, bufnr)
--- your on_attach function
+    -- Nix
+    lspconfig.nixd.setup{
+        capabilities = capabilities,
+    }
+    lspconfig.nil_ls.setup{
+        capabilities = capabilities,
+    }
 end
-
+configureLanguageServers()
 
 
 -- Debugging
