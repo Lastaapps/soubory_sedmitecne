@@ -27,10 +27,10 @@
     fastfetch
 
     # CLI utils
-    ripgrep  # recursively searches directories for a regex pattern
-    fzf      # A command-line fuzzy finder
-    fd       #
-    zoxide   #
+    ripgrep # recursively searches directories for a regex pattern
+    fzf # A command-line fuzzy finder
+    fd
+    zoxide
 
     # socials
     telegram-desktop

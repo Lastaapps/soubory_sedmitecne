@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -11,15 +16,15 @@
 
     settings = {
       import = [
-      "${pkgs.alacritty-theme}/blood_moon.toml"
-      # "${pkgs.alacritty-theme}/papercolor_dark.toml"
+        "${pkgs.alacritty-theme}/blood_moon.toml"
+        # "${pkgs.alacritty-theme}/papercolor_dark.toml"
       ];
-      
+
       # env.TERM = "xterm-256color";
       window = {
         # decorations = "None";
-	opacity = 0.90;
-	# startup_mode = "Fullscreen";
+        opacity = 0.9;
+        # startup_mode = "Fullscreen";
       };
       font = {
         size = 10.0;
@@ -27,7 +32,7 @@
       # selection.save_to_clipboard = true;
       shell = {
         program = "${pkgs.zsh}/bin/zsh";
-        args = ["-l"];
+        args = [ "-l" ];
       };
       keyboard.bindings = [
         {

@@ -20,44 +20,56 @@
     };
   };
 
-  outputs = {self, nixpkgs, home-manager, nix-vscode-extensions, ...} @ inputs: # @ binds values from inputs
-  let
-    system = "x86_64-linux";
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-vscode-extensions,
+      ...
+    }@inputs: # @ binds values from inputs
+    let
+      system = "x86_64-linux";
 
-    pkgs = import inputs.nixpkgs {
-      inherit system;
-      config = { allowUnfree = true; };
-    };
-    pkgs-stable = import inputs.nixpkgs-stable {
-      inherit system;
-      config = { allowUnfree = true; };
-    };
-    
-
-    lib = inputs.nixpkgs.lib;
-  in {
-    nixosConfigurations = {
-      msi = lib.nixosSystem {
+      pkgs = import inputs.nixpkgs {
         inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+      pkgs-stable = import inputs.nixpkgs-stable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
 
-        modules = [
-          ./system/configuration.nix ./devices/msi/hardware-configuration.nix
-        ];
+      lib = inputs.nixpkgs.lib;
+    in
+    {
+      nixosConfigurations = {
+        msi = lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            ./system/configuration.nix
+            ./devices/msi/hardware-configuration.nix
+          ];
+        };
+      };
+
+      homeConfigurations = {
+        petr = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./users/petr/home.nix
+            {
+              nixpkgs.overlays = [
+                inputs.nix-vscode-extensions.overlays.default
+              ];
+            }
+          ];
+        };
       };
     };
-
-    homeConfigurations = {
-      petr = inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./users/petr/home.nix
-          {
-            nixpkgs.overlays = [
-              inputs.nix-vscode-extensions.overlays.default
-            ];
-          }
-        ];
-      };
-    };
-  };
 }

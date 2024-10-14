@@ -1,8 +1,11 @@
-{...}:
+{ ... }:
 
 {
   programs.zoxide = {
     enable = true;
-    options = [ "--cmd cd" "--no-cmd" ];
+    options = [
+      "--cmd cd"
+      "--no-cmd"
+    ];
   };
 }

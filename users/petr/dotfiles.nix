@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Use these for immutable configurations,
@@ -52,9 +57,9 @@
   # Used mostly for the GUI applications
   home.activation = {
     # TODO refactor
-    lnNvim = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        setfact -R -m u:petr:rw /etc/nixos/modules/nvim
-	run ln -s $VERBOSE_ARG ${builtins.toPath /etc/nixos/modules/nvim} ${config.xdg.configHome} || true
+    lnNvim = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+              setfact -R -m u:petr:rw /etc/nixos/modules/nvim
+      	run ln -s $VERBOSE_ARG ${builtins.toPath /etc/nixos/modules/nvim} ${config.xdg.configHome} || true
     '';
   };
 }

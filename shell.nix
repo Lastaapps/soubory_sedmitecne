@@ -1,7 +1,9 @@
 # This shell can be used to eaither set up the system on a new machine
 # or to run system updates in safe environment
 
-{ pkgs ? import <nixpkgs> { } }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 pkgs.mkShell {
   name = "nixosbuildshell";
   nativeBuildInputs = with pkgs; [

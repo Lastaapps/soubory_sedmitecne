@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
   # Can be made fully stateless, but it hurts...
@@ -6,4 +6,3 @@
     jetbrains-toolbox
   ];
 }
-

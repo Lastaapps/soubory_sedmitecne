@@ -84,9 +84,14 @@
   users.users.petr = {
     isNormalUser = true;
     description = "Petr";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    packages =
+      with pkgs;
+      [
+      ];
   };
 
   # Install firefox.
@@ -115,16 +120,16 @@
     gawk
     zstd
     gnupg
-    wl-clipboard                       # Wayland clipboard tool, required by nvim
+    wl-clipboard # Wayland clipboard tool, required by nvim
 
     # networking tools
-    dnsutils                           # `dig` + `nslookup`
+    dnsutils # `dig` + `nslookup`
     iperf3
-    networkmanagerapplet               # nm-connection-editor for NetworkManager GUI management
-    nmap                               # A utility for network discovery and security auditing
-    ldns                               # replacement of `dig`, it provide the command `drill`
-    openssh                            # ssh
-    socat                              # replacement of openbsd-netcat
+    networkmanagerapplet # nm-connection-editor for NetworkManager GUI management
+    nmap # A utility for network discovery and security auditing
+    ldns # replacement of `dig`, it provide the command `drill`
+    openssh # ssh
+    socat # replacement of openbsd-netcat
     wget
 
     # archives
@@ -159,7 +164,6 @@
     rm = "rm -i";
     ns = "nix-shell";
   };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -1,4 +1,3 @@
-
 { config, pkgs, ... }:
 
 {
@@ -10,8 +9,8 @@
       user = "petr";
       dataDir = "/home/petr";
       configDir = "/home/petr/.config/syncthing";
-      overrideDevices = false;     # overrides any devices added or deleted through the WebUI
-      overrideFolders = false;     # overrides any folders added or deleted through the WebUI
+      overrideDevices = false; # overrides any devices added or deleted through the WebUI
+      overrideFolders = false; # overrides any folders added or deleted through the WebUI
       settings = {
         # devices = {
         #   "device1" = { id = "DEVICE-ID-GOES-HERE"; };
@@ -30,21 +29,24 @@
         #   };
         # };
 
-	options = {
+        options = {
           listenAddresses = [
             "default"
-	    "relay://lastope2.sh.cvut.cz:22067/?id=Z22QLT3-HRNIYKO-GIFDCTU-ZDDDIZ2-LCNNQA2-INDOG2J-2COAGDN-CTH3BQJ&networkTimeout=2m0s&pingInterval=1m0s&statusAddr=%3A22070"
+            "relay://lastope2.sh.cvut.cz:22067/?id=Z22QLT3-HRNIYKO-GIFDCTU-ZDDDIZ2-LCNNQA2-INDOG2J-2COAGDN-CTH3BQJ&networkTimeout=2m0s&pingInterval=1m0s&statusAddr=%3A22070"
           ];
-	  globalAnnounceServers = [
-   	    "default"
-	    "https://lastope2.sh.cvut.cz:42430/"
-	  ];
-	  urAccepted = 3;
+          globalAnnounceServers = [
+            "default"
+            "https://lastope2.sh.cvut.cz:42430/"
+          ];
+          urAccepted = 3;
         };
       };
     };
   };
 
   networking.firewall.allowedTCPPorts = [ 22000 ];
-  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
+  networking.firewall.allowedUDPPorts = [
+    22000
+    21027
+  ];
 }
