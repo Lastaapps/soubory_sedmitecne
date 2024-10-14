@@ -81,14 +81,14 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'Buf
 -- Images
 -- not needed in case I switch to the kitty terminal
 require("image").setup({
-  backend = "ueberzug",
-  -- recommended by Molten
-  max_width = 100, -- tweak to preference
-  max_height = 12, -- ^
-  max_height_window_percentage = math.huge, -- this is necessary for a good experience
-  max_width_window_percentage = math.huge,
-  window_overlap_clear_enabled = true,
-  window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" }
+    backend = "ueberzug",
+    -- recommended by Molten
+    max_width = 100,                          -- tweak to preference
+    max_height = 12,                          -- ^
+    max_height_window_percentage = math.huge, -- this is necessary for a good experience
+    max_width_window_percentage = math.huge,
+    window_overlap_clear_enabled = true,
+    window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" }
 })
 
 
@@ -193,14 +193,14 @@ cmp.setup({
         -- end, { 'i', 's' }),
     }),
     sources = cmp.config.sources({
-        { name = 'luasnip', priority = 100 },
+        { name = 'luasnip',  priority = 100 },
         { name = 'nvim_lsp', priority = 60 },
-        { name = 'codeium', priority = 50 },
-    -- }, {
-        { name = 'buffer', priority = 40, max_item_count = 5 },
+        { name = 'codeium',  priority = 50 },
+        -- }, {
+        { name = 'buffer',   priority = 40, max_item_count = 5 },
         -- { name = 'omni', priority = 70, },
-        { name = 'spell',  priority = 10, keyword_length = 2, },
-        { name = 'path',   priority = 20, },
+        { name = 'spell',    priority = 10, keyword_length = 2, },
+        { name = 'path',     priority = 20, },
     })
 })
 
@@ -552,11 +552,29 @@ local configureLanguageServers = function()
     }
 
     -- Nix
-    lspconfig.nixd.setup{
+    lspconfig.nixd.setup {
         capabilities = capabilities,
     }
-    lspconfig.nil_ls.setup{
+    lspconfig.nil_ls.setup {
         capabilities = capabilities,
+        settings = {
+            ['nil'] = {
+                testSetting = 42,
+                formatting = {
+                    command = { "nixfmt" },
+                },
+                nix = {
+                    flake = {
+                        -- Automatically run `nix flake archive` when necessary.
+                        autoArchive = true,
+                        -- Whether to auto-eval flake inputs.
+                        -- The evaluation result is used to improve completion, but may cost
+                        -- lots of time and/or memory.
+                        autoEvalInputs = true,
+                    }
+                },
+            },
+        },
     }
 end
 configureLanguageServers()
@@ -593,12 +611,12 @@ dap.adapters.gdb = {
     args = { "-i", "dap" }
 }
 dap.adapters.codelldb = {
-  type = 'server',
-  port = "${port}",
-  executable = {
-    command = '/usr/bin/codelldb',
-    args = {"--port", "${port}"},
-  }
+    type = 'server',
+    port = "${port}",
+    executable = {
+        command = '/usr/bin/codelldb',
+        args = { "--port", "${port}" },
+    }
 }
 
 -- Language specific launch options
@@ -635,23 +653,23 @@ dap.configurations.python = {
     program = '${file}',
 }
 dap.configurations.scala = {
-  {
-    type = "scala",
-    request = "launch",
-    name = "RunOrTest",
-    metals = {
-      runType = "runOrTestFile",
-      --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+    {
+        type = "scala",
+        request = "launch",
+        name = "RunOrTest",
+        metals = {
+            runType = "runOrTestFile",
+            --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+        },
     },
-  },
-  {
-    type = "scala",
-    request = "launch",
-    name = "Test Target",
-    metals = {
-      runType = "testTarget",
+    {
+        type = "scala",
+        request = "launch",
+        name = "Test Target",
+        metals = {
+            runType = "testTarget",
+        },
     },
-  },
 }
 
 

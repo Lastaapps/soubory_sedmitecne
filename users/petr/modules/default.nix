@@ -15,5 +15,8 @@
     ./gtk.nix
     ./nvim
     ./ssh.nix
+
+    ./toolbox.nix
+    ./vscode.nix
   ];
 }

@@ -7,14 +7,20 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixpkgs-stable.url = "nixpkgs/nixos-24.05";
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {self, ...} @ inputs: # @ binds values from inputs
+  outputs = {self, nixpkgs, home-manager, nix-vscode-extensions, ...} @ inputs: # @ binds values from inputs
   let
     system = "x86_64-linux";
 
@@ -26,17 +32,16 @@
       inherit system;
       config = { allowUnfree = true; };
     };
+    
 
     lib = inputs.nixpkgs.lib;
-
   in {
     nixosConfigurations = {
       msi = lib.nixosSystem {
         inherit system;
 
         modules = [
-          ./system/configuration.nix
-          ./devices/msi/hardware-configuration.nix
+          ./system/configuration.nix ./devices/msi/hardware-configuration.nix
         ];
       };
     };
@@ -46,7 +51,11 @@
         inherit pkgs;
         modules = [
           ./users/petr/home.nix
-          # inputs.nixvim.homeManagerModules.nixvim
+          {
+            nixpkgs.overlays = [
+              inputs.nix-vscode-extensions.overlays.default
+            ];
+          }
         ];
       };
     };
