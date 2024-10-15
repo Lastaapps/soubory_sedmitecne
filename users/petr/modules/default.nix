@@ -17,6 +17,7 @@
     ./ssh.nix
 
     ./toolbox.nix
+    ./safeeyes.nix
     ./vscode.nix
   ];
 }
