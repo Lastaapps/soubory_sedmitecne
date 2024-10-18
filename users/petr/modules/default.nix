@@ -16,6 +16,7 @@
     ./nvim
     ./ssh.nix
 
+    ./octave.nix
     ./toolbox.nix
     ./safeeyes.nix
     ./vscode.nix
