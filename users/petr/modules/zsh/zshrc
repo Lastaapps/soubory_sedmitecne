@@ -1,35 +1,24 @@
 
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 
-export PATH="/usr/lib/ccache/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 
 export GPG_TTY=$(tty)
 export PINENTRY_MODE=ncurses
 
-
-source "${DOTFILES}/zsh/aliases.zsh"
-
-
 # Remove duplicate commands
-setopt histignorealldups
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_FIND_NO_DUPS
-setopt HIST_SAVE_NO_DUPS
+setopt      "histignorealldups"
+setopt      "HIST_EXPIRE_DUPS_FIRST"
+setopt      "HIST_IGNORE_DUPS"
+setopt      "HIST_IGNORE_ALL_DUPS"
+setopt      "HIST_IGNORE_SPACE"
+setopt      "HIST_FIND_NO_DUPS"
+setopt      "HIST_SAVE_NO_DUPS"
 
+setopt      "SHARE_HISTORY"
+setopt      "HIST_FCNTL_LOCK"
 
 bindkey "^N" fzf-cd-widget
-
-
-###############################################################################
-# Plugins
-###############################################################################
-source "${DOTFILES}/zsh/plugins.zsh"
-
-
 
 # ArchWiki
 autoload -Uz compinit promptinit
@@ -107,24 +96,6 @@ key[Control-Right]="${terminfo[kRIT5]}"
 
 
 
-###############################################################################
-# Directory history
-###############################################################################
-autoload -Uz add-zsh-hook
-
-DIRSTACKFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/dirs"
-# Select last dir at start
-#if [[ -f "$DIRSTACKFILE" ]] && (( ${#dirstack} == 0 )); then
-#	dirstack=("${(@f)"$(< "$DIRSTACKFILE")"}")
-#	[[ -d "${dirstack[1]}" ]] && cd -- "${dirstack[1]}"
-#fi
-chpwd_dirstack() {
-	print -l -- "$PWD" "${(u)dirstack[@]}" > "$DIRSTACKFILE"
-}
-add-zsh-hook -Uz chpwd chpwd_dirstack
-
-DIRSTACKSIZE='16'
-
 setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME
 
 ## Remove duplicate entries
@@ -139,76 +110,6 @@ autoload -Uz run-help
 (( ${+aliases[run-help]} )) && unalias run-help
 alias help=run-help
 
-
-
-
-###############################################################################
-# pacman -f search fix
-###############################################################################
-function command_not_found_handler {
-    local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
-    printf 'zsh: command not found: %s\n' "$1"
-    local entries=(
-        ${(f)"$(/usr/bin/pacman -F --machinereadable -- "/usr/bin/$1")"}
-    )
-    if (( ${#entries[@]} ))
-    then
-        printf "${bright}$1${reset} may be found in the following packages:\n"
-        local pkg
-        for entry in "${entries[@]}"
-        do
-            # (repo package version file)
-            local fields=(
-                ${(0)entry}
-            )
-            if [[ "$pkg" != "${fields[2]}" ]]
-            then
-                printf "${purple}%s/${bright}%s ${green}%s${reset}\n" "${fields[1]}" "${fields[2]}" "${fields[3]}"
-            fi
-            printf '    /%s\n' "${fields[4]}"
-            pkg="${fields[2]}"
-        done
-    fi
-    return 127
-}
-
-
-
-
-###############################################################################
-# Nice to have
-###############################################################################
-# https://github.com/slashbeast/conf-mgmt/blob/master/roles/home_files/files/DOTzshrc
-
-reload () {
-    exec "${SHELL}" "$@"
-}
-
-# Checks terminal mode
-over_ssh() {
-    if [ -n "${SSH_CLIENT}" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-
-# Fancy cd that can cd into parent directory, if trying to cd into file.
-# useful with ^F fuzzy searcher.
-cd() {
-    if (( $+2 )); then
-        builtin cd "$@"
-        return 0
-    fi
-
-    if [ -f "$1" ]; then
-        echo "${yellow}cd ${1:h}${NC}" >&2
-        builtin cd "${1:h}"
-    else
-        builtin cd "${@}"
-    fi
-}
 
 
 ###############################################################################
@@ -232,93 +133,55 @@ poweroff() { confirm_wrapper --root $0 "$@"; }
 reboot() { confirm_wrapper --root $0 "$@"; }
 hibernate() { confirm_wrapper --root $0 "$@"; }
 
-
-###############################################################################
-# Terminal title
-###############################################################################
-termtitle() {
-    case "$TERM" in
-        rxvt*|xterm*|nxterm|gnome|screen|screen-*|st|st-*)
-            local prompt_host="${(%):-%m}"
-            local prompt_user="${(%):-%n}"
-            local prompt_char="${(%):-%~}"
-            case "$1" in
-                precmd)
-                    printf '\e]0;%s@%s: %s\a' "${prompt_user}" "${prompt_host}" "${prompt_char}"
-                ;;
-                preexec)
-                    printf '\e]0;%s [%s@%s: %s]\a' "$2" "${prompt_user}" "${prompt_host}" "${prompt_char}"
-                ;;
-            esac
-        ;;
-    esac
-}
+# https://git-scm.com/book/en/v2/Appendix-A:-Git-in-Other-Environments-Git-in-Zsh
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats '%b'
+# RPROMPT='${vcs_info_msg_0_}'
+# PROMPT='${vcs_info_msg_0_}%# '
 
 
-###############################################################################
-# Git setup
-###############################################################################
-setup_git_prompt() {
-    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-        unset git_prompt
-        return 0
-    fi
-
-    local git_status_dirty git_status_stash git_branch
-
-    if [ "$(git --no-optional-locks status --untracked-files='no' --porcelain)" ]; then
-        git_status_dirty='%F{208}*'
-    else
-        unset git_status_dirty
-    fi
-
-    if [ "$(git stash list)" ]; then
-        git_status_stash="%F{yellow}▲"
-    else
-        unset git_status_stash
-    fi
-
-    git_branch="$(git symbolic-ref HEAD 2>/dev/null)"
-    git_branch="${git_branch#refs/heads/}"
-
-    if [ "${#git_branch}" -ge 24 ]; then
-        git_branch="${git_branch:0:21}..."
-    fi
-
-    git_branch="${git_branch:-no branch}"
-
-    git_prompt=" %F{red}(${git_branch}${git_status_dirty}${git_status_stash}%F{red})"
-}
-
-precmd() {
-    # Set terminal title.
-    termtitle precmd
-
-    # Set optional git part of prompt.
-    setup_git_prompt
-}
+# git-promt.sh config
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE="non_empty_value"
+GIT_PS1_SHOWSTASHSTATE="non_empty_value"
+GIT_PS1_SHOWUNTRACKEDFILES="non_empty_value"
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWCONFLICTSTATE="yes"
+GIT_PS1_STATESEPARATOR=""
 
 
-# Fancy prompt.
-if over_ssh && [ -z "${TMUX}" ]; then
-    prompt_is_ssh='%F{blue}[%F{red}SSH%F{blue}] '
-elif over_ssh; then
-    prompt_is_ssh='%F{blue}[%F{253}SSH%F{blue}] '
-else
-    unset prompt_is_ssh
-fi
-
-source /etc/profile.d/git-prompt.sh
-
-case $USER in
-    root)
-	    PROMPT='%B%F{cyan}%m%k %(?..%F{blue}[%F{253}%?%F{blue}] )${prompt_is_ssh}%B%F{blue}%1~%F{red}$(__git_ps1 " (%s)")%F{blue}%b%f%k# '
-    ;;
-
-    *)
-        PROMPT='%B%F{green}%n@%m%k %(?..%F{blue}[%F{253}%?%F{blue}] )${prompt_is_ssh}%B%F{cyan}%1~%F{red}$(__git_ps1 " (%s)")%F{cyan}%b%f%k\$ '
-    ;;
-esac
+# https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
+# %(x.true-text.false-text)
+# ?                      # True if the exit status of the last command was n.
+# '%m'                   # HOSTNAME
+# '%n'                   # USERNAME
+# '%E'                   # clear to end of line
+# '%B (%b)'              # start (stop) boldface mode
+# '%F{blue} (%f)'        # foreground color
+# '%K{blue} (%k)'        # background color
+# '%S (%s)'              # stand out mode
+# '%W'                   # date
+# '%*'                   # time with seconds
+# '%j'                   # current number of jobs
+# '%~'                   # current work dir, home replaced by ~
+# '%-1d'                 # current work dir - last segment
+# '%(!.#.\$)'            # $ or # based on privileges
+# ${vcs_info_msg_0_}     # git info provided by vcs_info
+# $(__git_ps1 " (%s)")   # git info provided by git-prompt.sh
+PROMPT='%k %(?..%F{blue}[%F{253}%?%F{blue}] )%B%F{cyan}%1~%F{red} $vcs_info_msg_0_%F{cyan}%b%f%k'
+PROMPT=''
+PROMPT=${PROMPT}'%F{yellow}[%D{%Y-%m-%dT%H:%M:%S}]:%f '                    # date-time
+PROMPT=${PROMPT}'%B%F{green}%n@%m%f%b '                # user@host
+PROMPT=${PROMPT}'%(j..%F{blue}%S↯%j%s%f )'             # current number of jobs
+PROMPT=${PROMPT}'%B%F{cyan}%~%f%b '                                  # current work dir, home replaced by ~
+# PROMPT=${PROMPT}'%B%F{red}${vcs_info_msg_0_}%f%b '
+PROMPT=${PROMPT}'%B%F{red}$(__git_ps1 "(%s) ")%f%b'
+PROMPT=${PROMPT}$'\n'
+PROMPT=${PROMPT}'%(!.#.\$)'                            # $ or # based on privileges
+PROMPT=${PROMPT}' '
 
 
 # extended globbing, awesome!
@@ -331,13 +194,4 @@ setopt promptsubst
 
 autoload bashcompinit
 bashcompinit
-
-source /etc/shellrc
-
-# End ArchWiki
-
-
-# Activate zoxide
-# eval "$(zoxide init zsh)"
-eval "$(zoxide init --cmd cd zsh)"
 

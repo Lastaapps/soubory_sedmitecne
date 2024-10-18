@@ -8,7 +8,7 @@
 
     ./alacritty.nix
     ./bat.nix
-    ./zoxide.nix
+    ./zsh
 
     ./git.nix
     ./gpg-agent.nix
@@ -20,5 +20,6 @@
     ./toolbox.nix
     ./safeeyes.nix
     ./vscode.nix
+    ./zeal.nix
   ];
 }

@@ -30,10 +30,10 @@
         size = 10.0;
       };
       # selection.save_to_clipboard = true;
-      shell = {
-        program = "${pkgs.zsh}/bin/zsh";
-        args = [ "-l" ];
-      };
+      # shell = {
+      #   program = "${pkgs.zsh}/bin/zsh";
+      #   args = [ "-l" ];
+      # };
       keyboard.bindings = [
         {
           key = "N";

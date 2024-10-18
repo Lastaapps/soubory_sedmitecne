@@ -1,11 +1,7 @@
-
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-
 # Options to fzf command
 
 FZF_EXCLUDE_DIRS=(
-    ".git" ".venv"
+    ".git" ".venv" "build" "target" ".gradle"
 )
 for DIR in ${FZF_EXCLUDE_DIRS}; do
     FZF_EXCLUDE="${FZF_EXCLUDE} --exclude \"${DIR}\""

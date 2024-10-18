@@ -5,7 +5,7 @@
     enable = true;
     options = [
       "--cmd cd"
-      "--no-cmd"
+      # "--no-cmd"
     ];
   };
 }

@@ -11,7 +11,22 @@
   home.homeDirectory = "/home/petr";
 
   home.sessionVariables = {
-    EDITOR = "neovim";
+    EDITOR = "nvim";
+  };
+
+  home.shellAliases = {
+    mv = "mv -i";
+    cat = "bat";
+    lbc = "bc -l";
+    xclip = "xclip -sel c";
+
+    # gradle
+    libu = "./gradlew --no-configuration-cache versionCatalogUpdate --interactive";
+    liba = "./gradlew --no-configuration-cache versionCatalogApplyUpdates";
+    wrapperu = "./gradlew wrapper --no-configuration-cache --gradle-version";
+
+    # misc
+    pinggoogle = "ping -O google.com; ping -O 8.8.8.8";
   };
 
   # The home.packages option allows you to install Nix packages into your
