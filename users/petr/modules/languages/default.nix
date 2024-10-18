@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./c_cpp.nix
+    ./c_cpp
     ./cmake.nix
     ./docker.nix
     ./english.nix
