@@ -24,10 +24,11 @@
       window = {
         # decorations = "None";
         opacity = 0.9;
+        startup_mode = "Maximized";
         # startup_mode = "Fullscreen";
       };
       font = {
-        size = 10.0;
+        size = 11.0;
       };
       # selection.save_to_clipboard = true;
       # shell = {

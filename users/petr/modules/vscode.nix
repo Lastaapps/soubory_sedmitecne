@@ -21,9 +21,10 @@
       ++ (with pkgs.vscode-marketplace; [
         # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/vscode-marketplace-latest.json
         # ms-vscode.cpptools
-        ms-vscode.cpptools-extension-pack
         ms-python.python
         ms-python.debugpy
+        ms-toolsai.jupyter
+        ms-vscode.cpptools-extension-pack
       ]);
 
     # Settings

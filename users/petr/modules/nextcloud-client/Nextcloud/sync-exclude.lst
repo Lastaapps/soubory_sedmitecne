@@ -37,7 +37,6 @@ System Volume Information
 .stignore
 .stversions
 My Saved Places.
-\#*#
 *.sb-*
 build/
 Rubbish/
@@ -48,3 +47,7 @@ BuildTools/
 .gradle/
 .kotlin/
 target/
+.venv/
+venv/
+__pycache__/
+node_modules/

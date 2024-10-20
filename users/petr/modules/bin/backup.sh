@@ -10,7 +10,7 @@ ARGS="a -m5 -hp -rr3p -r -y -md1g -ep1 -mt8 -ma5 -ol"
 
 
 EXCLUDE_MINECRAFT="-x*/mcaselector/* -x*/Servers/*/bundler/* -x*/Servers/*/libraries/* -x*/Servers/*/versions/* -x*/server_backup/* -x*/BuildTools/*"
-EXCLUDE_PROGRAMMING="-x*/target/* -x*/build/* -x*/.gradle/* -x*/PID/* -x*/pid_data/* -x*/generator/testdata/* -x*/.venv/* -x*/node_modules/* -x*/__pycache__/*"
+EXCLUDE_PROGRAMMING="-x*/target/* -x*/build/* -x*/.gradle/* -x*/PID/* -x*/pid_data/* -x*/generator/testdata/* -x*/.venv/* -x*/venv/* -x*/node_modules/* -x*/__pycache__/*"
 EXCLUDE_GENERAL="-x*/.thumbnails/*"
 EXCLUDE="$EXCLUDE_MINECRAFT $EXCLUDE_PROGRAMMING $EXCLUDE_GENERAL"
 

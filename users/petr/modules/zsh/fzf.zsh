@@ -1,7 +1,16 @@
 # Options to fzf command
 
 FZF_EXCLUDE_DIRS=(
-    ".git" ".venv" "build" "target" ".gradle"
+    ".git"
+    ".venv"
+    "build"
+    "target"
+    ".gradle"
+    ".local"
+    ".cache"
+    ".nix-profile"
+    "__pycache__"
+    "node_modules"
 )
 for DIR in ${FZF_EXCLUDE_DIRS}; do
     FZF_EXCLUDE="${FZF_EXCLUDE} --exclude \"${DIR}\""

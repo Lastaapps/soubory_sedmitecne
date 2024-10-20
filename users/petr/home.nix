@@ -12,6 +12,10 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    VISUAL = "nvim";
+    BROWSER = "firefox";
+    TERM = "alacritty";
+    TERMINAL = "alacritty";
   };
 
   home.shellAliases = {
