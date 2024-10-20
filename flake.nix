@@ -53,7 +53,7 @@
 
           modules = [
             ./system/configuration.nix
-            ./devices/msi/hardware-configuration.nix
+            ./devices/msi
           ];
         };
       };
