@@ -570,7 +570,7 @@ local configureLanguageServers = function()
                         -- Whether to auto-eval flake inputs.
                         -- The evaluation result is used to improve completion, but may cost
                         -- lots of time and/or memory.
-                        autoEvalInputs = true,
+                        -- autoEvalInputs = true,
                     }
                 },
             },

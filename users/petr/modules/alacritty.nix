@@ -16,6 +16,7 @@
 
     settings = {
       import = [
+        # https://github.com/alacritty/alacritty-theme
         "${pkgs.alacritty-theme}/blood_moon.toml"
         # "${pkgs.alacritty-theme}/papercolor_dark.toml"
       ];
@@ -30,11 +31,10 @@
       font = {
         size = 11.0;
       };
-      # selection.save_to_clipboard = true;
-      # shell = {
-      #   program = "${pkgs.zsh}/bin/zsh";
-      #   args = [ "-l" ];
-      # };
+      shell = {
+        program = "${pkgs.zsh}/bin/zsh";
+        args = [ "-l" ];
+      };
       keyboard.bindings = [
         {
           key = "N";
@@ -42,6 +42,10 @@
           action = "SpawnNewInstance";
         }
       ];
+      colors = {
+        # normal = { green = "0xFFD700"; };
+        draw_bold_text_with_bright_colors = true;
+      };
     };
   };
 }

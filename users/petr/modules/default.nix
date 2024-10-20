@@ -1,6 +1,8 @@
 { ... }:
 {
   imports = [
+    ./general_programs.nix
+
     ./languages
     ./nextcloud-client
 

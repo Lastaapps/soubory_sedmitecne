@@ -21,8 +21,12 @@
     nix-search-cli
     python3
 
-    # misc
+    # tops
     htop
+    iotop
+    iftop
+
+    # misc
     bat
     file
     which

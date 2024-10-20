@@ -59,8 +59,6 @@
     extraLuaConfig =
       let
         plugins = with pkgs.vimPlugins; [
-          which-key-nvim
-
           plenary-nvim
           # vim-obcession
           transparent-nvim
