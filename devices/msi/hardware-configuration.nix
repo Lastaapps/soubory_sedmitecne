@@ -49,23 +49,30 @@
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/fa8e7f11-004a-49a0-8eb6-f4c9545f7973";
     fsType = "btrfs";
+    options = [
+      # Access times are not written to drive at all
+      # https://wiki.archlinux.org/title/Fstab#atime_options
+      "noatime"
+    ];
   };
 
   fileSystems."/mnt/d" = {
     device = "/dev/disk/by-uuid/D854B2BA54B29B28";
-    fsType = "ntfs-3g";
+    fsType = "ntfs";
     options = [
       "rw"
       "uid=petr"
+      "gid=users"
     ];
   };
 
   fileSystems."/mnt/f" = {
     device = "/dev/disk/by-uuid/20F6D631F6D606C6";
-    fsType = "ntfs-3g";
+    fsType = "ntfs";
     options = [
       "rw"
       "uid=petr"
+      "gid=users"
     ];
   };
 
