@@ -5,6 +5,7 @@
 
     ./languages
     ./nextcloud-client
+    ./safeeyes
 
     ./bin.nix
 
@@ -20,7 +21,6 @@
 
     ./octave.nix
     ./toolbox.nix
-    ./safeeyes.nix
     ./vscode.nix
     ./zeal.nix
   ];
