@@ -61,6 +61,8 @@
     fsType = "ntfs";
     options = [
       "rw"
+      "big_writes"
+      "noatime"
       "uid=petr"
       "gid=users"
     ];
@@ -71,6 +73,8 @@
     fsType = "ntfs";
     options = [
       "rw"
+      "big_writes"
+      "noatime"
       "uid=petr"
       "gid=users"
     ];

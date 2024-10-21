@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./dns.nix
     ./locate.nix
     ./locale_keyboard.nix
     ./programs.nix
