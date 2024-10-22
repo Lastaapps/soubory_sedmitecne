@@ -4,9 +4,8 @@ CompileFlags:
   Add: [
     -Wall,
     -pedantic,
-    -std=gnu++20,
-    -std=gnu2x,
-    -xc-header,
+    # -std=c++23,
+    # -std=c23,
   ]
 
 Index:
