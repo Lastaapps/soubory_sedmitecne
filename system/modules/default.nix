@@ -2,6 +2,7 @@
 {
   imports = [
     ./dns.nix
+    ./docker.nix
     ./locate.nix
     ./locale_keyboard.nix
     ./programs.nix
