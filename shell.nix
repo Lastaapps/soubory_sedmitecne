@@ -9,7 +9,7 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     git
     git-crypt
-    nixFlakes
+    nixVersions.stable
   ];
 
   shellHook = ''
@@ -39,7 +39,7 @@ pkgs.mkShell {
     alias nclean="~/dotfiles/scripts/clean.sh"
 
     PATH=${pkgs.writeShellScriptBin "nix" ''
-      ${pkgs.nixFlakes}/bin/nix --experimental-features "nix-command flakes" "$@"
+      ${pkgs.nixVersions.stable}/bin/nix --experimental-features "nix-command flakes" "$@"
     ''}/bin:$PATH
   '';
 }
