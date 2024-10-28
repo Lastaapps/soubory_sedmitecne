@@ -15,11 +15,13 @@
     enable = true;
 
     settings = {
-      import = [
-        # https://github.com/alacritty/alacritty-theme
-        "${pkgs.alacritty-theme}/blood_moon.toml"
-        # "${pkgs.alacritty-theme}/papercolor_dark.toml"
-      ];
+      general = {
+        import = [
+          # https://github.com/alacritty/alacritty-theme
+          "${pkgs.alacritty-theme}/blood_moon.toml"
+          # "${pkgs.alacritty-theme}/papercolor_dark.toml"
+        ];
+      };
 
       # env.TERM = "xterm-256color";
       window = {
@@ -31,9 +33,11 @@
       font = {
         size = 11.0;
       };
-      shell = {
-        program = "${pkgs.zsh}/bin/zsh";
-        args = [ "-l" ];
+      terminal = {
+        shell = {
+          program = "${pkgs.zsh}/bin/zsh";
+          args = [ "-l" ];
+        };
       };
       keyboard.bindings = [
         {
