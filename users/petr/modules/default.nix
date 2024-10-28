@@ -3,6 +3,7 @@
   imports = [
     ./general_programs.nix
 
+    ./libre-office.nix
     ./languages
     ./nextcloud-client
     ./safeeyes
@@ -23,5 +24,7 @@
     ./toolbox.nix
     ./vscode.nix
     ./zeal.nix
+
+    ./java.nix
   ];
 }
