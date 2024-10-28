@@ -6,5 +6,6 @@
     sbt
     coursier
     jdk21
+    scalafmt
   ];
 }
