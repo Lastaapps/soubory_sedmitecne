@@ -8,6 +8,12 @@ return {
             vim.keymap.set('n', '<leader>fg', tel_builtin.live_grep, {})
             vim.keymap.set('n', '<leader>fb', tel_builtin.buffers, {})
             vim.keymap.set('n', '<leader>fh', tel_builtin.help_tags, {})
+            vim.keymap.set('n', '<leader>fws', tel_builtin.lsp_workspace_symbols, {})
+            vim.keymap.set('n', '<leader>fds', tel_builtin.lsp_document_symbols, {})
+            vim.keymap.set('n', '<leader>fr', tel_builtin.lsp_references, {})
+            vim.keymap.set('n', '<leader>fci', tel_builtin.lsp_incoming_calls, {})
+            vim.keymap.set('n', '<leader>fco', tel_builtin.lsp_outgoing_calls, {})
+            vim.keymap.set('n', 'gd', tel_builtin.lsp_definitions, {})
             -- <C-x> go to file selection as a split
             -- <C-v> go to file selection as a vsplit
             -- <C-t> go to a file in a new tab
@@ -23,7 +29,7 @@ return {
                             -- actions.which_key shows the mappings for your picker,
                             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                             ["<C-h>"] = "which_key",
-                        }
+                        },
                     }
                 },
                 pickers = {},

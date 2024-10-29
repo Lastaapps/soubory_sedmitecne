@@ -228,9 +228,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        -- Defined in telescope
+        -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references)
+        vim.keymap.set("n", "gds", vim.lsp.buf.document_symbol)
+        vim.keymap.set("n", "gws", vim.lsp.buf.workspace_symbol)
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
         vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
@@ -244,7 +248,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<space>f', function()
             vim.lsp.buf.format { async = true }
         end, opts)
+        vim.keymap.set("n", "<space>cl", vim.lsp.codelens.run)
+        vim.keymap.set("n", "<space>sh", vim.lsp.buf.signature_help)
+        -- all workspace diagnostics
+        vim.keymap.set("n", "<space>aa", vim.diagnostic.setqflist)
+        -- all workspace errors
+        vim.keymap.set("n", "<space>ae", function()
+            vim.diagnostic.setqflist({ severity = "E" })
+        end)
+        -- all workspace warnings
+        vim.keymap.set("n", "<space>aw", function()
+            vim.diagnostic.setqflist({ severity = "W" })
+        end)
+        -- buffer diagnostics only
+        vim.keymap.set("n", "<space>d", vim.diagnostic.setloclist)
 
+        vim.keymap.set("n", "[c", function()
+            vim.diagnostic.goto_prev({ wrap = false })
+        end)
+        vim.keymap.set("n", "]c", function()
+            vim.diagnostic.goto_next({ wrap = false })
+        end)
 
         -- Show line diagnostics automatically in hover window
         vim.api.nvim_create_autocmd("CursorHold", {
@@ -708,6 +732,35 @@ dap_python.test_runner = 'pytest'
 vim.keymap.set('n', '<Leader>df', function() dap_python.test_method() end)
 vim.keymap.set('n', '<Leader>dc', function() dap_python.test_class() end)
 vim.keymap.set('v', '<Leader>ds', function() dap_python.debug_selection() end)
+
+-- TODO implement DAP, these are taken from metals-scala
+-- map("n", "<leader>dc", function()
+--     require("dap").continue()
+-- end)
+
+-- map("n", "<leader>dr", function()
+--     require("dap").repl.toggle()
+-- end)
+
+-- map("n", "<leader>dK", function()
+--     require("dap.ui.widgets").hover()
+-- end)
+
+-- map("n", "<leader>dt", function()
+--     require("dap").toggle_breakpoint()
+-- end)
+
+-- map("n", "<leader>dso", function()
+--     require("dap").step_over()
+-- end)
+
+-- map("n", "<leader>dsi", function()
+--     require("dap").step_into()
+-- end)
+
+-- map("n", "<leader>dl", function()
+--     require("dap").run_last()
+-- end)
 
 
 

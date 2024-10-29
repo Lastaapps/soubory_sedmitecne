@@ -63,6 +63,8 @@
           # vim-obcession
           transparent-nvim
           image-nvim
+          fidget-nvim
+          which-key-nvim
 
           # treesitter
           nvim-treesitter-context
@@ -141,7 +143,8 @@
         lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
       in
       ''
-        vim.g.mapleader = "." -- Need to set leader before lazy for correct keybindings
+        vim.g.mapleader = "," -- Need to set leader before lazy for correct keybindings
+
         require("lazy").setup({
           spec = {
             -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
