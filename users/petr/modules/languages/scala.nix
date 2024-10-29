@@ -7,5 +7,6 @@
     coursier
     jdk21
     scalafmt
+    scalafix
   ];
 }
