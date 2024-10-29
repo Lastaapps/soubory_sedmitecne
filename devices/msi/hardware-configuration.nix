@@ -58,9 +58,11 @@
 
   fileSystems."/mnt/d" = {
     device = "/dev/disk/by-uuid/D854B2BA54B29B28";
-    fsType = "ntfs";
+    fsType = "ntfs-3g"; # "ntfs" is not a kernel space driver
     options = [
       "rw"
+      "inherit"
+      "windows_names"
       "big_writes"
       "noatime"
       "uid=petr"
@@ -70,9 +72,11 @@
 
   fileSystems."/mnt/f" = {
     device = "/dev/disk/by-uuid/20F6D631F6D606C6";
-    fsType = "ntfs";
+    fsType = "ntfs-3g";
     options = [
       "rw"
+      "inherit"
+      "windows_names"
       "big_writes"
       "noatime"
       "uid=petr"
