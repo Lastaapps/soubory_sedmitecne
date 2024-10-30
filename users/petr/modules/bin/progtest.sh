@@ -13,8 +13,8 @@ printf "%s\n" "<======= ProgTest simulator, version: ${version} =======>"
 #	-Wall will give all possible warnings
 #	-Werror will turn warnings to errors
 #	-pedantic is useful on progtest
-compileOptionsDef="-std=c++11 -g -Wall -Werror -pedantic -O2 -Wno-long-long -fsanitize=address"
-compileOptionsEasierDef="-std=c++11 -g -Wall"
+compileOptionsDef="-std=c++20 -g -Wall -Werror -pedantic -O2 -Wno-long-long -fsanitize=address,undefined"
+compileOptionsEasierDef="-std=c++20 -g -Wall -pedantic"
 
 # Uncomment to warn about long long
 #compileOptionsLongDef="-Wlong-long"
