@@ -46,8 +46,13 @@ return {
         local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
         vim.api.nvim_create_autocmd("FileType", {
             pattern = self.ft,
-            callback = function()
+            callback = function(client, bufnr)
                 require("metals").initialize_or_attach(metals_config)
+                -- Does not work, sad
+                -- vim.api.nvim_buf_create_user_command(bufnr, "MetalsNewScalaFile", function()
+                --     vim.cmd("tab split")
+                --     require("metals").newScalaFile()
+                -- end, {})
             end,
             group = nvim_metals_group,
         })
