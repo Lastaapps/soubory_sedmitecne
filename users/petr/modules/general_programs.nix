@@ -4,5 +4,11 @@
 
 {
   home.packages = with pkgs; [
+    chromium
+
+    ranger
+    tmux
+
+    bc
   ];
 }
