@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 limit=2
 for name in "caprine" "Discord" # "youtube-music"

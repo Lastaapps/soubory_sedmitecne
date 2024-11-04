@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## README: https://github.com/OndrejSodek/cvut-progtest-script
 

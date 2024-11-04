@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 until ping -c 1 -W 1 8.8.8.8 &> /dev/null
 do
