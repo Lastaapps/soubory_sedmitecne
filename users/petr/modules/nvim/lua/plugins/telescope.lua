@@ -13,7 +13,7 @@ return {
             vim.keymap.set('n', '<leader>fr', tel_builtin.lsp_references, {})
             vim.keymap.set('n', '<leader>fci', tel_builtin.lsp_incoming_calls, {})
             vim.keymap.set('n', '<leader>fco', tel_builtin.lsp_outgoing_calls, {})
-            vim.keymap.set('n', 'gd', tel_builtin.lsp_definitions, {})
+            -- vim.keymap.set('n', 'gd', tel_builtin.lsp_definitions, {})
             -- <C-x> go to file selection as a split
             -- <C-v> go to file selection as a vsplit
             -- <C-t> go to a file in a new tab

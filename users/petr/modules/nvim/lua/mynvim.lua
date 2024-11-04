@@ -228,8 +228,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        -- Defined in telescope
-        -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "gr", vim.lsp.buf.references)
         vim.keymap.set("n", "gds", vim.lsp.buf.document_symbol)
         vim.keymap.set("n", "gws", vim.lsp.buf.workspace_symbol)

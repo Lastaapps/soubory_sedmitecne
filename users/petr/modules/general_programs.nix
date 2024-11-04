@@ -5,10 +5,12 @@
 {
   home.packages = with pkgs; [
     chromium
+    okular
 
     ranger
     tmux
 
     bc
+    ncdu
   ];
 }
