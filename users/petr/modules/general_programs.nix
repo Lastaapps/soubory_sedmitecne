@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     chromium
     okular
+    digikam
 
     ranger
     tmux

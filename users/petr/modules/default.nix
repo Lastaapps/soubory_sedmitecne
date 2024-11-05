@@ -2,6 +2,7 @@
 {
   imports = [
     ./general_programs.nix
+    ./gnome
 
     ./libre-office.nix
     ./languages
