@@ -2,20 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
-  imports = [
-    ./modules
-  ];
+  imports = [ ./modules ];
   nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [
-    "mitigations=off"
-  ];
+  boot.kernelParams = [ "mitigations=off" ];
 
   networking.hostName = "msi";
 
@@ -65,9 +61,13 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Make nix less anoying
-  nix.extraOptions = ''experimental-features = nix-command flakes'';
-  nix.optimise.automatic = true;
+  # Make nix less annoying
+  nix = {
+    extraOptions = ''experimental-features = nix-command flakes'';
+    optimise.automatic = true;
+    # TODO remove after 24.11
+    package = pkgs-unstable.nix;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

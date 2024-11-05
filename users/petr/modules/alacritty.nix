@@ -2,17 +2,19 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 
 {
-  home.packages = with pkgs; [
+  home.packages = with pkgs-unstable; [
     alacritty
     alacritty-theme
   ];
 
   programs.alacritty = {
     enable = true;
+    package = pkgs-unstable.alacritty;
 
     settings = {
       general = {

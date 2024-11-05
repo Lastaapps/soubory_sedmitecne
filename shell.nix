@@ -2,14 +2,17 @@
 # or to run system updates in safe environment
 
 {
-  pkgs ? import <nixpkgs> { },
+  pkgs ? import <nixos> { }, # should be more minimal, but fine for Linux
+  # pkgs ? import <nixpkgs> { }, # should also work on Darwin
 }:
 pkgs.mkShell {
   name = "nixosbuildshell";
   nativeBuildInputs = with pkgs; [
     git
     git-crypt
-    nixVersions.stable
+    # TODO revert after 24.11 pkgs-unstable
+    # nixVersions.stable
+    nixVersions.latest
   ];
 
   shellHook = ''
