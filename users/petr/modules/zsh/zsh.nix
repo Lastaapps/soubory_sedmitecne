@@ -7,12 +7,13 @@
     enableCompletion = true;
     autosuggestion = {
       enable = true;
-      strategy = [
-        # in this order
-        "match_prev_cmd"
-        "completion"
-        "history"
-      ];
+      # TODO works in pkgs-unstable, temporarily movoed to the main config bellow
+      # strategy = [
+      #   # in this order
+      #   "match_prev_cmd"
+      #   "completion"
+      #   "history"
+      # ];
     };
     syntaxHighlighting.enable = true;
 
@@ -39,6 +40,8 @@
     };
 
     initExtra = ''
+      ZSH_AUTOSUGGEST_STRATEGY=("match_prev_cmd" "completion" "history")
+
       source "${./zshrc}"
       source "${./fzf.zsh}"
       source "${pkgs.git}/share/git/contrib/completion/git-prompt.sh"
