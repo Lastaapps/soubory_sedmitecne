@@ -33,6 +33,7 @@
       appindicator
       burn-my-windows
       caffeine
+      gsconnect
       just-perfection
       native-window-placement
       openweather-refined
@@ -49,4 +50,10 @@
   # ensure gnome-settings-daemon udev rules are enabled
   services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
+  # KDE Connect
+  programs.kdeconnect = {
+    enable = true;
+    # Gnome, comment for other environments
+    package = pkgs.gnomeExtensions.gsconnect;
+  };
 }

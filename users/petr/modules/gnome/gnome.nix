@@ -17,6 +17,7 @@
           appindicator.extensionUuid
           burn-my-windows.extensionUuid
           caffeine.extensionUuid
+          gsconnect.extensionUuid
           just-perfection.extensionUuid
           native-window-placement.extensionUuid
           openweather-refined.extensionUuid

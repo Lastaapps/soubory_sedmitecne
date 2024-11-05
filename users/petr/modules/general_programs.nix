@@ -7,6 +7,7 @@
     chromium
     okular
     digikam
+    inkscape
 
     ranger
     tmux
