@@ -1,8 +1,17 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  services.nextcloud-client.enable = true;
-  services.nextcloud-client.startInBackground = true;
+  # There were problems with starting the client this way, idk, autostart also works
+  # services.nextcloud-client = {
+  #   enable = true;
+  #   startInBackground = false;
+  # };
+  home.packages = with pkgs; [ nextcloud-client ];
 
   # Link configs to the correct dir, they may be mutable
   home.activation = {
