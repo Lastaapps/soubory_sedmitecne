@@ -3,5 +3,6 @@
 
 {
   # Hard disk protection if the laptop falls:
-  services.hdapsd.enable = lib.mkDefault true;
+  # Works only on ThinkPads
+  # services.hdapsd.enable = lib.mkDefault true;
 }
