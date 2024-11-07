@@ -1,6 +1,6 @@
 {
     "allow_postpone": true,
-    "long_break_duration": 60,
+    "long_break_duration": 90,
     "long_break_interval": 60,
     "long_breaks": [
         {
@@ -63,7 +63,6 @@
                         "unit": "hour"
                     }
                 ],
-                "show_long_time_in_tray": false,
                 "show_time_in_tray": false
             },
             "version": "0.0.3"
@@ -73,6 +72,7 @@
             "id": "smartpause",
             "settings": {
                 "idle_time": 5,
+                "interpret_idle_as_break": false,
                 "postpone_if_active": false
             },
             "version": "0.0.3"
@@ -98,25 +98,17 @@
             "enabled": true,
             "id": "mediacontrol",
             "version": "0.0.1"
-        },
-        {
-            "enabled": true,
-            "id": "limitconsecutiveskipping",
-            "settings": {
-                "number_of_allowed_skips_in_a_row": 2
-            },
-            "version": "0.0.1"
         }
     ],
-    "postpone_duration": 2,
+    "postpone_duration": 1,
     "pre_break_warning_time": 15,
     "random_order": false,
     "rpc_port": 7200,
-    "short_break_duration": 15,
+    "short_break_duration": 25,
     "short_break_interval": 20,
     "short_breaks": [
         {
-            "name": "Gently close your eyes"
+            "name": "Tightly close your eyes"
         },
         {
             "name": "Roll your eyes a few times to each side"
