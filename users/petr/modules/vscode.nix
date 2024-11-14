@@ -7,26 +7,27 @@
     enable = true;
     enableUpdateCheck = false;
     enableExtensionUpdateCheck = false;
-    mutableExtensionsDir = false;
+    # mutableExtensionsDir = false;
+    mutableExtensionsDir = true;
 
-    extensions =
-      with pkgs.open-vsx;
-      [
-        # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/open-vsx-latest.json
-        dracula-theme.theme-dracula
-        vscodevim.vim
-        yzhang.markdown-all-in-one
-        rust-lang.rust-analyzer
-      ]
-      ++ (with pkgs.vscode-marketplace; [
-        # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/vscode-marketplace-latest.json
-        ms-python.python
-        ms-python.debugpy
-        ms-toolsai.jupyter
-        ms-vscode.cpptools-extension-pack
-        # https://discourse.nixos.org/t/vscode-extensions-setup/1801
-        # ms-vscode.cpptools
-      ]);
+    # extensions =
+    #   with pkgs.open-vsx;
+    #   [
+    #     # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/open-vsx-latest.json
+    #     dracula-theme.theme-dracula
+    #     vscodevim.vim
+    #     yzhang.markdown-all-in-one
+    #     rust-lang.rust-analyzer
+    #   ]
+    #   ++ (with pkgs.vscode-marketplace; [
+    #     # https://raw.githubusercontent.com/nix-community/nix-vscode-extensions/master/data/cache/vscode-marketplace-latest.json
+    #     ms-python.python
+    #     ms-python.debugpy
+    #     ms-toolsai.jupyter
+    #     ms-vscode.cpptools-extension-pack
+    #     # https://discourse.nixos.org/t/vscode-extensions-setup/1801
+    #     # ms-vscode.cpptools
+    #   ]);
 
     # Settings
     userSettings = {
