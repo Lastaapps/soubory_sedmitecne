@@ -25,6 +25,7 @@
     ./toolbox.nix
     ./vscode.nix
     ./zeal.nix
+    ./zed
 
     ./java.nix
   ];
