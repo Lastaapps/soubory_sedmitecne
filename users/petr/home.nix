@@ -23,6 +23,7 @@
     cat = "bat";
     lbc = "bc -l";
     xclip = "xclip -sel c";
+    open = "xdg-open";
 
     # gradle
     libu = "./gradlew --no-configuration-cache versionCatalogUpdate --interactive";
