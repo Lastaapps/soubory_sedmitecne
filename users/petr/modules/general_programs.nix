@@ -15,5 +15,14 @@
     bc
     ncdu
     traceroute
+
+    # Fun
+    aalib # aafire
+    asciiquarium-transparent
+    cmatrix
+    cowsay
+    fortune
+    nyancat
+    sl
   ];
 }
