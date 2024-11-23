@@ -9,6 +9,11 @@
       identityFile = "/home/petr/.ssh/pi4";
       port = 56943;
     };
+    "asus" = {
+      hostname = "192.168.1.1";
+      user = "root";
+      identityFile = "/home/petr/.ssh/asus_router";
+    };
     "github.com" = {
       hostname = "github.com";
       user = "git";
