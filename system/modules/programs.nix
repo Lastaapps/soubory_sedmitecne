@@ -37,6 +37,10 @@
     gnupg
     wl-clipboard # Wayland clipboard tool, required by nvim
 
+    # man pages
+    man-pages
+    man-pages-posix
+
     # networking tools
     dnsutils # `dig` + `nslookup`
     iperf3
