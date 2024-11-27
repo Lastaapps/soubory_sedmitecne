@@ -3,6 +3,7 @@
   imports = [
     ./dns.nix
     ./docker.nix
+    ./dynamic_linking.nix
     ./gdm.nix
     ./gnome.nix
     ./locate.nix
