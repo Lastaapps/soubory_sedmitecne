@@ -8,6 +8,7 @@
     okular
     digikam
     inkscape
+    texliveFull
 
     ranger
     tmux
