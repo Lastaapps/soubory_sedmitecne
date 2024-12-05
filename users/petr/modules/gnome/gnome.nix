@@ -2,9 +2,9 @@
 { pkgs, pkgs-unstable, ... }:
 {
   home.packages = with pkgs; [
-    gnome.dconf-editor
+    dconf-editor
     dconf2nix # dconf dump / | dconf2nix > dconf.nix
-    gnome.gnome-tweaks
+    gnome-tweaks
   ];
   dconf = {
     enable = true;
@@ -20,14 +20,14 @@
           gsconnect.extensionUuid
           just-perfection.extensionUuid
           native-window-placement.extensionUuid
+          openweather-refined.extensionUuid
           removable-drive-menu.extensionUuid
           # tiling-assistant.extensionUuid
+          tiling-shell.extensionUuid
           transparent-window-moving.extensionUuid
           tray-icons-reloaded.extensionUuid
           vitals.extensionUuid
         ]) ++ (with pkgs-unstable.gnomeExtensions; [
-          openweather-refined.extensionUuid
-          tiling-shell.extensionUuid
         ]);
       };
     };

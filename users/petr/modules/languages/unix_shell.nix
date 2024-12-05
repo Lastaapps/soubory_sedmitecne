@@ -1,9 +1,9 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     # Language server
-    pkgs-unstable.bash-language-server
+    bash-language-server
 
     bash
   ];

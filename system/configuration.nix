@@ -65,8 +65,6 @@
   nix = {
     extraOptions = ''experimental-features = nix-command flakes'';
     optimise.automatic = true;
-    # TODO remove after 24.11
-    package = pkgs-unstable.nix;
   };
 
   # This value determines the NixOS release from which the default

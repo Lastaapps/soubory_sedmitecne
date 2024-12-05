@@ -10,9 +10,9 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     git
     git-crypt
-    # TODO revert after 24.11 pkgs-unstable
     # nixVersions.stable
-    nixVersions.latest
+    # nixVersions.latest
+    nixVersions.nix_2_24
   ];
 
   shellHook = ''

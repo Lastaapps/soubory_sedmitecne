@@ -1,14 +1,14 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     # compiling
-    pkgs-unstable.clang_19
+    clang # clang_{version}
     (hiPrio gcc) # high priority used because both clang and gcc share the /bin/c++ binary
     lld
 
     # tools, lsp
-    pkgs-unstable.clang-tools_19
+    clang-tools # clang-tools_{version}
 
     # building
     cmake
