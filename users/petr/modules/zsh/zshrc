@@ -152,6 +152,14 @@ GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWCONFLICTSTATE="yes"
 GIT_PS1_STATESEPARATOR=""
 
+function prompt_basename {
+    path="$1"
+    if [[ -z "${path}" ]]; then
+	echo ""
+    else
+	echo "(${path##*/}) "
+    fi
+}
 
 # https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 # %(x.true-text.false-text)
@@ -179,6 +187,8 @@ PROMPT=${PROMPT}'%(j..%F{blue}%S↯%j%s%f )'             # current number of job
 PROMPT=${PROMPT}'%B%F{cyan}%~%f%b '                                  # current work dir, home replaced by ~
 # PROMPT=${PROMPT}'%B%F{red}${vcs_info_msg_0_}%f%b '
 PROMPT=${PROMPT}'%B%F{red}$(__git_ps1 "(%s) ")%f%b'
+PROMPT=${PROMPT}'%F{blue}$(prompt_basename "$DIRENV_DIR")%f'
+PROMPT=${PROMPT}'%F{green}$(prompt_basename "$VIRTUAL_ENV")%f'
 PROMPT=${PROMPT}$'\n'
 PROMPT=${PROMPT}'%(!.#.\$)'                            # $ or # based on privileges
 PROMPT=${PROMPT}' '

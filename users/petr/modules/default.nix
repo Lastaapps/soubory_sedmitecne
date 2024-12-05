@@ -14,6 +14,7 @@
     ./alacritty.nix
     ./bat.nix
     ./zsh
+    ./direnv.nix
 
     ./git.nix
     ./gpg-agent.nix
