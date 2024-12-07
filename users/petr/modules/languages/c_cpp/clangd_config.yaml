@@ -11,6 +11,15 @@ CompileFlags:
 Index:
   StandardLibrary: Yes
 
+#   https://clangd.llvm.org/config#inlayhints
+InlayHints:
+  BlockEnd: Yes
+  Designators: Yes
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+  TypeNameLimit: 24
+
 Diagnostics:
   ClangTidy:
     Add: [
