@@ -1,8 +1,8 @@
 -- Run VimScript
--- vim.api.nvim_exec(
+-- vim.api.nvim_exec2(
 -- [[
 -- ]],
--- true)
+-- {})
 
 -- vim.api.nvim_command('set number')
 
@@ -25,13 +25,17 @@ vim.opt.spell = true
 vim.opt.exrc = true
 -- vim.g.mapleader = ',' -- net in the NixOS config, has to be set before loading lazy.nvim
 
+-- Default foldint while tree sitter is not enabled
+vim.opt.foldmethod = 'indent'
+vim.opt.foldcolumn = 'auto:9'
+
 -- Enables loading of external scrips (.nvim.lua), see :help exrc
 vim.o.exrc = true
 
 -- Prevents autocompletion items to be automatically selected
 vim.opt.completeopt = 'menu,menuone,preview,noinsert' -- ,noselect
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec2([[
 syntax on
 filetype plugin on
 autocmd BufReadPost *.kt setlocal filetype=kotlin
@@ -44,15 +48,15 @@ autocmd BufReadPost *.html.tera setlocal filetype=htmldjango
 autocmd BufReadPost *.frag,*.vert,*.fp,*.vp,*.glsl setlocal filetype=glsl
 
 autocmd FileType verilog setlocal ts=2 sts=2 sw=2 expandtab
-]], true)
+]], {})
 
 -- Last column and spaces highlight
 vim.opt.colorcolumn = '80'
-vim.api.nvim_exec([[
+vim.api.nvim_exec2([[
 highlight ColorColumn ctermbg=blue guibg=lightgrey
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-]], true)
+]], {})
 
 
 vim.cmd([[
@@ -72,9 +76,12 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
     group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
     callback = function()
-        vim.opt.foldmethod = 'expr'
-        vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
-        vim.opt.foldenable = false
+        -- https://neovim.io/doc/user/usr_28.html#usr_28.txt
+        vim.opt.foldmethod     = 'expr'
+        vim.opt.foldexpr       = 'v:lua.vim.treesitter.foldexpr()'
+        vim.opt.foldlevelstart = 1
+        vim.opt.foldnestmax    = 5
+        vim.opt.foldminlines   = 3
     end
 })
 
@@ -99,14 +106,6 @@ vim.api.nvim_set_keymap("n", "<A-f>b", ":Buffers<CR>", opts)
 vim.api.nvim_set_keymap("n", "<A-f>m", ":Maps<CR>", opts)
 vim.api.nvim_set_keymap("n", "<A-f>t", ":Types<CR>", opts)
 
-
-
--- IMPORTANT: make sure to setup neodev BEFORE lsp config
-require("neodev").setup({
-    library = { plugins = { "nvim-dap-ui" }, types = true },
-})
-
-
 -- Go-to definition in a split window
 local function goto_definition(split_cmd)
     local util = vim.lsp.util
@@ -124,7 +123,7 @@ local function goto_definition(split_cmd)
             vim.cmd(split_cmd)
         end
 
-        if vim.tbl_islist(result) then
+        if vim.islist(result) then
             util.jump_to_location(result[1])
 
             if #result > 1 then
@@ -196,6 +195,7 @@ cmp.setup({
         { name = 'luasnip',  priority = 100 },
         { name = 'nvim_lsp', priority = 60 },
         { name = 'codeium',  priority = 50 },
+        { name = 'lazydev',  priority = 50 },
         -- }, {
         { name = 'buffer',   priority = 40, max_item_count = 5 },
         -- { name = 'omni', priority = 70, },
@@ -223,6 +223,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+        -- Enable inline hints
+        vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
 
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -401,9 +404,9 @@ local configureLanguageServers = function()
                     checkThirdParty = false,
                 },
                 -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {
-                    enable = false,
-                },
+                -- telemetry = {
+                --     enable = false,
+                -- },
             },
         },
     }
@@ -488,10 +491,10 @@ local configureLanguageServers = function()
 
     -- generate tags
     -- https://github.com/dan-t/rusty-tags
-    vim.api.nvim_exec([[
+    vim.api.nvim_exec2([[
         autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
         autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
-    ]], true)
+    ]], {})
 
 
     -- English - the worst of them all
@@ -764,7 +767,7 @@ vim.keymap.set('v', '<Leader>ds', function() dap_python.debug_selection() end)
 
 
 -- NerdTree setup
--- vim.api.nvim_exec([[
+-- vim.api.nvim_exec2([[
 -- nnoremap <leader>n :NERDTreeFocus<CR>
 -- " nnoremap <C-n> :NERDTree<CR>
 -- nnoremap <C-t> :NERDTreeToggle<CR>
@@ -790,4 +793,4 @@ vim.keymap.set('v', '<Leader>ds', function() dap_python.debug_selection() end)
 -- " autocmd VimEnter * if !argc() && !exists('g:isReadingFromStdin') | NERDTree | wincmd p | endif
 
 -- set modifiable
--- ]], true)
+-- ]], {})

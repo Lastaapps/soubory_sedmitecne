@@ -96,7 +96,7 @@
 
           luasnip
           cmp_luasnip
-          neodev-nvim
+          lazydev-nvim
           cmp-spell
           codeium-nvim
 
