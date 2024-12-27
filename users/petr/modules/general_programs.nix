@@ -10,6 +10,7 @@
     digikam
     inkscape
     texliveFull
+    postman
 
     ranger
     tmux

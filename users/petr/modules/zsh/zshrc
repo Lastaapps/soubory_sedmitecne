@@ -133,6 +133,9 @@ poweroff() { confirm_wrapper --root $0 "$@"; }
 reboot() { confirm_wrapper --root $0 "$@"; }
 hibernate() { confirm_wrapper --root $0 "$@"; }
 
+# mkcd() { mkdir -p "$@" && cd "$1"; }
+mkcd() { mkdir -p "$@"; cd "$1"; }
+
 # https://git-scm.com/book/en/v2/Appendix-A:-Git-in-Other-Environments-Git-in-Zsh
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
