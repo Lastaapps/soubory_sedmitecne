@@ -16,6 +16,8 @@
     BROWSER = "firefox";
     TERM = "alacritty";
     TERMINAL = "alacritty";
+    # Wayland support for chromium and electron based programs
+    NIXOS_OZONE_WL = "1";
   };
 
   home.shellAliases = {
@@ -54,7 +56,7 @@
 
     # socials
     telegram-desktop
-    element-desktop-wayland
+    element-desktop
     whatsapp-for-linux
     discord
 
