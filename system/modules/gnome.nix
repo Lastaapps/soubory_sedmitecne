@@ -32,6 +32,7 @@
   environment.systemPackages =
     (with pkgs.gnomeExtensions; [
       appindicator
+      auto-move-windows
       burn-my-windows
       caffeine
       gsconnect

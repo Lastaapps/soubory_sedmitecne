@@ -15,6 +15,7 @@
           # Packed UUID or manual ones
           # e.g. "blur-my-shell@aunetx"
           appindicator.extensionUuid
+          auto-move-windows.extensionUuid
           burn-my-windows.extensionUuid
           caffeine.extensionUuid
           gsconnect.extensionUuid
