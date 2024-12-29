@@ -3,6 +3,11 @@ export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 
 export PATH="$PATH:$HOME/.local/bin"
 
+# Android paths
+export PATH="$PATH:$HOME/Android/Sdk/cmdline-tools/latest/bin"
+export PATH="$PATH:$HOME/Android/Sdk/emulator"
+export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
+
 export GPG_TTY=$(tty)
 export PINENTRY_MODE=ncurses
 
