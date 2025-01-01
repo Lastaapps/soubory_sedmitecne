@@ -11,6 +11,7 @@
     inkscape
     texliveFull
     postman
+    vlc
 
     ranger
     tmux
