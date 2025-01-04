@@ -9,6 +9,7 @@
     okular
     digikam
     inkscape
+    saber
     texliveFull
     postman
     vlc
