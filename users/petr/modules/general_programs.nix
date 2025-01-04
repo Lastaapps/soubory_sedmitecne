@@ -5,7 +5,7 @@
 {
   home.packages = with pkgs; [
     chromium
-    ghostwriter
+    zettlr
     okular
     digikam
     inkscape
