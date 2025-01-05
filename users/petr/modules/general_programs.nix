@@ -14,6 +14,7 @@
     postman
     vlc
 
+    apktool
     ranger
     tmux
 
