@@ -128,13 +128,64 @@
         "type": "github"
       }
     },
+    "nvimPlugings-f-string-toggle-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694254128,
+        "narHash": "sha256-IMMq4cklHxrhfHALcCamMWT4ekBqOMtkiAUXh8YlaM0=",
+        "owner": "roobert",
+        "repo": "f-string-toggle.nvim",
+        "rev": "4e2ad79dfc5122dd65515ebbdd671e8ee01d157e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roobert",
+        "repo": "f-string-toggle.nvim",
+        "type": "github"
+      }
+    },
+    "nvimPlugings-luasnip-latex-snippets-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1726507328,
+        "narHash": "sha256-calv4nF1yxJyehQC+l0p4psI+f4Kg49K6XziCkH9I1Q=",
+        "owner": "evesdropper",
+        "repo": "luasnip-latex-snippets.nvim",
+        "rev": "c6b5b5367dd4bb8419389f5acf528acf296adcdd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "evesdropper",
+        "repo": "luasnip-latex-snippets.nvim",
+        "type": "github"
+      }
+    },
+    "nvimPlugings-sqls-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733090837,
+        "narHash": "sha256-o5uD6shPkweuE+k/goBX42W3I2oojXVijfJC7L50sGU=",
+        "owner": "nanotee",
+        "repo": "sqls.nvim",
+        "rev": "a514379f5f89bf72955ed3bf5c1c31a40b8a1472",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nanotee",
+        "repo": "sqls.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager-stable": "home-manager-stable",
         "home-manager-unstable": "home-manager-unstable",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvimPlugings-f-string-toggle-nvim": "nvimPlugings-f-string-toggle-nvim",
+        "nvimPlugings-luasnip-latex-snippets-nvim": "nvimPlugings-luasnip-latex-snippets-nvim",
+        "nvimPlugings-sqls-nvim": "nvimPlugings-sqls-nvim"
       }
     },
     "systems": {

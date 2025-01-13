@@ -18,4 +18,5 @@ return {
         end
     },
     { 'saadparwaiz1/cmp_luasnip' },
+    { 'evesdropper/luasnip-latex-snippets.nvim' },
 }

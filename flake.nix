@@ -24,6 +24,20 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+
+    # NVim plugins
+    nvimPlugings-luasnip-latex-snippets-nvim = {
+      url = "github:evesdropper/luasnip-latex-snippets.nvim";
+      flake = false;
+    };
+    nvimPlugings-f-string-toggle-nvim = {
+      url = "github:roobert/f-string-toggle.nvim";
+      flake = false;
+    };
+    nvimPlugings-sqls-nvim = {
+      url = "github:nanotee/sqls.nvim";
+      flake = false;
+    };
   };
 
   outputs =
@@ -58,6 +72,11 @@
         };
       };
 
+      nvimCustomPluins = {
+        luasnip-latex-snippets-nvim = import inputs.nvimPlugings-luasnip-latex-snippets-nvim;
+        f-string-toggle-nvim = import inputs.nvimPlugings-f-string-toggle-nvim;
+      };
+
       lib = inputs.nixpkgs-stable.lib;
     in
     {
@@ -82,6 +101,8 @@
           extraSpecialArgs = {
             inherit pkgs-stable;
             inherit pkgs-unstable;
+            inherit inputs;
+            inherit nvimCustomPluins;
           };
 
           modules = [
@@ -89,6 +110,23 @@
             {
               nixpkgs.overlays = [
                 inputs.nix-vscode-extensions.overlays.default
+
+                (final: prev: {
+                  vimPlugins = {
+                    luasnip-latex-snippets-nvim = prev.vimUtils.buildVimPlugin {
+                      src = inputs.nvimPlugings-luasnip-latex-snippets-nvim;
+                      name = "luasnip-latex-snippets-nvim";
+                    };
+                    f-string-toggle-nvim = prev.vimUtils.buildVimPlugin {
+                      src = inputs.nvimPlugings-f-string-toggle-nvim;
+                      name = "f-string-toggle-nvim";
+                    };
+                    sqls-nvim = prev.vimUtils.buildVimPlugin {
+                      src = inputs.nvimPlugings-sqls-nvim;
+                      name = "sqls-nvim";
+                    };
+                  } // prev.vimPlugins;
+                })
               ];
             }
           ];

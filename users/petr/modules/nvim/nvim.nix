@@ -1,7 +1,9 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
+  # nvimCustomPluins,
   ...
 }:
 
@@ -19,9 +21,7 @@
     # withNodeJs = true;
 
     # nix-env -f '<nixpkgs>' -qaP -A vimPlugins | cut -d ' ' -f1 | cut -d '.' -f2 | sort | less
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-    ];
+    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
 
     extraLuaPackages =
       ps: with ps; [
@@ -33,40 +33,20 @@
       ueberzug
       # ueberzugpp
       imagemagick
-      gcc # needed for nvim-treesitter
 
-      # # LazyVim defaults
-      # stylua
-      # shfmt
-
-      # # Markdown extra
-      # nodePackages.markdownlint-cli
-      # marksman
-
-      # # Docker extra
-      # nodePackages.dockerfile-language-server-nodejs
-      # hadolint
-      # docker-compose-language-service
-
-      # # JSON and YAML extras
-      # nodePackages.yaml-language-server
-
-      # # Custom
-      # editorconfig-checker
-      # shellcheck
+      # needed for nvim-treesitter
+      gcc
     ];
 
     extraLuaConfig =
       let
         plugins = with pkgs.vimPlugins; [
           plenary-nvim
-          # vim-obcession
           transparent-nvim
           image-nvim
           fidget-nvim
           which-key-nvim
 
-          # treesitter
           nvim-treesitter-context
           nvim-ts-autotag
           nvim-treesitter-textobjects
@@ -94,18 +74,17 @@
           cmp-path
           cmp-omni
 
-          luasnip
           cmp_luasnip
+          luasnip
           lazydev-nvim
+          neodev-nvim
           cmp-spell
           codeium-nvim
 
           telescope-nvim
           telescope-fzf-native-nvim
-          # harpoon
+          harpoon
 
-          # TODO
-          # luasnip-latex-snippets-nvim
           nvim-dap
           nvim-nio
           nvim-dap-ui
@@ -118,11 +97,12 @@
           go-nvim
           nvim-dap-go
           clangd_extensions-nvim
-          # TODO
-          # f-string-toggle-nvim
-          # sqls-nvim
+          f-string-toggle-nvim
+          sqls-nvim
           nvim-metals
           ltex_extra-nvim
+
+          luasnip-latex-snippets-nvim
 
           # As the name differs an lazy cannot find the plugin
           # in has to be renamed
