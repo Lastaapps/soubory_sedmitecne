@@ -80,6 +80,7 @@
           cmp-spell
           # codeium-nvim
           neocodeium
+          conform-nvim
 
           telescope-nvim
           telescope-fzf-native-nvim
