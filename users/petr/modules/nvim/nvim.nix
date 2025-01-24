@@ -46,6 +46,7 @@
           image-nvim
           fidget-nvim
           which-key-nvim
+          trouble-nvim
 
           nvim-treesitter-context
           nvim-ts-autotag

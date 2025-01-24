@@ -25,6 +25,11 @@ return {
             -- <C-v> go to file selection as a vsplit
             -- <C-t> go to a file in a new tab
 
+            -- Trouble integration
+            local open_with_trouble = require("trouble.sources.telescope").open
+            -- Use this to add more results without clearing the trouble list
+            local add_to_trouble = require("trouble.sources.telescope").add
+
             local telescope = require('telescope')
             telescope.setup {
                 defaults = {
@@ -36,6 +41,12 @@ return {
                             -- actions.which_key shows the mappings for your picker,
                             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                             ["<C-h>"] = "which_key",
+                            ["<C-s>"] = open_with_trouble, -- [s]ave
+                            ["<C-a>"] = add_to_trouble,    -- [a]dd
+                        },
+                        n = {
+                            ["<C-s>"] = open_with_trouble,
+                            ["<C-a>"] = add_to_trouble,
                         },
                     }
                 },

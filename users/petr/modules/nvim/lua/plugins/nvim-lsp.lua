@@ -266,7 +266,7 @@ end
 return {
     {
         'neovim/nvim-lspconfig',
-        event = { "BufEnter" },
+        lazy = false,
         config = function()
             configureLanguageServers()
         end
