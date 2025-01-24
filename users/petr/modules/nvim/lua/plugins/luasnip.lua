@@ -1,8 +1,15 @@
 return {
+    -- Autocompletion integration
+    {
+        'saadparwaiz1/cmp_luasnip',
+        dependencies = { "L3MON4D3/LuaSnip" },
+    },
     -- Snipping engine (required)
     {
         'L3MON4D3/LuaSnip',
+        dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
             local ls = require('luasnip')
 
             -- LuaSnip shortcuts
@@ -17,10 +24,7 @@ return {
             end, { silent = true })
         end
     },
-    {
-        'saadparwaiz1/cmp_luasnip',
-        dependencies = { "L3MON4D3/LuaSnip" },
-    },
+    { 'rafamadriz/friendly-snippets' },
 
     -- TeX, LaTeX
     -- As I remember this one is worse

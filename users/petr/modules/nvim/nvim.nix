@@ -76,6 +76,9 @@
 
           cmp_luasnip
           luasnip
+          friendly-snippets
+          iurimateus-luasnip-latex-snippets-nvim
+
           lazydev-nvim
           cmp-spell
           # codeium-nvim
@@ -102,8 +105,6 @@
           sqls-nvim
           nvim-metals
           ltex_extra-nvim
-
-          iurimateus-luasnip-latex-snippets-nvim
 
           # As the name differs an lazy cannot find the plugin
           # in has to be renamed
