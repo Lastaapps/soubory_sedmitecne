@@ -5,6 +5,7 @@
 -- gc  - Toggle selection/motion
 return {
     'b3nj5m1n/kommentary',
+    event = "InsertEnter",
     config = function()
         require('kommentary.config').configure_language(
             "default",

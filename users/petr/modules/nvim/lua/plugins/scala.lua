@@ -7,7 +7,6 @@ return {
             opts = {},
         },
     },
-    lazy = false,
     ft = { "scala", "sbt", "java" },
     opts = function()
         local metals_config = require("metals").bare_config()

@@ -1,7 +1,14 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        dependencies = { { 'nvim-lua/plenary.nvim' }, },
+        lazy = false,
+        dependencies = {
+            { 'nvim-lua/plenary.nvim' },
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
+            },
+        },
         config = function()
             local tel_builtin = require('telescope.builtin')
             vim.keymap.set('n', '<leader>ff', tel_builtin.find_files, {})
@@ -69,9 +76,5 @@ return {
             -- vim.keymap.set("n", "<leader>e", function() toggle_telescope(harpoon:list()) end,
             --     { desc = "Open harpoon window" })
         end
-    },
-    {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
     },
 }

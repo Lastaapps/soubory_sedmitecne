@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'Buf
         -- https://neovim.io/doc/user/usr_28.html#usr_28.txt
         vim.opt.foldmethod     = 'expr'
         vim.opt.foldexpr       = 'v:lua.vim.treesitter.foldexpr()'
-        vim.opt.foldlevelstart = 1
+        vim.opt.foldlevelstart = 2
         vim.opt.foldnestmax    = 5
         vim.opt.foldminlines   = 3
     end
@@ -194,7 +194,7 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'luasnip',  priority = 100 },
         { name = 'nvim_lsp', priority = 60 },
-        { name = 'codeium',  priority = 50 },
+        -- { name = 'codeium',  priority = 50 },
         { name = 'lazydev',  priority = 50 },
         -- }, {
         { name = 'buffer',   priority = 40, max_item_count = 5 },
@@ -203,7 +203,10 @@ cmp.setup({
         { name = 'path',     priority = 20, },
     })
 })
-
+cmp.event:on("menu_opened", function()
+    local neocodeium = require("neocodeium")
+    neocodeium.clear()
+end)
 
 
 
@@ -548,8 +551,6 @@ local configureLanguageServers = function()
     lspconfig.gopls.setup {
         capabilities = capabilities,
     }
-    require('go').setup({})
-    require('dap-go').setup({})
 
     -- Zig (zls)
     lspconfig.zls.setup {

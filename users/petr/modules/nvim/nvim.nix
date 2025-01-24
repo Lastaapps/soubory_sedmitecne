@@ -77,7 +77,6 @@
           cmp_luasnip
           luasnip
           lazydev-nvim
-          neodev-nvim
           cmp-spell
           # codeium-nvim
           neocodeium
@@ -103,7 +102,7 @@
           nvim-metals
           ltex_extra-nvim
 
-          luasnip-latex-snippets-nvim
+          iurimateus-luasnip-latex-snippets-nvim
 
           # As the name differs an lazy cannot find the plugin
           # in has to be renamed
@@ -149,15 +148,7 @@
           defaults = {
             -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
             -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
-
-
-
-
-            -- TODO
-            lazy = false,
-
-
-
+            lazy = true,
 
             -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
             -- have outdated releases, which may break your Neovim install.

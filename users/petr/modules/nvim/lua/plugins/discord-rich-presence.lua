@@ -1,2 +1,5 @@
 -- Discord Ritch Presence
-return { 'andweeb/presence.nvim' }
+return {
+    'andweeb/presence.nvim',
+    event = "VeryLazy",
+}

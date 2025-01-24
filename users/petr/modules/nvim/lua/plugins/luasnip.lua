@@ -17,6 +17,24 @@ return {
             end, { silent = true })
         end
     },
-    { 'saadparwaiz1/cmp_luasnip' },
-    { 'evesdropper/luasnip-latex-snippets.nvim' },
+    {
+        'saadparwaiz1/cmp_luasnip',
+        dependencies = { "L3MON4D3/LuaSnip" },
+    },
+
+    -- TeX, LaTeX
+    -- As I remember this one is worse
+    -- {
+    --     'evesdropper/luasnip-latex-snippets.nvim',
+    --     ft = { "tex", "latex", "bib" }
+    -- },
+    {
+        "iurimateus/luasnip-latex-snippets.nvim",
+        ft = { "tex", "latex", "bib" },
+        dependencies = { "L3MON4D3/LuaSnip", "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require('luasnip-latex-snippets').setup({ use_treesitter = true })
+            require("luasnip").config.setup { enable_autosnippets = true }
+        end,
+    },
 }

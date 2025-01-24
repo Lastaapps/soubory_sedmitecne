@@ -2,4 +2,5 @@
 -- Provides status updates in the bottom right corner
 return {
     "j-hui/fidget.nvim",
+    lazy = false,
 }

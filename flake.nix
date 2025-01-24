@@ -26,15 +26,19 @@
     };
 
     # NVim plugins
-    nvimPlugings-f-string-toggle-nvim = {
+    nvimPlugings-robert-f-string-toggle-nvim = {
       url = "github:roobert/f-string-toggle.nvim";
       flake = false;
     };
-    nvimPlugings-neocodeium = {
+    nvimPlugings-iurimateus-luasnip-latex-snippets-nvim = {
+      url = "github:iurimateus/luasnip-latex-snippets.nvim";
+      flake = false;
+    };
+    nvimPlugings-monkoose-neocodeium = {
       url = "github:monkoose/neocodeium";
       flake = false;
     };
-    nvimPlugings-sqls-nvim = {
+    nvimPlugings-nanotee-sqls-nvim = {
       url = "github:nanotee/sqls.nvim";
       flake = false;
     };
@@ -118,12 +122,16 @@
                 (final: prev: {
                   vimPlugins = {
                     f-string-toggle-nvim =
-                      customVimPlugin prev inputs.nvimPlugings-f-string-toggle-nvim
+                      customVimPlugin prev inputs.nvimPlugings-robert-f-string-toggle-nvim
                         "f-string-toggle-nvim";
 
-                    neocodeium = customVimPlugin prev inputs.nvimPlugings-neocodeium "neocodeium";
+                    iurimateus-luasnip-latex-snippets-nvim =
+                      customVimPlugin prev inputs.nvimPlugings-iurimateus-luasnip-latex-snippets-nvim
+                        "luasnip-latex-snippets-nvim";
 
-                    sqls-nvim = customVimPlugin prev inputs.nvimPlugings-sqls-nvim "sqls-nvim";
+                    neocodeium = customVimPlugin prev inputs.nvimPlugings-monkoose-neocodeium "neocodeium";
+
+                    sqls-nvim = customVimPlugin prev inputs.nvimPlugings-nanotee-sqls-nvim "sqls-nvim";
                   } // prev.vimPlugins;
                 })
               ];

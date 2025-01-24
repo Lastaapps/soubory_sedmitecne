@@ -128,23 +128,23 @@
         "type": "github"
       }
     },
-    "nvimPlugings-f-string-toggle-nvim": {
+    "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1737187968,
-        "narHash": "sha256-D+a21qQ2gx+injYVP2wjeISp58uJiHFsh5bVGk/Q8XM=",
-        "owner": "roobert",
-        "repo": "f-string-toggle.nvim",
-        "rev": "3566bfc1eb2431e69628f9e21ae9a6ef363414b9",
+        "lastModified": 1732280342,
+        "narHash": "sha256-HGVm0VG8ig8w6gEf5SlIbnrs1c12FAo+LSvESmx2tGM=",
+        "owner": "iurimateus",
+        "repo": "luasnip-latex-snippets.nvim",
+        "rev": "cab134611eb755abe9ba95f5d86969f5cece448d",
         "type": "github"
       },
       "original": {
-        "owner": "roobert",
-        "repo": "f-string-toggle.nvim",
+        "owner": "iurimateus",
+        "repo": "luasnip-latex-snippets.nvim",
         "type": "github"
       }
     },
-    "nvimPlugings-neocodeium": {
+    "nvimPlugings-monkoose-neocodeium": {
       "flake": false,
       "locked": {
         "lastModified": 1730799782,
@@ -160,7 +160,7 @@
         "type": "github"
       }
     },
-    "nvimPlugings-sqls-nvim": {
+    "nvimPlugings-nanotee-sqls-nvim": {
       "flake": false,
       "locked": {
         "lastModified": 1733090837,
@@ -176,6 +176,22 @@
         "type": "github"
       }
     },
+    "nvimPlugings-robert-f-string-toggle-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737187968,
+        "narHash": "sha256-D+a21qQ2gx+injYVP2wjeISp58uJiHFsh5bVGk/Q8XM=",
+        "owner": "roobert",
+        "repo": "f-string-toggle.nvim",
+        "rev": "3566bfc1eb2431e69628f9e21ae9a6ef363414b9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roobert",
+        "repo": "f-string-toggle.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager-stable": "home-manager-stable",
@@ -183,9 +199,10 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "nvimPlugings-f-string-toggle-nvim": "nvimPlugings-f-string-toggle-nvim",
-        "nvimPlugings-neocodeium": "nvimPlugings-neocodeium",
-        "nvimPlugings-sqls-nvim": "nvimPlugings-sqls-nvim"
+        "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim": "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim",
+        "nvimPlugings-monkoose-neocodeium": "nvimPlugings-monkoose-neocodeium",
+        "nvimPlugings-nanotee-sqls-nvim": "nvimPlugings-nanotee-sqls-nvim",
+        "nvimPlugings-robert-f-string-toggle-nvim": "nvimPlugings-robert-f-string-toggle-nvim"
       }
     },
     "systems": {

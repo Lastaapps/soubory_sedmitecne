@@ -1,1 +1,4 @@
-return { 'roobert/f-string-toggle.nvim' }
+return {
+    'roobert/f-string-toggle.nvim',
+    ft = "python",
+}
