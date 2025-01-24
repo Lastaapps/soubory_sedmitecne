@@ -1,11 +1,14 @@
 return {
     "scalameta/nvim-metals",
     dependencies = {
-        'nvim-lua/plenary.nvim',
         {
-            "j-hui/fidget.nvim",
-            opts = {},
+            'nvim-lua/plenary.nvim',
+            {
+                "j-hui/fidget.nvim",
+                opts = {},
+            }
         },
+        { 'mfussenegger/nvim-dap' }
     },
     ft = { "scala", "sbt", "java" },
     opts = function()
@@ -27,10 +30,11 @@ return {
         metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
         metals_config.on_attach = function(client, bufnr)
-            require("metals").setup_dap()
+            local metals = require("metals")
+            metals.setup_dap()
 
             vim.keymap.set("n", "<leader>ws", function()
-                require("metals").hover_worksheet()
+                metals.hover_worksheet()
             end)
 
             -- Telescope integration

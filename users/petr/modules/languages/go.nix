@@ -5,6 +5,9 @@
     # Language server
     gopls
 
+    # Debugger
+    delve
+
     go
   ];
 }

@@ -90,12 +90,12 @@
           nvim-dap-ui
           nvim-dap-virtual-text
           nvim-dap-python
+          nvim-dap-go
 
           kotlin-vim
           crates-nvim
           rustaceanvim
           go-nvim
-          nvim-dap-go
           clangd_extensions-nvim
           f-string-toggle-nvim
           sqls-nvim

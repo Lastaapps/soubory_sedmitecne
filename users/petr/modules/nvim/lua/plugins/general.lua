@@ -15,15 +15,6 @@ return {
     lazy = false,
   },
 
-  -- --- Utils ----------------------------------------------------------------
-
-  -- FZF
-  -- CTRL-T / CTRL-X / CTRL-V - tab, hsplit, vsplit
-  {
-    "junegunn/fzf.vim",
-    event = "VeryLazy"
-  },
-
   -- Better notifications
   {
     'rcarriga/nvim-notify',
@@ -59,22 +50,6 @@ return {
       vim.g.matchup_matchparen_offscreen = { method = "popup" }
     end
   },
-
-
-
-
-  -- Debugging
-  -- NVim debugger
-  { 'mfussenegger/nvim-dap' },
-  { 'nvim-neotest/nvim-nio' },
-  { 'rcarriga/nvim-dap-ui' },
-  { 'theHamsta/nvim-dap-virtual-text' },
-  {
-    'mfussenegger/nvim-dap-python',
-    ft = 'python'
-  },
-
-
 
 
   -- --- 'Exotic' languages ----------------------------------------------------
