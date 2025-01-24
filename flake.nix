@@ -26,12 +26,12 @@
     };
 
     # NVim plugins
-    nvimPlugings-luasnip-latex-snippets-nvim = {
-      url = "github:evesdropper/luasnip-latex-snippets.nvim";
-      flake = false;
-    };
     nvimPlugings-f-string-toggle-nvim = {
       url = "github:roobert/f-string-toggle.nvim";
+      flake = false;
+    };
+    nvimPlugings-neocodeium = {
+      url = "github:monkoose/neocodeium";
       flake = false;
     };
     nvimPlugings-sqls-nvim = {
@@ -72,12 +72,17 @@
         };
       };
 
-      nvimCustomPluins = {
-        luasnip-latex-snippets-nvim = import inputs.nvimPlugings-luasnip-latex-snippets-nvim;
-        f-string-toggle-nvim = import inputs.nvimPlugings-f-string-toggle-nvim;
-      };
-
       lib = inputs.nixpkgs-stable.lib;
+
+      # Creates a custom vim plugin
+      # name must be the same as the repo name
+      customVimPlugin =
+        prev: input: name:
+        prev.vimUtils.buildVimPlugin {
+          src = input;
+          pname = name;
+          version = input.lastModifiedDate;
+        };
     in
     {
       nixosConfigurations = {
@@ -102,7 +107,6 @@
             inherit pkgs-stable;
             inherit pkgs-unstable;
             inherit inputs;
-            inherit nvimCustomPluins;
           };
 
           modules = [
@@ -113,18 +117,13 @@
 
                 (final: prev: {
                   vimPlugins = {
-                    luasnip-latex-snippets-nvim = prev.vimUtils.buildVimPlugin {
-                      src = inputs.nvimPlugings-luasnip-latex-snippets-nvim;
-                      name = "luasnip-latex-snippets-nvim";
-                    };
-                    f-string-toggle-nvim = prev.vimUtils.buildVimPlugin {
-                      src = inputs.nvimPlugings-f-string-toggle-nvim;
-                      name = "f-string-toggle-nvim";
-                    };
-                    sqls-nvim = prev.vimUtils.buildVimPlugin {
-                      src = inputs.nvimPlugings-sqls-nvim;
-                      name = "sqls-nvim";
-                    };
+                    f-string-toggle-nvim =
+                      customVimPlugin prev inputs.nvimPlugings-f-string-toggle-nvim
+                        "f-string-toggle-nvim";
+
+                    neocodeium = customVimPlugin prev inputs.nvimPlugings-neocodeium "neocodeium";
+
+                    sqls-nvim = customVimPlugin prev inputs.nvimPlugings-sqls-nvim "sqls-nvim";
                   } // prev.vimPlugins;
                 })
               ];

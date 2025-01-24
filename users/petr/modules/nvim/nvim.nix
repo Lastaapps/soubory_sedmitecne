@@ -79,7 +79,8 @@
           lazydev-nvim
           neodev-nvim
           cmp-spell
-          codeium-nvim
+          # codeium-nvim
+          neocodeium
 
           telescope-nvim
           telescope-fzf-native-nvim
