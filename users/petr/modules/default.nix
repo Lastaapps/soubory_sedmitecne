@@ -8,6 +8,7 @@
     ./languages
     ./nextcloud-client
     ./safeeyes
+    ./flameshot.nix
 
     ./bin.nix
 
