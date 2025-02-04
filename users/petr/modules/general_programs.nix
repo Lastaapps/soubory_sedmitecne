@@ -20,6 +20,7 @@
     tmux
 
     bc
+    ffmpeg-full
     ncdu
     traceroute
 
