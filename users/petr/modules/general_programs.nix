@@ -9,6 +9,7 @@
     okular
     digikam
     inkscape
+    obs-studio
     saber
     texliveFull
     postman
