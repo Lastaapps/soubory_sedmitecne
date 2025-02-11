@@ -33,7 +33,7 @@ return {
     --     ft = { "tex", "latex", "bib" }
     -- },
     {
-        "iurimateus/luasnip-latex-snippets.nvim",
+        "iurimateus/luasnip-latex-snippets-nvim",
         ft = { "tex", "latex", "bib" },
         dependencies = { "L3MON4D3/LuaSnip", "nvim-treesitter/nvim-treesitter" },
         config = function()
