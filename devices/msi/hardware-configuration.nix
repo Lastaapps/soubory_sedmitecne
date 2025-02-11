@@ -31,12 +31,6 @@
     "ntfs"
   ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/1d2f1e9e-57cd-4a1f-8205-9ca0aa95fac6";
-    fsType = "btrfs";
-    options = [ "subvol=@" ];
-  };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/B56E-0176";
     fsType = "vfat";
@@ -46,13 +40,26 @@
     ];
   };
 
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/1d2f1e9e-57cd-4a1f-8205-9ca0aa95fac6";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      # Access times are not written to drive at all
+      # https://wiki.archlinux.org/title/Fstab#atime_options
+      "noatime"
+      "nodiratime"
+      "commit=60"
+    ];
+  };
+
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/fa8e7f11-004a-49a0-8eb6-f4c9545f7973";
     fsType = "btrfs";
     options = [
-      # Access times are not written to drive at all
-      # https://wiki.archlinux.org/title/Fstab#atime_options
       "noatime"
+      "nodiratime"
+      "commit=60"
     ];
   };
 
