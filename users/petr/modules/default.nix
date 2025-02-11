@@ -3,6 +3,7 @@
   imports = [
     ./general_programs.nix
     ./gnome
+    ./games
 
     ./libre-office.nix
     ./languages
