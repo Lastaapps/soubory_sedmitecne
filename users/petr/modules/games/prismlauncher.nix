@@ -1,0 +1,154 @@
+###############################################################################
+# https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/pr/prismlauncher-unwrapped/package.nix
+# https://github.com/NixOS/nixpkgs/blob/master/pkgs/by-name/pr/prismlauncher/package.nix
+#
+# Last edit at this point:
+# > 52bf116
+# > treewide: use getLib when accessing clang / libclang / stdenv.cc.cc
+###############################################################################
+{
+  addDriverRunpath,
+  alsa-lib,
+  flite,
+  gamemode,
+  glfw3-minecraft,
+  jdk17,
+  jdk21,
+  jdk8,
+  kdePackages,
+  lib,
+  libGL,
+  libX11,
+  libXcursor,
+  libXext,
+  libXrandr,
+  libXxf86vm,
+  libjack2,
+  libpulseaudio,
+  libusb1,
+  mesa-demos,
+  openal,
+  pciutils,
+  pipewire,
+  prismlauncher-unwrapped,
+  stdenv,
+  symlinkJoin,
+  udev,
+  vulkan-loader,
+  xrandr,
+
+  additionalLibs ? [ ],
+  additionalPrograms ? [ ],
+  controllerSupport ? stdenv.hostPlatform.isLinux,
+  gamemodeSupport ? stdenv.hostPlatform.isLinux,
+  jdks ? [
+    jdk21
+    jdk17
+    jdk8
+  ],
+  msaClientID ? null,
+  textToSpeechSupport ? stdenv.hostPlatform.isLinux,
+}:
+
+assert lib.assertMsg (
+  controllerSupport -> stdenv.hostPlatform.isLinux
+) "controllerSupport only has an effect on Linux.";
+
+assert lib.assertMsg (
+  textToSpeechSupport -> stdenv.hostPlatform.isLinux
+) "textToSpeechSupport only has an effect on Linux.";
+
+let
+  prismlauncher' =
+    (prismlauncher-unwrapped.override {
+      inherit msaClientID gamemodeSupport;
+    })
+    # Patches the Minecraft launcher to support offline accounts
+    # without buying the official version
+    # Theoretical test only
+    .overrideAttrs
+      (old: {
+        patches = (old.patches or [ ]) ++ [
+          ./prismlauncher.patch
+        ];
+      });
+in
+
+symlinkJoin {
+  name = "prismlauncher-${prismlauncher'.version}";
+
+  paths = [ prismlauncher' ];
+
+  nativeBuildInputs = [ kdePackages.wrapQtAppsHook ];
+
+  buildInputs =
+    [
+      kdePackages.qtbase
+      kdePackages.qtsvg
+    ]
+    ++ lib.optional (
+      lib.versionAtLeast kdePackages.qtbase.version "6" && stdenv.hostPlatform.isLinux
+    ) kdePackages.qtwayland;
+
+  postBuild = ''
+    wrapQtAppsHook
+  '';
+
+  qtWrapperArgs =
+    let
+      runtimeLibs =
+        [
+          (lib.getLib stdenv.cc.cc)
+          ## native versions
+          glfw3-minecraft
+          openal
+
+          ## openal
+          alsa-lib
+          libjack2
+          libpulseaudio
+          pipewire
+
+          ## glfw
+          libGL
+          libX11
+          libXcursor
+          libXext
+          libXrandr
+          libXxf86vm
+
+          udev # oshi
+
+          vulkan-loader # VulkanMod's lwjgl
+        ]
+        ++ lib.optional textToSpeechSupport flite
+        ++ lib.optional gamemodeSupport gamemode.lib
+        ++ lib.optional controllerSupport libusb1
+        ++ additionalLibs;
+
+      runtimePrograms = [
+        mesa-demos
+        pciutils # need lspci
+        xrandr # needed for LWJGL [2.9.2, 3) https://github.com/LWJGL/lwjgl/issues/128
+      ] ++ additionalPrograms;
+
+    in
+    [ "--prefix PRISMLAUNCHER_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks}" ]
+    ++ lib.optionals stdenv.hostPlatform.isLinux [
+      "--set LD_LIBRARY_PATH ${addDriverRunpath.driverLink}/lib:${lib.makeLibraryPath runtimeLibs}"
+      "--prefix PATH : ${lib.makeBinPath runtimePrograms}"
+    ];
+
+  meta = {
+    inherit (prismlauncher'.meta)
+      description
+      longDescription
+      homepage
+      changelog
+      license
+      maintainers
+      mainProgram
+      platforms
+      ;
+  };
+}

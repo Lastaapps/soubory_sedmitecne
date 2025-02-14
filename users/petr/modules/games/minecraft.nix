@@ -1,13 +1,17 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # Patches the Minecraft launcher to support offline accounts
-    # without buying the official version
-    # Theoretical test only
-    (prismlauncher-unwrapped.overrideAttrs (old: {
-      patches = (old.patches or [ ]) ++ [
-        ./prismlauncher.patch
-      ];
-    }))
+    (pkgs.callPackage ./prismlauncher.nix { })
+
+    # Old patched PolyMC client
+    # (polymc.overrideAttrs (old: rec {
+    #   src = fetchFromGitHub {
+    #     owner = "dev-null-undefined";
+    #     repo = "PolyMC";
+    #     rev = "a9717e5d3ac379fd46eedac86655b31c831a7dd7";
+    #     sha256 = "sha256-Ji/Xa+jv0LEGsKttat9heyaSPCgZTYpVc0ZOA4evpVQ=";
+    #     fetchSubmodules = true;
+    #   };
+    # }))
   ];
 }

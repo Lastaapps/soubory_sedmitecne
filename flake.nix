@@ -25,6 +25,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    # polymc.url = "github:PolyMC/PolyMC";
+
     # NVim plugins
     nvimPlugings-robert-f-string-toggle-nvim = {
       url = "github:roobert/f-string-toggle.nvim";
@@ -118,6 +120,7 @@
             {
               nixpkgs.overlays = [
                 inputs.nix-vscode-extensions.overlays.default
+                # inputs.polymc.overlay
 
                 (final: prev: {
                   vimPlugins = {

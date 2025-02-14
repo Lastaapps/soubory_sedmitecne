@@ -1,13 +1,18 @@
-diff --git a/launcher/ui/pages/global/AccountListPage.cpp b/launcher/ui/pages/global/AccountListPage.cpp
-index 041b8faff..b96c913e4 100644
---- a/launcher/ui/pages/global/AccountListPage.cpp
-+++ b/launcher/ui/pages/global/AccountListPage.cpp
-@@ -141,7 +141,7 @@ void AccountListPage::on_actionAddMicrosoft_triggered()
+diff --git a/launcher/minecraft/auth/AccountList.cpp b/launcher/minecraft/auth/AccountList.cpp
+index d276d4c41..b3c70962d 100644
+--- a/launcher/minecraft/auth/AccountList.cpp
++++ b/launcher/minecraft/auth/AccountList.cpp
+@@ -577,12 +577,7 @@ void AccountList::setListFilePath(QString path, bool autosave)
 
- void AccountListPage::on_actionAddOffline_triggered()
+ bool AccountList::anyAccountIsValid()
  {
--    if (!m_accounts->anyAccountIsValid()) {
-+    if (false) {
-         QMessageBox::warning(this, tr("Error"),
-                              tr("You must add a Microsoft account that owns Minecraft before you can add an offline account."
-                                 "<br><br>"
+-    for (auto account : m_accounts) {
+-        if (account->ownsMinecraft()) {
+-            return true;
+-        }
+-    }
+-    return false;
++    return true;
+ }
+
+ void AccountList::fillQueue()
