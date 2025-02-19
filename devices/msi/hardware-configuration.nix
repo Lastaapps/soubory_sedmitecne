@@ -91,11 +91,36 @@
     ];
   };
 
+  ##############################################################################
+  # https://nixos.wiki/wiki/Swap
+  # https://wiki.archlinux.org/title/Zram
+  # https://search.nixos.org/options?query=zram
+  # Pages, that are uncompressible, are swapped to a disk anyway,
+  # otherwise zram should be preferred by the Kernel.
+  ##############################################################################
+  zramSwap = {
+    enable = true;
+    # default is 50.
+    # I noticed that often the zram swap is filled (8GB),
+    # while the compressed size is <1GB.
+    # So I want to abuse the feature even more.
+    # This should be disabled in case I need quick access to the RAM.
+    memoryPercent = 80;
+  };
+
   swapDevices = [
     { device = "/dev/disk/by-uuid/0472e23c-62d3-412a-909d-2947ec11e76f"; }
   ];
 
-  zramSwap.enable = true;
+  boot.kernel.sysctl = {
+    # Taken from ArchWiki, only use with zram
+    # default value: 60 (cat /proc/sys/vm/swappiness)
+    "vm.swappiness" = 180;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
+  };
+  ##############################################################################
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
