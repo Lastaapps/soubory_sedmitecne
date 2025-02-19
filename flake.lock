@@ -84,11 +84,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739843309,
-        "narHash": "sha256-BLsy1soiTtyN3nKH3dgpwFJ31a29Njpi6+xD6tsVBo4=",
+        "lastModified": 1739976354,
+        "narHash": "sha256-jYHJZ0XbEQ7WD4pktOhT40LYDd3OizKs59AZZpAMY10=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "6f6ffc8ebcfd2d48477ec2e78d9767a7bfdd9d79",
+        "rev": "f06125d30041b21ade968ef8e53400aec8863e96",
         "type": "github"
       },
       "original": {
@@ -114,11 +114,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1739736696,
-        "narHash": "sha256-zON2GNBkzsIyALlOCFiEBcIjI4w38GYOb+P+R4S8Jsw=",
+        "lastModified": 1739866667,
+        "narHash": "sha256-EO1ygNKZlsAC9avfcwHkKGMsmipUk1Uc0TbrEZpkn64=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d74a2335ac9c133d6bbec9fc98d91a77f1604c1f",
+        "rev": "73cf49b8ad837ade2de76f87eb53fc85ed5d4680",
         "type": "github"
       },
       "original": {
@@ -147,11 +147,11 @@
     "nvimPlugings-monkoose-neocodeium": {
       "flake": false,
       "locked": {
-        "lastModified": 1738659651,
-        "narHash": "sha256-mR2fzsdCVbh7nLcsSgQnhRivoKW6oFqJwuIYfz8OV0k=",
+        "lastModified": 1739966055,
+        "narHash": "sha256-vgnTEkVwVC52XP0GhA05I2zmhFTxhxf9BonMHULDJG8=",
         "owner": "monkoose",
         "repo": "neocodeium",
-        "rev": "a2b5257c736886ec3ccbd961766f8ab9c82b2a72",
+        "rev": "8a0b9b872b7da673ad2f6f1c3d17ac5c338053a8",
         "type": "github"
       },
       "original": {
