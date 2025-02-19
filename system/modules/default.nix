@@ -14,5 +14,6 @@
     ./ssd.nix
     ./syncthing.nix
     ./users.nix
+    ./vpn.nix
   ];
 }
