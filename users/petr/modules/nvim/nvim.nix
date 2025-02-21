@@ -21,7 +21,10 @@
     # withNodeJs = true;
 
     # nix-env -f '<nixpkgs>' -qaP -A vimPlugins | cut -d ' ' -f1 | cut -d '.' -f2 | sort | less
-    plugins = with pkgs.vimPlugins; [ lazy-nvim ];
+    plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+      nvim-treesitter.withAllGrammars
+    ];
 
     extraLuaPackages =
       ps: with ps; [
@@ -48,10 +51,9 @@
           which-key-nvim
           trouble-nvim
 
+          nvim-treesitter.withAllGrammars
           nvim-treesitter-context
           nvim-ts-autotag
-          nvim-treesitter-textobjects
-          nvim-treesitter.withAllGrammars
 
           fzf-lua
           presence-nvim
