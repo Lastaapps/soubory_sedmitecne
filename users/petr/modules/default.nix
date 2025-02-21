@@ -1,35 +1,16 @@
-{ ... }:
 {
   imports = [
-    ./general_programs.nix
-    ./gnome
+    ./cli
+    ./editors
     ./games
-
-    ./libre-office.nix
+    ./gnome
+    ./graphics
+    ./gui
     ./languages
-    ./nextcloud-client
-    ./safeeyes
-    ./flameshot.nix
+    ./office
+    ./system
+    ./terminal
 
-    ./bin.nix
-
-    ./alacritty.nix
-    ./bat.nix
-    ./zsh
-    ./direnv.nix
-
-    ./git.nix
-    ./gpg-agent.nix
-    ./gtk.nix
-    ./nvim
-    ./ssh.nix
-
-    ./octave.nix
-    ./toolbox.nix
-    ./vscode.nix
-    ./zeal.nix
-    ./zed
-
-    ./java.nix
+    ./fun.nix
   ];
 }

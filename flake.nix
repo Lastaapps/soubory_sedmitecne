@@ -10,6 +10,7 @@
   inputs = {
     nixpkgs-master.url = "nixpkgs/master";
 
+    # Also update home.stateVersion bellow in the file
     nixpkgs-stable.url = "nixpkgs/nixos-24.11";
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -117,6 +118,9 @@
           };
 
           modules = [
+            {
+              home.stateVersion = "24.11";
+            }
             ./users/petr/home.nix
             {
               nixpkgs.overlays = [
@@ -137,15 +141,6 @@
 
                     sqls-nvim = customVimPlugin prev inputs.nvimPlugings-nanotee-sqls-nvim "sqls-nvim";
                   } // prev.vimPlugins;
-
-                  # haskell.packages.ghc948.unix = final.haskell.packages.ghc948.unix_2_8_6_0;
-                  # haskell = {
-                  #   packages = {
-                  #     ghc948 = {
-                  #       unix = final.haskell.packages.ghc948.unix_2_8_6_0;
-                  #     } // prev.haskell.packages.ghc948;
-                  #   } // prev.haskell.packages;
-                  # } // prev.haskell;
                 })
               ];
             }

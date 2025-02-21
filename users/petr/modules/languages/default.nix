@@ -1,17 +1,18 @@
 { ... }:
 {
   imports = [
+    ./android.nix
     ./c_cpp
     ./cmake.nix
     ./docker.nix
     ./english.nix
     ./glsl.nix
     ./go.nix
+    ./haskell.nix
     ./kotlin.nix
     ./lua.nix
     ./nix.nix
     ./python.nix
-    ./haskell.nix
     ./racket.nix
     ./rust.nix
     ./scala.nix
