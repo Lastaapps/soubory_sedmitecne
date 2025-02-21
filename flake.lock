@@ -97,6 +97,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1740143852,
+        "narHash": "sha256-deFoBwLE26ULwpJzPJC+7Nivb3uXawHG2zAdN+cOMK8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ed9668003661f47c9cb0a0a75f63028a5cfbcc8a",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "master",
+        "type": "indirect"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1739758141,
@@ -197,6 +212,7 @@
         "home-manager-stable": "home-manager-stable",
         "home-manager-unstable": "home-manager-unstable",
         "nix-vscode-extensions": "nix-vscode-extensions",
+        "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim": "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim",

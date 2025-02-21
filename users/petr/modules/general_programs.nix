@@ -5,15 +5,16 @@
 {
   home.packages = with pkgs; [
     chromium
-    zettlr
-    okular
     digikam
     inkscape
+    gparted
     obs-studio
+    okular
+    postman
     saber
     texliveFull
-    postman
     vlc
+    zettlr
 
     apktool
     ranger
@@ -22,6 +23,7 @@
     bc
     ffmpeg-full
     ncdu
+    sshfs
     traceroute
 
     # Fun

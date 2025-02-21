@@ -11,6 +11,7 @@
     ./lua.nix
     ./nix.nix
     ./python.nix
+    ./haskell.nix
     ./racket.nix
     ./rust.nix
     ./scala.nix

@@ -1,6 +1,8 @@
 { ... }:
 
 {
+  # ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password
+
   programs.ssh.enable = true;
   programs.ssh.matchBlocks = {
     "pi4" = {
@@ -28,6 +30,11 @@
       hostname = "git.sh.cvut.cz";
       user = "lastope2";
       identityFile = "/home/petr/.ssh/gitlab_sh";
+    };
+    "oli" = {
+      hostname = "10.10.48.90";
+      user = "lastope2";
+      identityFile = "/home/petr/.ssh/ni-oli";
     };
     # "fray" = {
     #   hostname = "fray1.fit.cvut.cz";

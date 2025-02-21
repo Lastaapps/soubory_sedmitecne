@@ -8,6 +8,8 @@
   # When you migrate to a new stable version,
   # try to remote all the pkgs-unstable usages
   inputs = {
+    nixpkgs-master.url = "nixpkgs/master";
+
     nixpkgs-stable.url = "nixpkgs/nixos-24.11";
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -47,15 +49,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs-stable,
-      nixpkgs-unstable,
-      home-manager-stable,
-      home-manager-unstable,
-      nix-vscode-extensions,
-      ...
-    }@inputs: # @ binds values from inputs
+    { self, ... }@inputs: # @ binds values from inputs
     let
       system = "x86_64-linux";
 
@@ -72,6 +66,12 @@
         };
       };
       pkgs-unstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+      pkgs-master = import inputs.nixpkgs-master {
         inherit system;
         config = {
           allowUnfree = true;
@@ -112,6 +112,7 @@
           extraSpecialArgs = {
             inherit pkgs-stable;
             inherit pkgs-unstable;
+            inherit pkgs-master;
             inherit inputs;
           };
 
@@ -136,6 +137,15 @@
 
                     sqls-nvim = customVimPlugin prev inputs.nvimPlugings-nanotee-sqls-nvim "sqls-nvim";
                   } // prev.vimPlugins;
+
+                  # haskell.packages.ghc948.unix = final.haskell.packages.ghc948.unix_2_8_6_0;
+                  # haskell = {
+                  #   packages = {
+                  #     ghc948 = {
+                  #       unix = final.haskell.packages.ghc948.unix_2_8_6_0;
+                  #     } // prev.haskell.packages.ghc948;
+                  #   } // prev.haskell.packages;
+                  # } // prev.haskell;
                 })
               ];
             }

@@ -54,3 +54,5 @@ node_modules/
 *log
 *.db
 .bloop/
+uni
+.stack-work

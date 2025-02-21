@@ -107,6 +107,10 @@
           nvim-metals
           ltex_extra-nvim
 
+          haskell-tools-nvim
+          haskell-snippets-nvim
+          hoogle
+
           # As the name differs an lazy cannot find the plugin
           # in has to be renamed
           {
