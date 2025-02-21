@@ -3,7 +3,7 @@
 
 {
   pkgs ? import <nixos> { }, # should be more minimal, but fine for Linux
-  # pkgs ? import <nixpkgs> { }, # should also work on Darwin
+# pkgs ? import <nixpkgs> { }, # should also work on Darwin
 }:
 pkgs.mkShell {
   name = "nixosbuildshell";
@@ -20,15 +20,16 @@ pkgs.mkShell {
 
     echo "--------------------------------------------------------------------------------"
     echo "Commands (from ./scripts):"
-    echo "nupdate - update the flake and apply it"
+    echo "nupdate  - update the flake and apply it"
     echo "nappplys - applys the current version of the flake to the system"
     echo "nappplyh - applys the current version of the flake to home manager"
     echo "nappplyb - applys the current version of the flake to both"
     echo "nbuilds  - builds the flake for system"
     echo "nbuildh  - builds the flake for user"
     echo "nbuildb  - builds the flake for system and user"
-    echo "ndry    - dry-builds the flake"
-    echo "nclean  - cleans nix store (should not be needed)"
+    echo "ndry     - dry-builds the flake"
+    echo "nclean   - cleans nix store (should not be needed)"
+    echo "nnews    - show home-manager's news"
     echo "--------------------------------------------------------------------------------"
 
     alias nupdate="~/dotfiles/scripts/update_and_reapply_all.sh"
@@ -40,6 +41,7 @@ pkgs.mkShell {
     alias nbuildb="~/dotfiles/scripts/build.sh"
     alias ndry="~/dotfiles/scripts/dry.sh"
     alias nclean="~/dotfiles/scripts/clean.sh"
+    alias nnews="~/dotfiles/scripts/news.sh"
 
     PATH=${pkgs.writeShellScriptBin "nix" ''
       ${pkgs.nixVersions.stable}/bin/nix --experimental-features "nix-command flakes" "$@"
