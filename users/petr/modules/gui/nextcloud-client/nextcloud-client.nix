@@ -17,7 +17,7 @@
   home.activation = {
     lnNextcloud = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run unlink $VERBOSE_ARG ${config.xdg.configHome}/Nextcloud || true
-      run ln -s $VERBOSE_ARG ~/dotfiles/users/petr/modules/nextcloud-client/Nextcloud ${config.xdg.configHome} || true
+      run ln -s $VERBOSE_ARG ~/dotfiles/users/petr/modules/gui/nextcloud-client/Nextcloud ${config.xdg.configHome} || true
     '';
   };
 }
