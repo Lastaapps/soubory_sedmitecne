@@ -9,5 +9,6 @@
     inkscape
     obs-studio
     vlc
+    xournalpp
   ];
 }
