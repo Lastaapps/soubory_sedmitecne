@@ -13,7 +13,6 @@
   # https://nixalted.com/
   # https://github.com/KFearsoff/NixOS-config/blob/90fa0fb9a361c1dcf82a5ac6292989e3e113ed93/nixosModules/neovim/default.nix
 
-  # TODO enable lazy loading
   programs.neovim = {
     enable = true;
     viAlias = true;

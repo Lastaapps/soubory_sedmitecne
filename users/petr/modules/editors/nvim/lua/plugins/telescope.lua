@@ -1,7 +1,7 @@
 return {
     {
         'nvim-telescope/telescope.nvim',
-        lazy = false,
+        event = "VimEnter",
         dependencies = {
             { 'nvim-lua/plenary.nvim' },
             {
@@ -11,20 +11,6 @@ return {
         },
         config = function()
             local tel_builtin = require('telescope.builtin')
-            vim.keymap.set('n', '<leader>ff', tel_builtin.find_files, {})
-            vim.keymap.set('n', '<leader>fg', tel_builtin.live_grep, {})
-            vim.keymap.set('n', '<leader>fb', tel_builtin.buffers, {})
-            vim.keymap.set('n', '<leader>fh', tel_builtin.help_tags, {})
-            vim.keymap.set('n', '<leader>fws', tel_builtin.lsp_workspace_symbols, {})
-            vim.keymap.set('n', '<leader>fds', tel_builtin.lsp_document_symbols, {})
-            vim.keymap.set('n', '<leader>fr', tel_builtin.lsp_references, {})
-            vim.keymap.set('n', '<leader>fci', tel_builtin.lsp_incoming_calls, {})
-            vim.keymap.set('n', '<leader>fco', tel_builtin.lsp_outgoing_calls, {})
-            -- vim.keymap.set('n', 'gd', tel_builtin.lsp_definitions, {})
-            -- <C-x> go to file selection as a split
-            -- <C-v> go to file selection as a vsplit
-            -- <C-t> go to a file in a new tab
-
             -- Trouble integration
             local open_with_trouble = require("trouble.sources.telescope").open
             -- Use this to add more results without clearing the trouble list
@@ -48,9 +34,30 @@ return {
                             ["<C-s>"] = open_with_trouble,
                             ["<C-a>"] = add_to_trouble,
                         },
-                    }
+                    },
+                    file_ignore_patterns = {
+                        ".git/",
+                        ".cache",
+                        ".idea",
+                        ".venv/",
+                        "data/",
+                        "target/",
+                        "build/",
+                        "%.o",
+                        "%.a",
+                        "%.out",
+                        "%.class",
+                        "%.pdf",
+                        "%.mkv",
+                        "%.mp4",
+                        "%.zip",
+                    },
                 },
-                pickers = {},
+                pickers = {
+                    find_files = {
+                        hidden = true,
+                    },
+                },
                 extensions = {
                     fzf = {
                         fuzzy = true,
@@ -62,6 +69,29 @@ return {
             }
             -- Load extensions
             telescope.load_extension('fzf')
+
+            vim.keymap.set('n', '<leader>ff', tel_builtin.find_files,
+                { desc = "[F]ind [F]iles", })
+            vim.keymap.set('n', '<leader>fg', tel_builtin.live_grep,
+                { desc = "[F]ind using [G]rep", })
+            vim.keymap.set('n', '<leader>fb', tel_builtin.buffers,
+                { desc = "[F]ind opened [B]uffers", })
+            vim.keymap.set('n', '<leader>fh', tel_builtin.help_tags,
+                { desc = "[F]ind [H]elp tags", })
+            vim.keymap.set('n', '<leader>fws', tel_builtin.lsp_workspace_symbols,
+                { desc = "[F]ind [W]orsace [S]ymbols", })
+            vim.keymap.set('n', '<leader>fds', tel_builtin.lsp_document_symbols,
+                { desc = "[F]ind [D]ocument [S]ymbols", })
+            vim.keymap.set('n', '<leader>fr', tel_builtin.lsp_references,
+                { desc = "[F]ind LSP [R]eferences", })
+            vim.keymap.set('n', '<leader>fci', tel_builtin.lsp_incoming_calls,
+                { desc = "[F]ind LSP [C]alls - [I]ncomming", })
+            vim.keymap.set('n', '<leader>fco', tel_builtin.lsp_outgoing_calls,
+                { desc = "[F]ind LSP [C]alls - [O]utgoing", })
+            -- vim.keymap.set('n', 'gd', tel_builtin.lsp_definitions, {})
+            -- <C-x> go to file selection as a split
+            -- <C-v> go to file selection as a vsplit
+            -- <C-t> go to a file in a new tab
 
 
 
