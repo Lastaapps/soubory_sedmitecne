@@ -1,11 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
+set -e
+
+TARGET=$1
+: "${TARGET:=$USER}"
 
 pushd ~/dotfiles > /dev/null
 
-TARGET=$1
-: ${TARGET:=$USER}
-
-home-manager switch --flake .#${TARGET}
+echo "Applying home config for ${TARGET}..."
+time home-manager switch --flake .#"${TARGET}"
 
 popd > /dev/null
 

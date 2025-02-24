@@ -1,8 +1,17 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-pushd ~/dotfiles > /dev/null
+set -e
 
-nixos-rebuild build --flake .#${1}
+TARGET=$1
+: "${TARGET:=$(hostname)}"
 
-popd > /dev/null
+pushd ~/dotfiles > /dev/null || exit
+
+echo "Building system config for ${TARGET}..."
+FLAKE_PATH="nixosConfigurations.${TARGET}.config.system.build.toplevel"
+# time nix-fast-build --skip-cached --no-nom --flake .#"$FLAKE_PATH"
+time nix build .#"$FLAKE_PATH"
+# time nixos-rebuild build --flake .#"${TARGET}"
+
+popd > /dev/null || exit
 

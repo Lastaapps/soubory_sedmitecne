@@ -10,9 +10,14 @@ pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
     git
     git-crypt
-    # nixVersions.stable
-    # nixVersions.latest
-    nixVersions.nix_2_24
+    nixVersions.stable
+
+    # Disabled for now as I did not manage the Home manager of the OS switch
+    # to use it's results. It also creates output link as `result-` instead of `result`.
+    # This possibly also degrades the flake results reusability.
+    # Also, it seems that the tool benefits mostly larger projects
+    # that can be properly evaluated in parallel.
+    # nix-fast-build
   ];
 
   shellHook = ''
@@ -33,12 +38,15 @@ pkgs.mkShell {
     echo "--------------------------------------------------------------------------------"
 
     alias nupdate="~/dotfiles/scripts/update_and_reapply_all.sh"
+
     alias napplys="~/dotfiles/scripts/apply_system.sh"
     alias napplyh="~/dotfiles/scripts/apply_home.sh"
-    alias napplyb="~/dotfiles/scripts/reapply_all.sh"
+    alias napplyb="~/dotfiles/scripts/apply_system.sh && ~/dotfiles/scripts/apply_home.sh"
+
     alias nbuilds="~/dotfiles/scripts/build_system.sh"
     alias nbuildh="~/dotfiles/scripts/build_home.sh"
-    alias nbuildb="~/dotfiles/scripts/build.sh"
+    alias nbuildb="~/dotfiles/scripts/build_system.sh && ~/dotfiles/scripts/build_home.sh"
+
     alias ndry="~/dotfiles/scripts/dry.sh"
     alias nclean="~/dotfiles/scripts/clean.sh"
     alias nnews="~/dotfiles/scripts/news.sh"
