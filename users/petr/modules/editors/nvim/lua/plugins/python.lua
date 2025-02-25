@@ -2,7 +2,7 @@
 return {
     -- Enables switching f strings
     {
-        'roobert/f-string-toggle-nvim',
+        'roobert/f-string-toggle.nvim',
         ft     = "python",
         config = function()
             require("f-string-toggle").setup({

@@ -84,11 +84,12 @@
       # Creates a custom vim plugin
       # name must be the same as the repo name
       customVimPlugin =
-        prev: input: name:
+        prev: input: author: repo:
         prev.vimUtils.buildVimPlugin {
           src = input;
-          pname = name;
+          pname = repo;
           version = input.lastModifiedDate;
+          meta.homepage = "https://github.com/" + author + "/" + repo + "/";
         };
     in
     {
@@ -130,16 +131,16 @@
                 (final: prev: {
                   vimPlugins = {
                     f-string-toggle-nvim =
-                      customVimPlugin prev inputs.nvimPlugings-robert-f-string-toggle-nvim
-                        "f-string-toggle-nvim";
+                      customVimPlugin prev inputs.nvimPlugings-robert-f-string-toggle-nvim "roobert"
+                        "f-string-toggle.nvim";
 
                     iurimateus-luasnip-latex-snippets-nvim =
-                      customVimPlugin prev inputs.nvimPlugings-iurimateus-luasnip-latex-snippets-nvim
-                        "luasnip-latex-snippets-nvim";
+                      customVimPlugin prev inputs.nvimPlugings-iurimateus-luasnip-latex-snippets-nvim "iurimateus"
+                        "luasnip-latex-snippets.nvim";
 
-                    neocodeium = customVimPlugin prev inputs.nvimPlugings-monkoose-neocodeium "neocodeium";
+                    neocodeium = customVimPlugin prev inputs.nvimPlugings-monkoose-neocodeium "monkoose" "neocodeium";
 
-                    sqls-nvim = customVimPlugin prev inputs.nvimPlugings-nanotee-sqls-nvim "sqls-nvim";
+                    sqls-nvim = customVimPlugin prev inputs.nvimPlugings-nanotee-sqls-nvim "nanotee" "sqls.nvim";
                   } // prev.vimPlugins;
                 })
               ];
