@@ -36,6 +36,11 @@
       user = "lastope2";
       identityFile = "/home/petr/.ssh/ni-oli";
     };
+    "zybo" = {
+      hostname = "10.10.51.194";
+      user = "petalinux";
+      identityFile = "/home/petr/.ssh/ni-oli";
+    };
     # "fray" = {
     #   hostname = "fray1.fit.cvut.cz";
     #   user = "lastope2";
