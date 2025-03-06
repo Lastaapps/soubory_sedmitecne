@@ -11,7 +11,7 @@
   home.activation = {
     lnSafeeyes = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run unlink $VERBOSE_ARG ${config.xdg.configHome}/safeeyes/safeeyes.json || true
-      run ln -s $VERBOSE_ARG ~/dotfiles/users/petr/modules/safeeyes/safeeyes.json ${config.xdg.configHome}/safeeyes || true
+      run ln -s $VERBOSE_ARG ~/dotfiles/users/petr/modules/gui/safeeyes/safeeyes.json ${config.xdg.configHome}/safeeyes || true
     '';
   };
 }
