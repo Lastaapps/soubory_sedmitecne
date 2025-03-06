@@ -264,10 +264,10 @@ local configureLanguageServers = function()
 
     -- Haskell
     -- set using the haskel-tools
-    -- lspconfig.hls.setup {
-    --     capabilities = capabilities,
-    --     filetypes = { 'haskell', 'lhaskell', 'cabal' },
-    -- }
+    lspconfig.hls.setup {
+        capabilities = capabilities,
+        filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    }
 end
 
 return {
