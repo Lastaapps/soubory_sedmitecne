@@ -23,20 +23,6 @@
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true; # wpa-suplicant, conflicts with Network Manager
 
-  # Setup for Zybo board
-  networking = {
-    bridges.br0.interfaces = [
-      "enp3s0"
-      # "wlp2s0" -- AP don't like bridging
-    ];
-    interfaces.br0.ipv4.addresses = [
-      {
-        address = "10.10.51.1";
-        prefixLength = 24;
-      }
-    ];
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -97,6 +83,16 @@
   nix = {
     extraOptions = ''experimental-features = nix-command flakes'';
     optimise.automatic = true;
+
+    # Binary Cache for Haskell.nix
+    settings = {
+      trusted-public-keys = [
+        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      ];
+      substituters = [
+        "https://cache.iog.io"
+      ];
+    };
   };
 
   # This value determines the NixOS release from which the default

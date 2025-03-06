@@ -1,5 +1,21 @@
 { pkgs, ... }:
 
+################################################################################
+# # Documentation for flakes
+#
+# disable nix using a flake:
+# https://docs.haskellstack.org/en/v2.11.1/nix_integration/
+#
+# Prebuilt GHC
+# https://input-output-hk.github.io/haskell.nix/tutorials/getting-started-flakes.html
+#
+# GHC version to LTS snapshot version
+# https://www.stackage.org/#about
+# LTS 23.11 for ghc-9.8.4
+# LTS 22.43 for ghc-9.6.6
+# LTS 21.25 for ghc-9.4.8
+################################################################################
+
 {
   home.packages = [
     (pkgs.haskell.packages.ghc966.ghcWithPackages (hPkgs: [
@@ -26,9 +42,6 @@
       # - Run `stack init --compiler ghc966` or `stack new template_name ghc966`
       # - Change the snapshot filed the newly generated `stack.yaml` file to your compiler version.
       # - Enjoy. Commands should use the correct versions now.
-      #
-      # GHC version to LTS snapshot version
-      # https://www.stackage.org/#about
       hPkgs.stack
 
       # Unsuccessful attempt to patch the stack client
