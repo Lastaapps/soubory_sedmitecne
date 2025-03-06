@@ -1,9 +1,12 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-pushd ~/dotfiles/scripts > /dev/null
+set -e
+
+pushd ~/dotfiles/scripts > /dev/null || exit
 
 ./update_flake.sh
-./reapply_all.sh
+./apply_system.sh
+./apply_home.sh
 
-popd > /dev/null
+popd > /dev/null || exit
 
