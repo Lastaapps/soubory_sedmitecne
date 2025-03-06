@@ -126,6 +126,23 @@
         "type": "github"
       }
     },
+    "nvimPlugings-amitds1997-remote-nvim-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740320308,
+        "narHash": "sha256-qdS5TyJE5uoQLmr/0VDkmLyIow9hO7m5G+Yt0KJCHT4=",
+        "owner": "amitds1997",
+        "repo": "remote-nvim.nvim",
+        "rev": "bc39422f544e6f7b6b6cdeb0cc0e9aaa20398f5a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "amitds1997",
+        "repo": "remote-nvim.nvim",
+        "rev": "bc39422f544e6f7b6b6cdeb0cc0e9aaa20398f5a",
+        "type": "github"
+      }
+    },
     "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim": {
       "flake": false,
       "locked": {
@@ -198,6 +215,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvimPlugings-amitds1997-remote-nvim-nvim": "nvimPlugings-amitds1997-remote-nvim-nvim",
         "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim": "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim",
         "nvimPlugings-monkoose-neocodeium": "nvimPlugings-monkoose-neocodeium",
         "nvimPlugings-nanotee-sqls-nvim": "nvimPlugings-nanotee-sqls-nvim",

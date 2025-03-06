@@ -112,6 +112,9 @@
           haskell-snippets-nvim
           hoogle
 
+          remote-nvim
+          nui-nvim
+
           # As the name differs an lazy cannot find the plugin
           # in has to be renamed
           {

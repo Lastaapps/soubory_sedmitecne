@@ -31,6 +31,11 @@
     # polymc.url = "github:PolyMC/PolyMC";
 
     # NVim plugins
+    nvimPlugings-amitds1997-remote-nvim-nvim = {
+      url = "github:amitds1997/remote-nvim.nvim/bc39422f544e6f7b6b6cdeb0cc0e9aaa20398f5a";
+      # url = "git+https://github.com/amitds1997/remote-nvim.nvim.git?ref=refs/tags/v0.3.11";
+      flake = false;
+    };
     nvimPlugings-robert-f-string-toggle-nvim = {
       url = "github:roobert/f-string-toggle.nvim";
       flake = false;
@@ -130,6 +135,14 @@
 
                 (final: prev: {
                   vimPlugins = {
+                    remote-nvim =
+                      (customVimPlugin prev inputs.nvimPlugings-amitds1997-remote-nvim-nvim "amitds1997"
+                        "remote-nvim.nvim"
+                      ).overrideAttrs
+                        {
+                          dontPatchShebangs = true;
+                        };
+
                     f-string-toggle-nvim =
                       customVimPlugin prev inputs.nvimPlugings-robert-f-string-toggle-nvim "roobert"
                         "f-string-toggle.nvim";
