@@ -30,7 +30,11 @@
 
     # polymc.url = "github:PolyMC/PolyMC";
 
+    ############################################################################
     # NVim plugins
+    # In case something is slightly changed after the first install (like '-' vs '.')
+    # and plugin does not get loaded correctly (see plugins directory in :Lazy),
+    # delete folder ~/.cache/nvim/luac
     nvimPlugings-amitds1997-remote-nvim-nvim = {
       url = "github:amitds1997/remote-nvim.nvim/bc39422f544e6f7b6b6cdeb0cc0e9aaa20398f5a";
       # url = "git+https://github.com/amitds1997/remote-nvim.nvim.git?ref=refs/tags/v0.3.11";
