@@ -126,6 +126,38 @@
         "type": "github"
       }
     },
+    "nvimPlugin-cyberdream-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740102038,
+        "narHash": "sha256-he1pjWRWpTPmzCUuINs/uO7olRbwbi76H6zCqo25NpM=",
+        "owner": "scottmckendry",
+        "repo": "cyberdream.nvim",
+        "rev": "b02c977aaf0283a0ec7a0184e6a459366325c93b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "scottmckendry",
+        "repo": "cyberdream.nvim",
+        "type": "github"
+      }
+    },
+    "nvimPlugin-noctis-high-contrast-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735508645,
+        "narHash": "sha256-FNWdx3dIMdcuucEo0dx8y2aQK6YMjM4E+vj5qmk/mDM=",
+        "owner": "iagorrr",
+        "repo": "noctis-high-contrast.nvim",
+        "rev": "f7c24adb2cd0eca9cf5e9d0fa6595512f82cf450",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iagorrr",
+        "repo": "noctis-high-contrast.nvim",
+        "type": "github"
+      }
+    },
     "nvimPlugings-amitds1997-remote-nvim-nvim": {
       "flake": false,
       "locked": {
@@ -215,6 +247,8 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvimPlugin-cyberdream-nvim": "nvimPlugin-cyberdream-nvim",
+        "nvimPlugin-noctis-high-contrast-nvim": "nvimPlugin-noctis-high-contrast-nvim",
         "nvimPlugings-amitds1997-remote-nvim-nvim": "nvimPlugings-amitds1997-remote-nvim-nvim",
         "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim": "nvimPlugings-iurimateus-luasnip-latex-snippets-nvim",
         "nvimPlugings-monkoose-neocodeium": "nvimPlugings-monkoose-neocodeium",

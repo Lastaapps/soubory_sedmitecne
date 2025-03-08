@@ -60,11 +60,17 @@
           kommentary
           nvim-autopairs
 
+          # Themes
+          catppuccin-nvim
+          cyberdream-nvim
+          noctis-high-contrast-nvim
+          onedark-nvim
+          tender-vim
+
           vim-fugitive
           vim-sleuth
           vim-airline
           vim-matchup
-          tender-vim
           vim-tmux-navigator
           zoxide-vim
 

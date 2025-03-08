@@ -23,7 +23,7 @@ vim.opt.spelllang = { 'en_us', 'cs' }
 vim.opt.spell = true
 -- To enable overriding these configurations per project
 vim.opt.exrc = true
--- vim.g.mapleader = ',' -- net in the NixOS config, has to be set before loading lazy.nvim
+-- vim.g.mapleader = ',' -- set in the NixOS config, has to be set before loading lazy.nvim
 
 -- Default foldint while tree sitter is not enabled
 vim.opt.foldmethod = 'indent'
@@ -59,14 +59,21 @@ match ExtraWhitespace /\s\+$/
 ]], {})
 
 
-vim.cmd([[
-if (has("termguicolors"))
-    set termguicolors
-endif
+vim.cmd.colorscheme
+-- Default themes (interesting ones)
+-- "default"
+-- "zaibatsu"
+-- "industry" -- high contrast
+-- "koehler" -- high contrast
+-- "sorbet"
 
-colorscheme tender
-]]
-)
+-- Custom themes
+-- "catppuccin-mocha"
+-- "cyberdream" -- high contrast
+-- "noctishc" -- high contrast
+-- "onedark"
+    "tender"
+
 
 -- Go-to definition in a split window
 local function goto_definition(split_cmd)

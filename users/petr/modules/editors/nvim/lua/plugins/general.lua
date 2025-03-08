@@ -3,24 +3,6 @@ return {
   -- Adds coroutines
   { "nvim-lua/plenary.nvim" },
 
-  -- Theme
-  {
-    'jacoborus/tender.vim',
-    lazy = false
-  },
-
-  -- Transparent background
-  {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
-  },
-
-  -- Better notifications
-  {
-    'rcarriga/nvim-notify',
-    lazy = false
-  },
-
   -- --- Productivity tools ---------------------------------------------------
 
   -- NVim autopairs

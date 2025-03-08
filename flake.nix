@@ -56,6 +56,14 @@
       url = "github:nanotee/sqls.nvim";
       flake = false;
     };
+    nvimPlugin-cyberdream-nvim = {
+      url = "github:scottmckendry/cyberdream.nvim";
+      flake = false;
+    };
+    nvimPlugin-noctis-high-contrast-nvim = {
+      url = "github:iagorrr/noctis-high-contrast.nvim";
+      flake = false;
+    };
   };
 
   outputs =
@@ -158,6 +166,14 @@
                     neocodeium = customVimPlugin prev inputs.nvimPlugings-monkoose-neocodeium "monkoose" "neocodeium";
 
                     sqls-nvim = customVimPlugin prev inputs.nvimPlugings-nanotee-sqls-nvim "nanotee" "sqls.nvim";
+
+                    cyberdream-nvim =
+                      customVimPlugin prev inputs.nvimPlugin-cyberdream-nvim "scottmckendry"
+                        "cyberdream.nvim";
+
+                    noctis-high-contrast-nvim =
+                      customVimPlugin prev inputs.nvimPlugin-noctis-high-contrast-nvim "iagorrr"
+                        "noctis-high-contrast.nvim";
                   } // prev.vimPlugins;
                 })
               ];
