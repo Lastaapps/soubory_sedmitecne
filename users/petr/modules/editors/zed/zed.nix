@@ -1,18 +1,16 @@
 {
-  lib,
   config,
   pkgs-unstable,
   ...
 }:
+
+let
+  zedConfigPath = "${config.home.homeDirectory}/dotfiles/users/petr/modules/editors/zed";
+in
 {
   home.packages = with pkgs-unstable; [
     zed-editor
   ];
 
-  home.activation = {
-    lnZed = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run unlink $VERBOSE_ARG ${config.xdg.configHome}/zed || true
-      run ln -s $VERBOSE_ARG ~/dotfiles/users/petr/modules/editors/zed ${config.xdg.configHome} || true
-    '';
-  };
+  xdg.configFile."zed".source = config.lib.file.mkOutOfStoreSymlink zedConfigPath;
 }

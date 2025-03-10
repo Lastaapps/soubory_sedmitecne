@@ -1,12 +1,15 @@
 {
-  inputs,
   config,
   pkgs,
   lib,
-  # nvimCustomPluins,
   ...
 }:
 
+let
+  # https://nixos-and-flakes.thiscute.world/best-practices/accelerating-dotfiles-debugging
+  nvimPathLua = "${config.home.homeDirectory}/dotfiles/users/petr/modules/editors/nvim/lua";
+  nvimPathSpell = "${config.home.homeDirectory}/dotfiles/users/petr/modules/editors/nvim/spell";
+in
 {
   # lazy.nvim setup taken from:
   # https://github.com/LazyVim/LazyVim/discussions/1972
@@ -190,13 +193,15 @@
       '';
   };
 
-  xdg.configFile."nvim/lua" = {
-    recursive = true;
-    source = ./lua;
-  };
-  # TODO handle properly
-  xdg.configFile."nvim/spell" = {
-    recursive = true;
-    source = ./spell;
-  };
+  # xdg.configFile."nvim/lua" = {
+  #   recursive = true;
+  #   source = ./lua;
+  # };
+  # # This makes the spell dictionary immutable
+  # xdg.configFile."nvim/spell" = {
+  #   recursive = true;
+  #   source = ./spell;
+  # };
+  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink nvimPathLua;
+  xdg.configFile."nvim/spell".source = config.lib.file.mkOutOfStoreSymlink nvimPathSpell;
 }
