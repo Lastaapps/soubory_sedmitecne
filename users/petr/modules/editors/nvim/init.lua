@@ -1,0 +1,2 @@
+-- This file is present only so dotfyle.com can find this directory.
+-- Real init.lua file is created by nvim.nix.
