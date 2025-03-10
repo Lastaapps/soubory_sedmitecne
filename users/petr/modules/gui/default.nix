@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     gparted
     postman
+    qbittorrent-enhanced
     thunderbird
     youtube-music
   ];
