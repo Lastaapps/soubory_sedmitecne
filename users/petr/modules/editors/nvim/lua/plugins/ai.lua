@@ -4,6 +4,7 @@ return {
     {
         "Exafunction/codeium.nvim",
         enabled = false,
+        event = "InsertEnter",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "hrsh7th/nvim-cmp",
@@ -56,7 +57,7 @@ return {
     -- AI assistant, but maintained and feature full
     {
         "monkoose/neocodeium",
-        event = "VeryLazy",
+        event = "InsertEnter",
         config = function()
             local cmp = require("cmp")
             local neocodeium = require("neocodeium")

@@ -1,10 +1,12 @@
 local load_all_themes = false
 
 return {
-    -- Better notifications
+    -- https://github.com/j-hui/fidget.nvim
+    -- Provides status updates in the bottom right corner
     {
-        'rcarriga/nvim-notify',
-        lazy = false
+        "j-hui/fidget.nvim",
+        -- lazy = false,
+        event = "VeryLazy",
     },
 
     -- Transparent background
@@ -12,6 +14,26 @@ return {
         "xiyaowong/transparent.nvim",
         lazy = false,
         priority = 2000,
+    },
+
+    -- Customizable bottom bar
+    {
+        'nvim-lualine/lualine.nvim',
+        event = "VeryLazy",
+        -- dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {
+            -- Themes: https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+            options = {
+                -- auto nightfly onedark nord
+                theme = 'onedark',
+            },
+        },
+    },
+    -- Last line with file info + other plugins integration
+    {
+        'vim-airline/vim-airline',
+        enabled = false,
+        lazy = false,
     },
 
     -- Themes

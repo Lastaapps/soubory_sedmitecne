@@ -47,9 +47,7 @@ in
       let
         plugins = with pkgs.vimPlugins; [
           plenary-nvim
-          transparent-nvim
           image-nvim
-          fidget-nvim
           which-key-nvim
           trouble-nvim
 
@@ -57,11 +55,24 @@ in
           nvim-treesitter-context
           nvim-ts-autotag
 
+          bigfile-nvim
           fzf-lua
           presence-nvim
-          nvim-notify
           kommentary
           nvim-autopairs
+          todo-comments-nvim
+          oil-nvim
+
+          # Git
+          gitsigns-nvim
+          vim-fugitive
+
+          # Looks
+          fidget-nvim
+          lualine-nvim
+          transparent-nvim
+          # nvim-notify # may be required by some plugin
+          vim-airline
 
           # Themes
           catppuccin-nvim
@@ -70,9 +81,7 @@ in
           onedark-nvim
           tender-vim
 
-          vim-fugitive
           vim-sleuth
-          vim-airline
           vim-matchup
           vim-tmux-navigator
           zoxide-vim

@@ -273,7 +273,7 @@ end
 return {
     {
         'neovim/nvim-lspconfig',
-        lazy = false,
+        event = "BufReadPost",
         config = function()
             configureLanguageServers()
         end
