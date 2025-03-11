@@ -198,7 +198,7 @@ in
           },
         })
 
-        require("mynvim")
+        require("myinit")
       '';
   };
 

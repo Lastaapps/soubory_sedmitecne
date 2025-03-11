@@ -6,34 +6,7 @@
 
 -- vim.api.nvim_command('set number')
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.autoindent = true
-vim.opt.hlsearch = true
-vim.opt.wrap = false
-vim.opt.sidescroll = 1
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
--- vim.opt.expandtab = true
-vim.opt.fileformat = 'unix'
-vim.opt.spelllang = { 'en_us', 'cs' }
-vim.opt.spell = true
--- To enable overriding these configurations per project
-vim.opt.exrc = true
--- vim.g.mapleader = ',' -- set in the NixOS config, has to be set before loading lazy.nvim
-
--- Default foldint while tree sitter is not enabled
-vim.opt.foldmethod = 'indent'
-vim.opt.foldcolumn = 'auto:9'
-
--- Enables loading of external scrips (.nvim.lua), see :help exrc
-vim.o.exrc = true
-
--- Prevents autocompletion items to be automatically selected
-vim.opt.completeopt = 'menu,menuone,preview,noinsert' -- ,noselect
+require('options')
 
 vim.api.nvim_exec2([[
 syntax on
@@ -48,14 +21,6 @@ autocmd BufReadPost *.html.tera setlocal filetype=htmldjango
 autocmd BufReadPost *.frag,*.vert,*.fp,*.vp,*.glsl setlocal filetype=glsl
 
 autocmd FileType verilog setlocal ts=2 sts=2 sw=2 expandtab
-]], {})
-
--- Last column and spaces highlight
-vim.opt.colorcolumn = '80'
-vim.api.nvim_exec2([[
-highlight ColorColumn ctermbg=blue guibg=lightgrey
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
 ]], {})
 
 
