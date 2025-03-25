@@ -15,5 +15,6 @@
     ./syncthing.nix
     ./users.nix
     ./vpn.nix
+    ./wine.nix
   ];
 }
