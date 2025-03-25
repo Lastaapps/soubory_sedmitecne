@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true"; # Don't create default ~/Sync folder
@@ -6,6 +10,7 @@
   services = {
     syncthing = {
       enable = true;
+      package = pkgs-unstable.syncthing;
       user = "petr";
       dataDir = "/home/petr";
       configDir = "/home/petr/.config/syncthing";
