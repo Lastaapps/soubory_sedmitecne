@@ -56,3 +56,5 @@ node_modules/
 .bloop/
 uni
 .stack-work
+_build/
+.build/
