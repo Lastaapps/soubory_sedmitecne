@@ -6,13 +6,13 @@
     "file:///home/petr/Pictures"
     "file:///home/petr/Videos"
     "file:///home/petr/Downloads"
+    "file:///home/petr/Phone"
     "file:/// /"
     "file:///home/petr/Documents/CVUT CVUT"
-    "file:///mnt/d/Android%20files%20sync Android"
-    "file:///mnt/d/Android%20files%20sync/DCIM/Memes"
+    "file:///mnt/data/Android%20files%20sync Android"
+    "file:///mnt/data/Android%20files%20sync/DCIM/Memes"
     "file:///home/petr/projects Projects"
-    "file:///mnt/d D: Data"
-    "file:///mnt/f F: Programs"
-    "file:///mnt/d/Dokumenty/Filmy"
+    "file:///mnt/data D: Data"
+    "file:///mnt/data/Movies Filmy"
   ];
 }

@@ -3,7 +3,7 @@
 set -e
 
 DATE=$(date "+%Y-%m-%d-%H-%M")
-DIR="/mnt/d/Zaloha/"
+DIR="/mnt/data/Backup/"
 FILENAME="${DIR}${DATE}.rar"
 COMMAND="rar"
 ARGS="a -m5 -hp -rr3p -r -y -md1g -ep1 -mt8 -ma5 -ol"
@@ -15,13 +15,15 @@ EXCLUDE_GENERAL="-x*/.thumbnails/*"
 EXCLUDE="$EXCLUDE_MINECRAFT $EXCLUDE_PROGRAMMING $EXCLUDE_GENERAL"
 
 TOBACKUP=(\
-"/mnt/d/Dokumenty/Dokumenty" \
-"/mnt/d/synced_files" \
-"/mnt/f/AndroidStudioProjects" \
-"/mnt/f/NetBeansProjects" \
-"/mnt/f/Archive" \
-"/mnt/f/eagle" \
-"/mnt/d/Dokumenty/Minecraft" \
+"/mnt/data/Documents" \
+"/mnt/data/Phone" \
+"/mnt/data/Pictures" \
+"/mnt/data/Minecraft" \
+"/mnt/data/Videos" \
+"/mnt/data/Projects/AndroidStudioProjects" \
+"/mnt/data/Projects/NetBeansProjects" \
+"/mnt/data/Projects/Archive" \
+"/mnt/data/Projects/eagle" \
 "/home/petr/dotfiles" \
 "/home/petr/Projects" \
 # "/mnt/space/minecraft/saves" \
@@ -41,8 +43,7 @@ echo
 echo Done! Result code: $?
 
 echo Scheduled defragmentation
-fsck -t ntfs /dev/sda2
-fsck -t ntfs /dev/sda3
+btrfs filesystem defragment -r -v -czstd /mnt/data/
 
 read -p "Press the Enter key to exit"
 exit

@@ -63,31 +63,16 @@
     ];
   };
 
-  fileSystems."/mnt/d" = {
-    device = "/dev/disk/by-uuid/D854B2BA54B29B28";
-    fsType = "ntfs-3g"; # "ntfs" is not a kernel space driver
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-uuid/a0c9ba94-4df6-421d-8ff5-bd9c3d432cec";
+    fsType = "btrfs";
     options = [
-      "rw"
-      "inherit"
-      "windows_names"
-      "big_writes"
       "noatime"
-      "uid=petr"
-      "gid=users"
-    ];
-  };
-
-  fileSystems."/mnt/f" = {
-    device = "/dev/disk/by-uuid/20F6D631F6D606C6";
-    fsType = "ntfs-3g";
-    options = [
-      "rw"
-      "inherit"
-      "windows_names"
-      "big_writes"
-      "noatime"
-      "uid=petr"
-      "gid=users"
+      "nodiratime"
+      "commit=60"
+      "nodatacow"
+      "autodefrag"
+      "compress=zstd"
     ];
   };
 
