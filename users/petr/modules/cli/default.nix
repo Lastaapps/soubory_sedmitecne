@@ -8,6 +8,7 @@
     ./math.nix
     ./network.nix
     ./ssh.nix
+    ./tmux
   ];
   home.packages = with pkgs; [
 
