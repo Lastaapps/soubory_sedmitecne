@@ -25,11 +25,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743808813,
-        "narHash": "sha256-2lDQBOmlz9ggPxcS7/GvcVdzXMIiT+PpMao6FbLJSr0=",
+        "lastModified": 1744117652,
+        "narHash": "sha256-t7dFCDl4vIOOUMhEZnJF15aAzkpaup9x4ZRGToDFYWI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a9f8b3db211b4609ddd83683f9db89796c7f6ac6",
+        "rev": "b4e98224ad1336751a2ac7493967a4c9f6d9cb3f",
         "type": "github"
       },
       "original": {
@@ -46,11 +46,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743869639,
-        "narHash": "sha256-Xhe3whfRW/Ay05z9m1EZ1/AkbV1yo0tm1CbgjtCi4rQ=",
+        "lastModified": 1744584414,
+        "narHash": "sha256-uk9NgZvkTkHEuTdnZ2GGO/Y4q4sbHdAMzPPoASpIpWo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d094c6763c6ddb860580e7d3b4201f8f496a6836",
+        "rev": "ac3c1f4fa40497b07f1f3ea3c4f644ce5dbcd2a4",
         "type": "github"
       },
       "original": {
@@ -67,11 +67,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743904774,
-        "narHash": "sha256-dHnwYLz1b6ohGP2DjWKpDFEZ9WOm4vYuPXKUna08awU=",
+        "lastModified": 1744514450,
+        "narHash": "sha256-aIBU8F+dDpdHx5oQEdCu48/IlXYgvpv0ZG+MlkqaDh0=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "da51d4cab526bef885e8c95ab2b9455bfe0940d4",
+        "rev": "130a15b9c4231ec0dc59e13453ac96c8ab4cdc5d",
         "type": "github"
       },
       "original": {
@@ -82,11 +82,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1743938762,
-        "narHash": "sha256-UgFYn8sGv9B8PoFpUfCa43CjMZBl1x/ShQhRDHBFQdI=",
+        "lastModified": 1744585812,
+        "narHash": "sha256-km6NQmz3aCjY6qOLq/BanFER7mca4JhDne6pp115Rlo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "74a40410369a1c35ee09b8a1abee6f4acbedc059",
+        "rev": "8a1b03c6f8d31dd271811cb41f7b09497def907a",
         "type": "github"
       },
       "original": {
@@ -97,11 +97,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1743703532,
-        "narHash": "sha256-s1KLDALEeqy+ttrvqV3jx9mBZEvmthQErTVOAzbjHZs=",
+        "lastModified": 1744440957,
+        "narHash": "sha256-FHlSkNqFmPxPJvy+6fNLaNeWnF1lZSgqVCl/eWaJRc4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "bdb91860de2f719b57eef819b5617762f7120c70",
+        "rev": "26d499fc9f1d567283d5d56fcf367edd815dba1d",
         "type": "github"
       },
       "original": {
@@ -112,11 +112,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1743827369,
-        "narHash": "sha256-rpqepOZ8Eo1zg+KJeWoq1HAOgoMCDloqv5r2EAa9TSA=",
+        "lastModified": 1744463964,
+        "narHash": "sha256-LWqduOgLHCFxiTNYi3Uj5Lgz0SR+Xhw3kr/3Xd0GPTM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "42a1c966be226125b48c384171c44c651c236c22",
+        "rev": "2631b0b7abcea6e640ce31cd78ea58910d31e650",
         "type": "github"
       },
       "original": {
@@ -129,11 +129,11 @@
     "nvimPlugin-cyberdream-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1743645881,
-        "narHash": "sha256-nM4Sdi5Q/P5kf7e4JMEgibNw1F1QBU4pG5Fs6lgHjvg=",
+        "lastModified": 1744407126,
+        "narHash": "sha256-2GFrV2Nw/9uITqfBHVmKgg9LKgudCab/pzE05pZRIjw=",
         "owner": "scottmckendry",
         "repo": "cyberdream.nvim",
-        "rev": "c07db2e6cab236ead328afc2ae4e0e1e1c69cd68",
+        "rev": "274eacedda3362faaa4fa850eebfc5911294992e",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
     "nvimPlugings-monkoose-neocodeium": {
       "flake": false,
       "locked": {
-        "lastModified": 1739966055,
-        "narHash": "sha256-vgnTEkVwVC52XP0GhA05I2zmhFTxhxf9BonMHULDJG8=",
+        "lastModified": 1744564539,
+        "narHash": "sha256-+FK12qDw7EkUXjKwfAdvR1yzD/gVt+fZSWP1Ckjq+Wo=",
         "owner": "monkoose",
         "repo": "neocodeium",
-        "rev": "8a0b9b872b7da673ad2f6f1c3d17ac5c338053a8",
+        "rev": "1404685e72030d974f13d932fe4830ecc8a43f04",
         "type": "github"
       },
       "original": {
