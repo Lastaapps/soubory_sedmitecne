@@ -6,7 +6,8 @@
   # - home-manager lib call
   # - vscode-extensions dependency
   # When you migrate to a new stable version,
-  # try to remote all the pkgs-unstable usages
+  # try to remote all the pkgs-unstable usages.
+  # Also, update version in ./system/configuration.nix.
   inputs = {
     nixpkgs-master.url = "nixpkgs/master";
 
