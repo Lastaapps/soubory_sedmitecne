@@ -28,6 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     # polymc.url = "github:PolyMC/PolyMC";
 
     ############################################################################
@@ -35,24 +40,28 @@
     # In case something is slightly changed after the first install (like '-' vs '.')
     # and plugin does not get loaded correctly (see plugins directory in :Lazy),
     # delete folder ~/.cache/nvim/luac
-    nvimPlugings-amitds1997-remote-nvim-nvim = {
+    nvimPlugin-amitds1997-remote-nvim-nvim = {
       url = "github:amitds1997/remote-nvim.nvim/bc39422f544e6f7b6b6cdeb0cc0e9aaa20398f5a";
       # url = "git+https://github.com/amitds1997/remote-nvim.nvim.git?ref=refs/tags/v0.3.11";
       flake = false;
     };
-    nvimPlugings-robert-f-string-toggle-nvim = {
+    nvimPlugin-robert-f-string-toggle-nvim = {
       url = "github:roobert/f-string-toggle.nvim";
       flake = false;
     };
-    nvimPlugings-iurimateus-luasnip-latex-snippets-nvim = {
+    nvimPlugin-rayx-lsp-signature-nvim = {
+      url = "github:ray-x/lsp_signature.nvim";
+      flake = false;
+    };
+    nvimPlugin-iurimateus-luasnip-latex-snippets-nvim = {
       url = "github:iurimateus/luasnip-latex-snippets.nvim";
       flake = false;
     };
-    nvimPlugings-monkoose-neocodeium = {
+    nvimPlugin-monkoose-neocodeium = {
       url = "github:monkoose/neocodeium";
       flake = false;
     };
-    nvimPlugings-nanotee-sqls-nvim = {
+    nvimPlugin-nanotee-sqls-nvim = {
       url = "github:nanotee/sqls.nvim";
       flake = false;
     };
@@ -148,24 +157,23 @@
                 (final: prev: {
                   vimPlugins = {
                     remote-nvim =
-                      (customVimPlugin prev inputs.nvimPlugings-amitds1997-remote-nvim-nvim "amitds1997"
-                        "remote-nvim.nvim"
-                      ).overrideAttrs
+                      (customVimPlugin prev inputs.nvimPlugin-amitds1997-remote-nvim-nvim "amitds1997" "remote-nvim.nvim")
+                      .overrideAttrs
                         {
                           dontPatchShebangs = true;
                         };
 
                     f-string-toggle-nvim =
-                      customVimPlugin prev inputs.nvimPlugings-robert-f-string-toggle-nvim "roobert"
+                      customVimPlugin prev inputs.nvimPlugin-robert-f-string-toggle-nvim "roobert"
                         "f-string-toggle.nvim";
 
                     iurimateus-luasnip-latex-snippets-nvim =
-                      customVimPlugin prev inputs.nvimPlugings-iurimateus-luasnip-latex-snippets-nvim "iurimateus"
+                      customVimPlugin prev inputs.nvimPlugin-iurimateus-luasnip-latex-snippets-nvim "iurimateus"
                         "luasnip-latex-snippets.nvim";
 
-                    neocodeium = customVimPlugin prev inputs.nvimPlugings-monkoose-neocodeium "monkoose" "neocodeium";
+                    neocodeium = customVimPlugin prev inputs.nvimPlugin-monkoose-neocodeium "monkoose" "neocodeium";
 
-                    sqls-nvim = customVimPlugin prev inputs.nvimPlugings-nanotee-sqls-nvim "nanotee" "sqls.nvim";
+                    sqls-nvim = customVimPlugin prev inputs.nvimPlugin-nanotee-sqls-nvim "nanotee" "sqls.nvim";
 
                     cyberdream-nvim =
                       customVimPlugin prev inputs.nvimPlugin-cyberdream-nvim "scottmckendry"
@@ -174,6 +182,9 @@
                     noctis-high-contrast-nvim =
                       customVimPlugin prev inputs.nvimPlugin-noctis-high-contrast-nvim "iagorrr"
                         "noctis-high-contrast.nvim";
+                    lsp-signature-nvim =
+                      customVimPlugin prev inputs.nvimPlugin-rayx-lsp-signature-nvim "ray-x"
+                        "lsp_signature.nvim";
                   } // prev.vimPlugins;
                 })
               ];
