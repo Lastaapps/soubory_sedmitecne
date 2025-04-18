@@ -14,6 +14,7 @@
     postman
     qbittorrent-enhanced
     thunderbird
+    ventoy-bin-full
     youtube-music
   ];
 }
