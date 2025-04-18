@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 ################################################################################
 # # Documentation for flakes
@@ -18,7 +18,7 @@
 
 {
   home.packages = [
-    (pkgs.haskell.packages.ghc966.ghcWithPackages (hPkgs: [
+    (pkgs-unstable.haskell.packages.ghc966.ghcWithPackages (hPkgs: [
       hPkgs.haskell-language-server
       hPkgs.ghcid # Continuous terminal Haskell compile checker
       hPkgs.ormolu # Haskell formatter
