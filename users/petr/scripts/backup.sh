@@ -3,7 +3,7 @@
 set -e
 
 DATE=$(date "+%Y-%m-%d-%H-%M")
-DIR="/mnt/data/Backup/"
+DIR="/mnt/data/Backup/tmp_"
 FILENAME="${DIR}${DATE}.tar.xz"
 PAR2_REDUNDANCY=5 # in percents
 XZ_COMPRESSION_LEVEL=9 # 1 - worst, 6 - default, 9 - best
@@ -18,33 +18,34 @@ IONICE="ionice -c 3"
 
 TAR_EXCLUDE_OPTS=()
 ALL_EXCLUDES=( \
-	'**/.bloop/*' \
-	'**/.build/*' \
-	'**/_build/*' \
+  '**/.bloop/*' \
+  '**/.build/*' \
+  '**/_build/*' \
   '**/build/*' \
   '**/BuildTools/*' \
-	'**/*.db*' \
+  '**/*.db*' \
   '**/generator/testdata/*' \
-	'**/.git/*' \
+  '**/.git/*' \
   '**/.gradle/*' \
-	'**/.kotlin/*' \
-	'**/*log*' \
+  '**/.kotlin/*' \
+  '**/*log*' \
   '**/logs/*' \
   '**/mcaselector/*' \
   '**/node_modules/*' \
   '**/PID/*' \
   '**/pid_data/*' \
-	'**/__pycache__/*' \
+  '**/petalinux/*' \
+  '**/__pycache__/*' \
   '**/server_backup/*' \
   '**/Servers/*/bundler/*' \
   '**/Servers/*/libraries/*' \
   '**/Servers/*/versions/*' \
   '**/.stack-work/*' \
-	'**/.stfolder/*' \
-	'**/.sync/*' \
+  '**/.stfolder/*' \
+  '**/.sync/*' \
   '**/target/*' \
   '**/.thumbnails/*' \
-	'**/uni*' \
+  '**/uni*' \
   '**/.venv*' \
   '**/venv*' \
 )
@@ -81,9 +82,10 @@ echo
 read -rp "Press the Enter key to start"
 
 echo "Starting backup process..."
+set -x
 time ${IONICE} tar -cv "${TAR_EXCLUDE_OPTS[@]}" -f - "${TOBACKUP[@]}" | ${NICE} xz -z -${XZ_COMPRESSION_LEVEL} -T0 > "$FILENAME"
-
 BACKUP_EXIT_CODE=$?
+set +x
 
 echo
 if [ $BACKUP_EXIT_CODE -eq 0 ]; then
@@ -91,7 +93,7 @@ if [ $BACKUP_EXIT_CODE -eq 0 ]; then
     ls -lh "$FILENAME"
 else
     echo "Backup failed with exit code: $BACKUP_EXIT_CODE"
-		exit
+    exit
 fi
 
 echo
