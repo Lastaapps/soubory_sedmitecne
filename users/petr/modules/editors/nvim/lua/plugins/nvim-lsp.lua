@@ -268,6 +268,10 @@ local configureLanguageServers = function()
         capabilities = capabilities,
         filetypes = { 'haskell', 'lhaskell', 'cabal' },
     }
+
+    lspconfig.elmls.setup {
+        capabilities = capabilities,
+    }
 end
 
 return {

@@ -5,6 +5,7 @@
     ./c_cpp
     ./cmake.nix
     ./docker.nix
+    ./elm.nix
     ./english.nix
     ./glsl.nix
     ./go.nix
