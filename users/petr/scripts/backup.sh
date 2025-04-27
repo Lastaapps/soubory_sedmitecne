@@ -48,6 +48,8 @@ ALL_EXCLUDES=( \
   '**/uni*' \
   '**/.venv*' \
   '**/venv*' \
+  '**/precomputed*' \
+  '**/runs*' \
 )
 
 # Combine all patterns and add the --exclude= prefix for tar
