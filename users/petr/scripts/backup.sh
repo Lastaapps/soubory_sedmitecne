@@ -3,10 +3,15 @@
 set -e
 
 DATE=$(date "+%Y-%m-%d-%H-%M")
-DIR="/mnt/data/Backup/tmp_"
-FILENAME="${DIR}${DATE}.tar.xz"
-PAR2_REDUNDANCY=5 # in percents
-XZ_COMPRESSION_LEVEL=9 # 1 - worst, 6 - default, 9 - best
+DIR="/mnt/data/Backup/${DATE}/"
+FILENAME="${DIR}backup_${DATE}.tar.xz"
+# in percents
+# 5% generates ~3 GB for a 55 GB file -> 5% of the file size
+PAR2_REDUNDANCY=1
+ # 1 - worst, 6 - default, 9 - best
+ # - 9 does not even utilize full CPU potential - it's memory bound
+ #   still it takes only ~4.5 hours to compress, so it is fine
+XZ_COMPRESSION_LEVEL=9
 
 # If nice with high value is used,
 # one of the cores is not used at all by the backup process
@@ -83,7 +88,13 @@ echo
 
 read -rp "Press the Enter key to start"
 
+################################################################################
 echo "Starting backup process..."
+
+if [[ ! -d "$DIR" ]]; then
+  mkdir -p "$DIR"
+fi
+
 set -x
 time ${IONICE} tar -cv "${TAR_EXCLUDE_OPTS[@]}" -f - "${TOBACKUP[@]}" | ${NICE} xz -z -${XZ_COMPRESSION_LEVEL} -T0 > "$FILENAME"
 BACKUP_EXIT_CODE=$?
@@ -98,6 +109,7 @@ else
     exit
 fi
 
+#########################################################################################
 echo
 echo "Creating PAR2 recovery files with ${PAR2_REDUNDANCY}% redundancy..."
 time ${NICE} ${IONICE} par2 create -q -r"${PAR2_REDUNDANCY}" -- "$FILENAME.par2" "$FILENAME"
@@ -109,6 +121,13 @@ else
 		echo "Error: Failed creating PAR2 recovery files. Exit code: $PAR2_EXIT_CODE"
 fi
 
+################################################################################
+echo
+echo "Storage used (file/dir):"
+du -h "${FILENAME}"
+du -h "${DIR}"
+
+#########################################################################################
 echo
 echo "Scheduled defragmentation"
 btrfs filesystem defragment -r -v -czstd /mnt/data/
