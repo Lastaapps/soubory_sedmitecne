@@ -5,25 +5,24 @@
     ./c_cpp
     ./cmake.nix
     ./docker.nix
-    ./elm.nix
+    # ./elm.nix
     ./english.nix
-    ./glsl.nix
+    # ./glsl.nix
     ./go.nix
     ./haskell.nix
-    ./kotlin.nix
+    # ./kotlin.nix
     ./lua.nix
     ./nix.nix
     ./python.nix
-    ./racket.nix
+    # ./racket.nix
     ./rust.nix
-    ./scala.nix
+    # ./scala.nix
     ./sql.nix
     ./tex.nix
-    ./typst.nix
+    # ./typst.nix
     ./unix_shell.nix
     ./verilog.nix
     ./yaml.nix
-    ./zig.nix
-    # ./template.nix
+    # ./zig.nix
   ];
 }
