@@ -19,6 +19,7 @@
     # ./scala.nix
     ./sql.nix
     ./tex.nix
+    ./tooling.nix
     # ./typst.nix
     ./unix_shell.nix
     ./verilog.nix

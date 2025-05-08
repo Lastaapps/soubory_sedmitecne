@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   home.packages = with pkgs; [
     # Language server
-    ltex-ls
+    pkgs-unstable.ltex-ls-plus
+
+    languagetool
+    fasttext
   ];
 }

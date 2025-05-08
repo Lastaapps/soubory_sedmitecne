@@ -159,8 +159,12 @@ local configureLanguageServers = function()
     }
 
     -- English - the worst of them all
+    -- TODO update in newer NVim
+    -- lspconfig.ltex_plus.setup {
     lspconfig.ltex.setup {
         capabilities = capabilities,
+        -- TODO remove in newer NVim
+        cmd = { "ltex-ls-plus" },
         flags = { debounce_text_changes = 300 },
         on_attach = function(client, bufnr)
             require("ltex_extra").setup {
@@ -183,6 +187,7 @@ local configureLanguageServers = function()
                     word2VecModel = "~/language_tool_models/neuralnetwork",
                 },
                 -- Easily causes to many requests
+                languageToolHttpServerUri = "http://localhost:8081/",
                 -- languageToolHttpServerUri = "https://api.languagetool.org/",
                 -- languageToolOrg = {
                 --     username = "",
@@ -269,8 +274,15 @@ local configureLanguageServers = function()
         filetypes = { 'haskell', 'lhaskell', 'cabal' },
     }
 
+    -- Elm
     lspconfig.elmls.setup {
         capabilities = capabilities,
+    }
+
+    -- Vale Linter
+    lspconfig.vale_ls.setup {
+        capabilities = capabilities,
+        filetypes = { "markdown", "text", "plain", "tex", "rst", "python" },
     }
 end
 
