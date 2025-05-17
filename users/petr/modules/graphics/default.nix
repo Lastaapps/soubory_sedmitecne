@@ -6,9 +6,11 @@
   home.packages = with pkgs; [
     digikam
     ffmpeg-full
-    inkscape
     obs-studio
     vlc
+
+    drawio
+    inkscape
     xournalpp
   ];
 }
