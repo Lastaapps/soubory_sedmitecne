@@ -159,6 +159,32 @@ local configureLanguageServers = function()
     }
 
     -- English - the worst of them all
+    local ltex_vim_filetypes = {
+        -- ltex server uses VSCode like file types that do not always match with NVim
+        -- ltex-plus NVim integration maps the most annoying of them (the default ones),
+        -- still note that if an added language does not work,
+        -- check the VSCode list and add both the names
+        -- https://code.visualstudio.com/docs/languages/identifiers
+        -- Non-supported languages are checked as plain files,
+        -- remove them from this list if found
+        "bash",
+        "c", "cpp",
+        "go",
+        "haskell",
+        "json",
+        "lua",
+        "python",
+        "rust",
+        "typst",
+        "yaml",
+        "zip",
+        -- defaults
+        "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context",
+        "html", "xhtml", "mail", "text",
+        -- TODO remove VSCode variants in newer NVim
+        "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd",
+        "context", "html", "xhtml", "mail", "plaintext",
+    }
     -- TODO update in newer NVim
     -- lspconfig.ltex_plus.setup {
     lspconfig.ltex.setup {
@@ -173,21 +199,20 @@ local configureLanguageServers = function()
                 path = "ltex",
             }
         end,
+        filetypes = ltex_vim_filetypes,
         settings = {
+            -- https://valentjn.github.io/ltex/settings.html
             ltex = {
                 -- https://valentjn.github.io/ltex/settings.html
                 language = "en-US",
                 completionEnabled = true,
-                enabled = {
-                    "python", "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd", "context", "html", "xhtml"
-                },
+                enabled = ltex_vim_filetypes,
                 additional_rules = {
                     enablePickyRules = true,
-                    languageModel = "~/language_tool_models/ngrams",
-                    word2VecModel = "~/language_tool_models/neuralnetwork",
+                    -- languageModel = "~/language_tool_models/ngrams",
                 },
                 -- Easily causes to many requests
-                languageToolHttpServerUri = "http://localhost:8081/",
+                -- languageToolHttpServerUri = "http://localhost:8081/",
                 -- languageToolHttpServerUri = "https://api.languagetool.org/",
                 -- languageToolOrg = {
                 --     username = "",
@@ -195,12 +220,20 @@ local configureLanguageServers = function()
                 -- },
 
                 -- possibly not working
-                ltexls = {
-                    -- logLevel = "config",
-                    logLevel = "finest",
+                ltex_ls = {
+                    -- logLevel = "severe",
+                    logLevel = "config",
+                    -- logLevel = "finest",
                 },
             },
         },
+    }
+    -- Vale Linter for English
+    lspconfig.vale_ls.setup {
+        capabilities = capabilities,
+        -- filetypes = { "markdown", "text", "plain", "tex", "rst" },
+        filetypes = ltex_vim_filetypes,
+        single_file_support = false, -- runs only if a config file is found
     }
 
     -- Typst
@@ -277,12 +310,6 @@ local configureLanguageServers = function()
     -- Elm
     lspconfig.elmls.setup {
         capabilities = capabilities,
-    }
-
-    -- Vale Linter
-    lspconfig.vale_ls.setup {
-        capabilities = capabilities,
-        filetypes = { "markdown", "text", "plain", "tex", "rst", "python" },
     }
 end
 
