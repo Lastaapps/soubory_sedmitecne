@@ -9,7 +9,7 @@
     ./english.nix
     # ./glsl.nix
     ./go.nix
-    ./haskell.nix
+    # ./haskell.nix
     # ./kotlin.nix
     ./lua.nix
     ./nix.nix
