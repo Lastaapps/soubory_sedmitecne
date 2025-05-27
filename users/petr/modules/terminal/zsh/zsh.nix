@@ -38,7 +38,7 @@
       theme = "robbyrussell";
     };
 
-    initExtra = ''
+    initContent = ''
       source "${./zshrc}"
       source "${./fzf.zsh}"
       source "${pkgs.git}/share/git/contrib/completion/git-prompt.sh"

@@ -17,4 +17,7 @@
     ventoy-bin-full
     youtube-music
   ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "ventoy-1.1.05"
+  ];
 }

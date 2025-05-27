@@ -7,14 +7,14 @@
   # - vscode-extensions dependency
   # When you migrate to a new stable version,
   # try to remote all the pkgs-unstable usages.
-  # Also, update version in ./system/configuration.nix.
+  # Also, update version in ./system/configuration.nix and home state here bellow.
   inputs = {
     nixpkgs-master.url = "nixpkgs/master";
 
     # Also update home.stateVersion bellow in the file
-    nixpkgs-stable.url = "nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -147,7 +147,7 @@
 
           modules = [
             {
-              home.stateVersion = "24.11";
+              home.stateVersion = "25.05";
             }
             ./users/petr/home.nix
             {
@@ -162,6 +162,7 @@
                       .overrideAttrs
                         {
                           dontPatchShebangs = true;
+                          nvimRequireCheck = [ "remote-nvim" ];
                         };
 
                     f-string-toggle-nvim =
@@ -169,8 +170,10 @@
                         "f-string-toggle.nvim";
 
                     iurimateus-luasnip-latex-snippets-nvim =
-                      customVimPlugin prev inputs.nvimPlugin-iurimateus-luasnip-latex-snippets-nvim "iurimateus"
-                        "luasnip-latex-snippets.nvim";
+                      (customVimPlugin prev inputs.nvimPlugin-iurimateus-luasnip-latex-snippets-nvim "iurimateus"
+                        "luasnip-latex-snippets.nvim"
+                      ).overrideAttrs
+                        { nvimRequireCheck = [ "luasnip-latex-snippets" ]; };
 
                     neocodeium = customVimPlugin prev inputs.nvimPlugin-monkoose-neocodeium "monkoose" "neocodeium";
 

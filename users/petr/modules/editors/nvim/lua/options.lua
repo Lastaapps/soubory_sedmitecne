@@ -52,3 +52,5 @@ highlight ColorColumn ctermbg=blue guibg=lightgrey
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 ]], {})
+
+vim.diagnostic.config({ virtual_text = true })

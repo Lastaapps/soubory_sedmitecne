@@ -2,26 +2,28 @@
   config,
   lib,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 
 {
-  home.packages = with pkgs-unstable; [
+  home.packages = with pkgs; [
     alacritty
     alacritty-theme
   ];
 
   programs.alacritty = {
     enable = true;
-    package = pkgs-unstable.alacritty;
-
     settings = {
       general = {
         import = [
           # https://github.com/alacritty/alacritty-theme
-          "${pkgs.alacritty-theme}/blood_moon.toml"
-          # "${pkgs.alacritty-theme}/papercolor_dark.toml"
+          (
+            "${pkgs.alacritty-theme}/share/alacritty-theme/"
+            + (
+              "blood_moon.toml"
+              # "papercolor_dark.toml"
+            )
+          )
         ];
       };
 

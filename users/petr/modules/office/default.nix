@@ -4,6 +4,6 @@
     ./libre-office.nix
   ];
   home.packages = with pkgs; [
-    okular
+    kdePackages.okular
   ];
 }

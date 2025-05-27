@@ -57,6 +57,7 @@ in
 
           bigfile-nvim
           fzf-lua
+          fzf-vim
           presence-nvim
           kommentary
           nvim-autopairs

@@ -181,16 +181,9 @@ local configureLanguageServers = function()
         -- defaults
         "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context",
         "html", "xhtml", "mail", "text",
-        -- TODO remove VSCode variants in newer NVim
-        "bibtex", "gitcommit", "markdown", "org", "tex", "restructuredtext", "rsweave", "latex", "quarto", "rmd",
-        "context", "html", "xhtml", "mail", "plaintext",
     }
-    -- TODO update in newer NVim
-    -- lspconfig.ltex_plus.setup {
-    lspconfig.ltex.setup {
+    lspconfig.ltex_plus.setup {
         capabilities = capabilities,
-        -- TODO remove in newer NVim
-        cmd = { "ltex-ls-plus" },
         flags = { debounce_text_changes = 300 },
         on_attach = function(client, bufnr)
             require("ltex_extra").setup {
@@ -237,9 +230,8 @@ local configureLanguageServers = function()
     }
 
     -- Typst
-    lspconfig.typst_lsp.setup {
+    lspconfig.tinymist.setup {
         capabilities = capabilities,
-        filetypes = { "typst" },
         root_dir = lspconfig.util.root_pattern('.git', '*'),
     }
 

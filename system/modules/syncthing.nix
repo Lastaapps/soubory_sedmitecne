@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   ...
 }:
 
@@ -10,7 +9,6 @@
   services = {
     syncthing = {
       enable = true;
-      package = pkgs-unstable.syncthing;
       user = "petr";
       dataDir = "/home/petr";
       configDir = "/home/petr/.config/syncthing";

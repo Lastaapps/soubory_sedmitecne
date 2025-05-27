@@ -17,6 +17,7 @@
     gnome-weather
 
     cheese # webcam tool
+    decibels # music player
     gnome-music
     gnome-terminal
     epiphany # web browser
@@ -45,7 +46,8 @@
       transparent-window-moving
       tray-icons-reloaded
       vitals
-    ]) ++ (with pkgs-unstable.gnomeExtensions; [
+    ])
+    ++ (with pkgs-unstable.gnomeExtensions; [
     ])
     # Icon theme, apparently some apps need it
     ++ (with pkgs; [ adwaita-icon-theme ]);

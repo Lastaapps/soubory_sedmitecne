@@ -1,9 +1,8 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   programs.poetry = {
     enable = true;
-    package = pkgs-unstable.poetry;
   };
 
   home.packages = with pkgs; [

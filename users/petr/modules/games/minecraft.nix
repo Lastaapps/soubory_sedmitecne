@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    (pkgs.callPackage ./prismlauncher.nix { })
+    # (pkgs.callPackage ./prismlauncher.nix { })
 
     # Old patched PolyMC client
     # (polymc.overrideAttrs (old: rec {

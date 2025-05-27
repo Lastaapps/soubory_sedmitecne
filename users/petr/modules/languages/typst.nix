@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     # Language server
-    typst-lsp
+    tinymist
     typst-fmt
 
     typst
