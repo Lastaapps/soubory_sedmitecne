@@ -22,13 +22,13 @@ return {
         -- Map of filetype to formatters
         formatters_by_ft = {
             -- Conform will run multiple formatters sequentially
-            go = { "goimports", "gofmt" },
+            go = { "goimports-reviser", "goimports", "gofmt" },
 
             rust = { "rustfmt" },
 
             python = function(bufnr)
                 if require("conform").get_formatter_info("ruff_format", bufnr).available then
-                    return { "ruff_format" }
+                    return { "isort", "ruff_format" }
                 else
                     return { "isort", "black" }
                 end

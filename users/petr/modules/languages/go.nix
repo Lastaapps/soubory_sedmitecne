@@ -9,5 +9,6 @@
     delve
 
     go
+    goimports-reviser
   ];
 }
