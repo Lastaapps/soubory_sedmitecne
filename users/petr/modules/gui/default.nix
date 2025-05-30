@@ -10,6 +10,7 @@
     ./zeal.nix
   ];
   home.packages = with pkgs; [
+    anki-bin
     gparted
     postman
     qbittorrent-enhanced
