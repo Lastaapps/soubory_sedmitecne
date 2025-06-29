@@ -59,3 +59,5 @@ uni
 _build/
 .build/
 runs/
+backup/
+backup.tar.xz

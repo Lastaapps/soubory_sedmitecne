@@ -55,6 +55,7 @@ ALL_EXCLUDES=( \
   '**/venv*' \
   '**/precomputed*' \
   '**/runs*' \
+  '**/backup*' \
 )
 
 # Combine all patterns and add the --exclude= prefix for tar
