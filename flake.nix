@@ -24,6 +24,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -129,6 +131,7 @@
           };
 
           modules = [
+            inputs.nixos-hardware.nixosModules.msi-gl62
             ./system/configuration.nix
             ./devices/msi
           ];
