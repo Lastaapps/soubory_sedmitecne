@@ -3,15 +3,16 @@
 CompileFlags:
   Add: [
     -Wall,
+    -Wextra,
     -pedantic,
-    # -std=c++23,
+    -std=c++23,
     # -std=c23,
   ]
 
 Index:
   StandardLibrary: Yes
 
-#   https://clangd.llvm.org/config#inlayhints
+# https://clangd.llvm.org/config#inlayhints
 InlayHints:
   BlockEnd: Yes
   Designators: Yes

@@ -32,7 +32,6 @@
     # variant = "";
     layout = "cz";
     variant = "coder";
-    # xkbVariant = "coder";
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -46,11 +45,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

@@ -41,20 +41,20 @@ in
   };
 
   # Arch wiki
-  systemd.user.services.tmux = {
-    Unit = {
-      Description = "Preloads tmux session for %I";
-      After = "graphical-session.target";
-    };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
-    Service = {
-      Type = "forking";
-      ExecStart = "/usr/bin/env tmux new-session -s %I -d";
-      ExecStop = "/usr/bin/env tmux kill-session -t %I";
-      WorkingDirectory = "~";
-    };
-  };
+  # systemd.user.services.tmux = {
+  #   Unit = {
+  #     Description = "Preloads tmux session for %I";
+  #     After = "graphical-session.target";
+  #   };
+  #   Install = {
+  #     WantedBy = [ "graphical-session.target" ];
+  #   };
+  #   Service = {
+  #     Type = "forking";
+  #     ExecStart = "${pkgs.tmux}/bin/tmux new-session -s %I -d";
+  #     ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t %I";
+  #     WorkingDirectory = "%h";
+  #   };
+  # };
 
 }

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 {
   imports = [
     ./browser.nix
@@ -14,7 +14,7 @@
     gparted
     postman
     qbittorrent-enhanced
-    thunderbird
+    pkgs-unstable.thunderbird
     ventoy-bin-full
     youtube-music
   ];
