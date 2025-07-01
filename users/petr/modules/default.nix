@@ -1,9 +1,9 @@
 {
   imports = [
     ./cli
+    ./desktop-environments
     ./editors
     ./games
-    ./gnome
     ./graphics
     ./gui
     ./languages

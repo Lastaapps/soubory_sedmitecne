@@ -6,6 +6,7 @@
     ./dynamic_linking.nix
     ./gdm.nix
     ./gnome.nix
+    ./hyprland.nix
     ./locate.nix
     ./locale_keyboard.nix
     ./printers.nix
