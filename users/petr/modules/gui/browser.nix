@@ -14,10 +14,5 @@
 
   home.packages = with pkgs; [
     chromium
-
-    # https://github.com/0xc000022070/zen-browser-flake/issues/28
-    (inputs.zen-browser.packages.${system}.default.override {
-      nativeMessagingHosts = [ pkgs.firefoxpwa ];
-    })
   ];
 }

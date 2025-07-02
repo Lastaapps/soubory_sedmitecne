@@ -26,13 +26,10 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
