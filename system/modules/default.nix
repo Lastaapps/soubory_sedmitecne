@@ -4,6 +4,7 @@
     ./dns.nix
     ./docker.nix
     ./dynamic_linking.nix
+    ./fonts.nix
     ./gdm.nix
     ./gnome.nix
     ./hyprland.nix

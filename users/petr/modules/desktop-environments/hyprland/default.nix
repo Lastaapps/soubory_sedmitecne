@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 let
   configText = builtins.readFile ./hyprconfig.conf;
   configPath = "${config.home.homeDirectory}/dotfiles/users/petr/modules/desktop-environments/hyprland/hyprconfig.conf";
@@ -10,7 +15,7 @@ in
     ./hyprlock.nix
     # TODO Fails for some reason...
     # ./hyprsunset.nix
-    ./waybar.nix
+    ./dunst.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -18,15 +23,22 @@ in
     # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
     package = null;
     portalPackage = null;
+
+    plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+      # https://github.com/hyprwm/hyprland-plugins/tree/main
+      hyprbars
+      hyprexpo
+      hyprscrolling
+      hyprwinwrap # TODO apply htop or something to the background
+    ];
   };
 
   home.packages = with pkgs; [
-    # notifications deamon
-    dunst
-
-    # streaming, music, idk
-    pipewire
-    wireplumber
+    # control utils
+    brightnessctl
+    playerctl
+    nwg-displays
+    nwg-bar
 
     #  QT support
     hyprland-qt-support
@@ -38,38 +50,16 @@ in
 
     # Menu
     wofi
+
+    # Other utils
+    libsForQt5.kdeconnect-kde
   ];
 
   # wayland.windowManager.hyprland.extraConfig = configText;
   wayland.windowManager.hyprland.extraConfig = ''
     source = ${configPath}
   '';
-  wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
-    bind =
-      [
-        "$mod, F, exec, firefox"
-        ", Print, exec, grimblast copy area"
-
-        "$mod, Return, exec, alacritty"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (
-          builtins.genList (
-            i:
-            let
-              ws = i + 1;
-            in
-            [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          ) 9
-        )
-      );
-  };
+  wayland.windowManager.hyprland.settings = { };
 
   # wayland.windowManager.hyprland.plugins = [
   #   inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars

@@ -94,6 +94,7 @@ in
           cmp-cmdline
           cmp-path
           cmp-omni
+          nvim-lsp-file-operations
 
           cmp_luasnip
           luasnip

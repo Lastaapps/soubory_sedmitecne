@@ -26,6 +26,11 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
 
     nix-vscode-extensions = {
@@ -125,6 +130,8 @@
           specialArgs = {
             inherit pkgs-stable;
             inherit pkgs-unstable;
+            inherit pkgs-master;
+            inherit inputs;
           };
 
           modules = [

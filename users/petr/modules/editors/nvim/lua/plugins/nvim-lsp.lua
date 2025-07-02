@@ -3,6 +3,20 @@
 -- Set configuration for specific filetype.
 local configureLanguageServers = function()
     local lspconfig = require('lspconfig')
+
+    -- Set global defaults for all servers
+    lspconfig.util.default_config = vim.tbl_extend(
+        'force',
+        lspconfig.util.default_config,
+        {
+            capabilities = vim.tbl_deep_extend(
+                "force",
+                vim.lsp.protocol.make_client_capabilities(),
+                require('lsp-file-operations').default_capabilities()
+            )
+        }
+    )
+
     -- Connection to LSP hrsh7th/cmp-nvim-lsp
     local capabilities = require('cmp_nvim_lsp').default_capabilities(
     -- vim.lsp.protocol.make_client_capabilities()
@@ -309,8 +323,24 @@ return {
     {
         'neovim/nvim-lspconfig',
         event = "BufReadPost",
+        dependencies = {
+            "antosha417/nvim-lsp-file-operations",
+        },
         config = function()
             configureLanguageServers()
         end
+    },
+    -- Support for moving/renaming files while using nvim-tree, neo-tree or triptych
+    {
+        "antosha417/nvim-lsp-file-operations",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            -- "nvim-tree/nvim-tree.lua",
+            -- "nvim-neo-tree/neo-tree.nvim",
+            -- "simonmclean/triptych.nvim"
+        },
+        config = function()
+            require("lsp-file-operations").setup()
+        end,
     },
 }
