@@ -31,6 +31,17 @@
     "ntfs"
   ];
 
+  services.btrfs = {
+    autoScrub = {
+      enable = true;
+      interval = "monthly";
+      fileSystems = [
+        "/"
+        "/home"
+      ];
+    };
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/B56E-0176";
     fsType = "vfat";
