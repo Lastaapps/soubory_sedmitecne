@@ -105,7 +105,7 @@
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-uuid/0472e23c-62d3-412a-909d-2947ec11e76f"; }
+    { device = "/dev/disk/by-uuid/ec6daf78-a2eb-48c3-b145-a6eacc7dee31"; }
   ];
 
   boot.kernel.sysctl = {
