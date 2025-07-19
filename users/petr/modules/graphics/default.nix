@@ -4,6 +4,7 @@
 
   ];
   home.packages = with pkgs; [
+    exiftool
     digikam
     ffmpeg-full
     obs-studio
