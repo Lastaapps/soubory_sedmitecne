@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -7,10 +7,12 @@
 
   systemd.services.nvme-fix = {
     enable = true;
-    description = "A custom service to run a bash command";
+    description = "Prevents SSD from overheating somehow";
     wantedBy = [ "multi-user.target" ];
+    # 5 seconds still overheats while additional load is applied on the machine
+    # Command nvme flush /dev/nvme0n1 -n 1 -v; can be also added
     script = ''
-      while true; do sleep 5; nvme flush /dev/nvme0n1 -n 1 -v; nvme reset /dev/nvme0 -v; done
+      while true; ${pkgs.nvme-cli}/bin/nvme reset /dev/nvme0 -v; do sleep 3; done
     '';
     restartIfChanged = true;
     serviceConfig = {
