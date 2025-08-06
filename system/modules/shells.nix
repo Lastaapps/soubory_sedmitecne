@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # When adding a new shell, always enable the shell system-wide, even if it's
@@ -9,6 +9,14 @@
   # Let's keep it for scripts
   # Also it's enabled by default
   # programs.bash.enable = true;
+
+  # Just for envoy development ;-(
+  system.activationScripts.binbash = {
+    text = ''
+      mkdir -p /bin
+      ln -sfn ${pkgs.bash}/bin/bash /bin/bash
+    '';
+  };
 
   environment.shellAliases = {
     l = "ls -alh";
