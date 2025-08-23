@@ -5,8 +5,6 @@ CompileFlags:
     -Wall,
     -Wextra,
     -pedantic,
-    -std=c++23,
-    # -std=c23,
   ]
 
 Index:
@@ -38,3 +36,23 @@ Diagnostics:
       readability-math-missing-parentheses,
     ]
 
+---
+If:
+  PathMatch: [
+    .*\.hpp,
+    .*\.cpp,
+  ]
+
+CompileFlags:
+  Add: [-std=c++23]
+
+---
+
+If:
+  PathMatch: [
+    .*\.h,
+    .*\.c,
+  ]
+
+CompileFlags:
+  Add: [ -std=c23 ]

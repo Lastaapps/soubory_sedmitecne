@@ -2,7 +2,7 @@
 
 {
   home.packages =
-    (with pkgs.llvmPackages_19; [
+    (with pkgs.llvmPackages_21; [
       clang
       clang-tools
     ])
@@ -21,5 +21,7 @@
 
       stdman
       cppreference-doc
+
+      compiledb
     ]);
 }
