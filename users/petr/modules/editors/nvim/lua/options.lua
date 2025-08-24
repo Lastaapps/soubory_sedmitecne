@@ -1,6 +1,6 @@
 -- set in the NixOS config, has to be set before loading lazy.nvim
--- vim.g.mapleader = ','
--- vim.g.maplocalleader = ','
+-- vim.g.mapleader = ' '
+-- vim.g.maplocalleader = ' '
 
 -- Numbers
 vim.opt.number = true
