@@ -111,6 +111,7 @@ in
           telescope-nvim
           telescope-fzf-native-nvim
           harpoon
+          nvim-tree-lua
 
           nvim-dap
           nvim-nio
