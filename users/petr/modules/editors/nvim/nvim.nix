@@ -50,6 +50,7 @@ in
           image-nvim
           which-key-nvim
           trouble-nvim
+          hardtime-nvim
 
           nvim-treesitter.withAllGrammars
           nvim-treesitter-context
@@ -70,7 +71,7 @@ in
           vim-fugitive
 
           # Looks
-          fidget-nvim
+          fidget-nvim # notifications
           lualine-nvim
           transparent-nvim
           # nvim-notify # may be required by some plugin

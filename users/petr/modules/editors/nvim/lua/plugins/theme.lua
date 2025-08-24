@@ -5,7 +5,6 @@ return {
     -- Provides status updates in the bottom right corner
     {
         "j-hui/fidget.nvim",
-        -- lazy = false,
         event = "VeryLazy",
     },
 
