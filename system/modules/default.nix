@@ -7,7 +7,7 @@
     ./fonts.nix
     ./gdm.nix
     ./gnome.nix
-    ./hyprland.nix
+    # ./hyprland.nix
     ./locate.nix
     ./locale_keyboard.nix
     ./printers.nix

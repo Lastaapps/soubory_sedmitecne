@@ -1,7 +1,7 @@
 {
   imports = [
     ./gnome
-    ./hyprland
-    ./waybar
+    # ./hyprland
+    # ./waybar
   ];
 }
