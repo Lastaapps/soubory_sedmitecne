@@ -14,7 +14,7 @@
     ./programs.nix
     ./shells.nix
     ./sound.nix
-    ./ssd.nix
+    ./smarttools.nix
     ./syncthing.nix
     ./users.nix
     ./vpn.nix
