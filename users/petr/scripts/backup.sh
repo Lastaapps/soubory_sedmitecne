@@ -131,7 +131,7 @@ du -h "${DIR}"
 #########################################################################################
 echo
 echo "Scheduled defragmentation"
-btrfs filesystem defragment -r -v -czstd /mnt/data/
+btrfs filesystem defragment -r -czstd /mnt/data/
 
 read -rp "Press the Enter key to exit"
 

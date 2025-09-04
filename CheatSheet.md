@@ -1,5 +1,13 @@
 # Cheat cheat and idk, wtf, kill me now, please
 
+## Advanced basics
+- `fc` - edit last command
+- `!!` - rerun last command, `sudo !!`
+- `sudoedit` - edit root file with my config
+- `sudo -E` - preserve user environment variables
+- `namei` - resolve symlinks
+- `qrencode` - generate QR code
+
 ## Volume control
 ```pacmixer - one to rule them all```
 ```alsamixer - global control```
