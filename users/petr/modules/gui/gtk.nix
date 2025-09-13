@@ -1,5 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
+
 {
+  gtk = {
+    enable = true;
+    cursorTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
   gtk.gtk3.bookmarks = [
     "file:///home/petr/Documents"
     "file:///home/petr/Music"
