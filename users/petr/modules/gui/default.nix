@@ -15,6 +15,7 @@
     postman
     qbittorrent-enhanced
     pkgs-unstable.thunderbird
+    tidal-hifi
     ventoy-bin-full
     youtube-music
   ];
