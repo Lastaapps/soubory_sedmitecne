@@ -7,6 +7,8 @@
     screen
     zoxide
 
+    tldr
+
     # Serial
     minicom
   ];
