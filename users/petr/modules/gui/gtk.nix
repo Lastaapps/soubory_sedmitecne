@@ -9,8 +9,7 @@
       package = pkgs.adwaita-icon-theme;
     };
 
-    # TODO enable in unstable NixOS 25.11
-    # colorScheme = "dark";
+    colorScheme = "dark";
 
     gtk3.bookmarks = [
       "file:/// /"

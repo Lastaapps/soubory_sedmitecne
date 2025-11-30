@@ -15,10 +15,10 @@
     postman
     qbittorrent-enhanced
     pkgs-unstable.thunderbird
-    ventoy-bin-full
+    ventoy-full
     youtube-music
   ];
   nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.05"
+    "ventoy-1.1.07"
   ];
 }

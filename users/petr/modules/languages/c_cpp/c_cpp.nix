@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   home.packages =
@@ -7,7 +7,7 @@
       clang-tools
     ])
     ++ (with pkgs; [
-      (hiPrio gcc) # high priority used because both clang and gcc share the /bin/c++ binary
+      (lib.hiPrio gcc) # high priority used because both clang and gcc share the /bin/c++ binary
       lld
 
       # building

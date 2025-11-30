@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    telegram-desktop
-    element-desktop
-    whatsapp-for-linux
     discord
+    element-desktop
     signal-desktop
+    telegram-desktop
+    wasistlos
   ];
 }

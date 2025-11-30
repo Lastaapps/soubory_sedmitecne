@@ -12,9 +12,9 @@
     nixpkgs-master.url = "nixpkgs/master";
 
     # Also update home.stateVersion bellow in the file
-    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -154,7 +154,7 @@
 
           modules = [
             {
-              home.stateVersion = "25.05";
+              home.stateVersion = "25.11";
             }
             ./users/petr/home.nix
             {
@@ -196,7 +196,8 @@
                     lsp-signature-nvim =
                       customVimPlugin prev inputs.nvimPlugin-rayx-lsp-signature-nvim "ray-x"
                         "lsp_signature.nvim";
-                  } // prev.vimPlugins;
+                  }
+                  // prev.vimPlugins;
                 })
               ];
             }

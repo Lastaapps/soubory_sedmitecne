@@ -2,7 +2,7 @@
 { pkgs, pkgs-unstable, ... }:
 {
   # Enable the GNOME Desktop Environment.
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
   environment.gnome.excludePackages = with pkgs; [
     gnome-calendar
     gnome-maps
@@ -16,19 +16,19 @@
     gnome-tour
     gnome-weather
 
+    atomix # puzzle game
     cheese # webcam tool
     decibels # music player
-    gnome-music
-    gnome-terminal
     epiphany # web browser
     geary # email reader
-    evince # document viewer
     gnome-characters
-    totem # video player
-    tali # poker game
-    iagno # go game
+    gnome-music
+    gnome-terminal
     hitori # sudoku game
-    atomix # puzzle game
+    iagno # go game
+    papers
+    showtime
+    tali # poker game
   ];
   environment.systemPackages =
     (with pkgs.gnomeExtensions; [

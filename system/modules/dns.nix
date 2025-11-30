@@ -17,24 +17,23 @@
   services.resolved.enable = false;
 
   # Enables encrypted DNS
-  services.dnscrypt-proxy2 = {
+  services.dnscrypt-proxy = {
     enable = true;
     settings = {
       ipv6_servers = true;
       require_dnssec = true;
       http3 = true;
 
-      # TODO Enable in 25.11
-      # monitoring_ui = {
-      #   enabled = true;
-      #   listen_address = "127.0.0.1:5335";
-      #   username = "admin";
-      #   password = "changeme-nope";
-      #   tls_certificate = "";
-      #   tls_key = "";
-      #   enable_query_log = true;
-      #   privacy_level = 0;
-      # };
+      monitoring_ui = {
+        enabled = true;
+        listen_address = "127.0.0.1:5335";
+        username = "admin";
+        password = "6OA2QjQXDqwg04ohxisVNivSA2n0tFi9";
+        tls_certificate = "";
+        tls_key = "";
+        enable_query_log = true;
+        privacy_level = 0;
+      };
 
       sources.public-resolvers = {
         urls = [

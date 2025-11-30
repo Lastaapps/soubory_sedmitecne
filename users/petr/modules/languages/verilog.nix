@@ -5,6 +5,6 @@
     # Language server
     svls
 
-    verilog
+    iverilog
   ];
 }
