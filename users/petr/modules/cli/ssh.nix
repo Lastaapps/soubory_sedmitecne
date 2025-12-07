@@ -3,6 +3,11 @@
 {
   # ssh -o PubkeyAuthentication=no -o PreferredAuthentications=password
 
+  services.ssh-agent = {
+    enable = true;
+    defaultMaximumIdentityLifetime = 6 * 3600;
+  };
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
