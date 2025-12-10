@@ -18,6 +18,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    nixpkgs-prev.url = "nixpkgs/nixos-25.05";
+
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager-unstable = {
       url = "github:nix-community/home-manager";
@@ -97,6 +99,12 @@
           allowUnfree = true;
         };
       };
+      pkgs-prev = import inputs.nixpkgs-prev {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
       pkgs-unstable = import inputs.nixpkgs-unstable {
         inherit system;
         config = {
@@ -129,6 +137,7 @@
           inherit system;
           specialArgs = {
             inherit pkgs-stable;
+            inherit pkgs-prev;
             inherit pkgs-unstable;
             inherit pkgs-master;
             inherit inputs;
@@ -147,6 +156,7 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit pkgs-stable;
+            inherit pkgs-prev;
             inherit pkgs-unstable;
             inherit pkgs-master;
             inherit inputs;

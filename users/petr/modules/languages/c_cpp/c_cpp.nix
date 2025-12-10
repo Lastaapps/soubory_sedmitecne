@@ -1,10 +1,15 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  pkgs-prev,
+  ...
+}:
 
 {
   home.packages =
-    (with pkgs.llvmPackages_21; [
-      clang
+    (with pkgs-prev.llvmPackages_21; [
       clang-tools
+      clang
     ])
     ++ (with pkgs; [
       (lib.hiPrio gcc) # high priority used because both clang and gcc share the /bin/c++ binary
@@ -22,6 +27,7 @@
       stdman
       cppreference-doc
 
+      bear
       compiledb
     ]);
 }
