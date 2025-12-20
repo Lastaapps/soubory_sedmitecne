@@ -20,7 +20,7 @@
     ./sql.nix
     ./tex.nix
     ./tooling.nix
-    # ./typst.nix
+    ./typst.nix
     ./unix_shell.nix
     ./verilog.nix
     ./yaml.nix

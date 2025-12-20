@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     # Language server
     tinymist
-    typst-fmt
+    typstyle
 
     typst
   ];
