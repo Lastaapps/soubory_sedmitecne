@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./ai.nix
     ./nvim
     ./toolbox.nix
     ./vscode.nix
