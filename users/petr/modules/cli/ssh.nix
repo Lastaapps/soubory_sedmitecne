@@ -15,7 +15,7 @@
       "*" = {
         # Previous Home Assistant defaults
         forwardAgent = false;
-        addKeysToAgent = "no";
+        addKeysToAgent = "yes";
         compression = true;
       };
       "pi4" = {
