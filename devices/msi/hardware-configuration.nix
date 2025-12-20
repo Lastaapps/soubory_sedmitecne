@@ -21,8 +21,13 @@
     "usb_storage"
     "sd_mod"
     "rtsx_usb_sdmmc"
+    "aesni_intel" # to speed up drive encryption
+    "cryptd"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [
+    "dm-snapshot"
+    "cryptd"
+  ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.supportedFilesystems = [
@@ -38,6 +43,7 @@
       fileSystems = [
         "/"
         "/home"
+        "/mnt/data"
       ];
     };
   };
@@ -74,18 +80,32 @@
     ];
   };
 
+  boot.initrd.luks.devices."mraveniste".device =
+    "/dev/disk/by-uuid/7d19aa56-dce5-400f-a5ab-7baa5e98114a";
   fileSystems."/mnt/data" = {
-    device = "/dev/disk/by-uuid/a0c9ba94-4df6-421d-8ff5-bd9c3d432cec";
+    device = "/dev/disk/by-uuid/2f6aa67d-490d-49cd-b211-e33f3e93eb88";
     fsType = "btrfs";
     options = [
       "noatime"
       "nodiratime"
       "commit=60"
-      "nodatacow"
-      "autodefrag"
       "compress=zstd"
     ];
   };
+
+  # old HDD drive
+  # fileSystems."/mnt/hdd" = {
+  #   device = "/dev/disk/by-uuid/a0c9ba94-4df6-421d-8ff5-bd9c3d432cec";
+  #   fsType = "btrfs";
+  #   options = [
+  #     "noatime"
+  #     "nodiratime"
+  #     "commit=60"
+  #     "nodatacow"
+  #     "autodefrag"
+  #     "compress=zstd"
+  #   ];
+  # };
 
   ##############################################################################
   # https://nixos.wiki/wiki/Swap

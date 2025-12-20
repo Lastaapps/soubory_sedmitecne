@@ -3,6 +3,7 @@
   imports = [
     ./dns.nix
     ./docker.nix
+    ./drives.nix
     ./dynamic_linking.nix
     ./fonts.nix
     ./gdm.nix
@@ -14,7 +15,6 @@
     ./programs.nix
     ./shells.nix
     ./sound.nix
-    ./smarttools.nix
     ./syncthing.nix
     ./users.nix
     ./vpn.nix

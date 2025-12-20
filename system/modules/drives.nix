@@ -3,6 +3,8 @@
 {
   environment.systemPackages = with pkgs; [
     smartmontools
+
+    cryptsetup
   ];
   services.smartd = {
     enable = true;
