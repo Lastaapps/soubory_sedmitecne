@@ -17,6 +17,7 @@
     pkgs-unstable.thunderbird
     ventoy-full
     youtube-music
+    yt-dlg
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "ventoy-1.1.07"
