@@ -11,5 +11,8 @@
 
     # Serial
     minicom
+
+    # PDF utils
+    poppler-utils
   ];
 }
