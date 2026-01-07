@@ -18,6 +18,9 @@
     ventoy-full
     youtube-music
     yt-dlg
+
+    # C# / Xamarin decompiler
+    # ilspycmd
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "ventoy-1.1.07"
