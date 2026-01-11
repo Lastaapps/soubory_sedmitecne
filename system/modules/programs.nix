@@ -19,6 +19,7 @@
     git
     neovim
     nix-search-cli
+    hydra-check
     python3
 
     # tops
