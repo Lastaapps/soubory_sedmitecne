@@ -14,5 +14,7 @@
 
     # PDF utils
     poppler-utils
+    # Image conversion and others
+    imagemagick
   ];
 }
