@@ -16,5 +16,7 @@
     poppler-utils
     # Image conversion and others
     imagemagick
+    # Change text file encoding: recode windows-1250..utf8 < in.srt > out.srt
+    recode
   ];
 }
