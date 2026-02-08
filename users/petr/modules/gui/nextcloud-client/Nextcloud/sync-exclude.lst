@@ -62,3 +62,5 @@ runs/
 backup/
 backup.tar.xz
 .syncthing.*
+*.db-wal
+*.db-shm
