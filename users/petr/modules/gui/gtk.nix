@@ -18,7 +18,7 @@
       "file:///home/petr/Downloads Downloads"
       "file:///home/petr/Documents Documents"
       "file:///home/petr/Documents/Strahov Strahov"
-      "file:///home/petr/Phone/DCIM/Memes Memes"
+      "file:///home/petr/Phone/Pictures/Memes Memes"
       "file:///home/petr/Projects Projects"
       "file:///home/petr/Phone Phone"
       "file:///mnt/data D: Data"
