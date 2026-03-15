@@ -129,9 +129,9 @@ du -h "${FILENAME}"
 du -h "${DIR}"
 
 #########################################################################################
-echo
-echo "Scheduled defragmentation"
-btrfs filesystem defragment -r -czstd /mnt/data/
+# echo
+# echo "Scheduled defragmentation"
+# btrfs filesystem defragment -r -czstd /mnt/data/
 
 read -rp "Press the Enter key to exit"
 
