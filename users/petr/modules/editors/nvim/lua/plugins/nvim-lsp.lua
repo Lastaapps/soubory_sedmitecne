@@ -92,10 +92,10 @@ return {
                         },
                     },
                 },
-                vale_ls = {
-                    filetypes = ltex_filetypes,
-                    single_file_support = false,
-                },
+                -- vale_ls = {
+                --     filetypes = ltex_filetypes,
+                --     single_file_support = false,
+                -- },
                 tinymist = {
                     root_markers = { '.git' }, -- tinymist usually detects root well, but explicit marker added
                 },
