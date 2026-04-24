@@ -14,6 +14,12 @@
   boot.kernelParams = [ "mitigations=off" ];
 
   networking.hostName = "msi";
+  networking.hosts = {
+    "10.200.0.1" = [
+      "cdwifi.cz"
+      "www.cdwifi.cz"
+    ];
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -56,7 +62,7 @@
 
   # Make nix less annoying
   nix = {
-    extraOptions = ''experimental-features = nix-command flakes'';
+    extraOptions = "experimental-features = nix-command flakes";
     optimise.automatic = true;
 
     # Binary Cache for Haskell.nix
