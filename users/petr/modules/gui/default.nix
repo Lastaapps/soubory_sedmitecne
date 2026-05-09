@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     anki-bin
     filezilla
+    persepolis
     gparted
     postman
     qbittorrent-enhanced
