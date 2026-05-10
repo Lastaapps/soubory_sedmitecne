@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./32_bit.nix
     ./dns.nix
     ./docker.nix
     ./drives.nix
