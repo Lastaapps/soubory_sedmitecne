@@ -3,11 +3,9 @@
 pushd ~/dotfiles > /dev/null
 
 # As I uderstand `nix-store --gc` and `nix-collect-garbage` do the same, but idc
+sudo nix-collect-garbage --delete-older-than 30d
 sudo nix-store --optimise
-sudo nix-store --gc
-sudo nix-collect-garbage -d
+nix-collect-garbage --delete-older-than 30d
 nix-store --optimise
-nix-store --gc
-nix-collect-garbage -d
 
 popd > /dev/null
