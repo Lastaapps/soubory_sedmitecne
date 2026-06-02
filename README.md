@@ -2,6 +2,14 @@
 
 My notes on what I did not manage to do in the NixOS config files.
 
+## Reinstall & recovery
+
+On Live CD, mount drives and run `nixos-enter --root /path/to/root`.
+Then you can run commands like `nix-shell`.
+If home manager does not get sourced after a recovery,
+build the flake manually (see `./scripts` for inspiration)
+and run `./results/activate`.
+
 ## Wi-Fi
 
 To connect to the Silicon Hill and Eduroam network, run:
