@@ -65,7 +65,9 @@
       flake = false;
     };
     nvimPlugin-monkoose-neocodeium = {
-      url = "github:monkoose/neocodeium";
+      # Input "lua require" checks fail for the plugin
+      url = "github:monkoose/neocodeium/c04e74f4ad09ecb5803f0c5457bb9defa8a0700e";
+      # url = "github:monkoose/neocodeium";
       flake = false;
     };
     nvimPlugin-nanotee-sqls-nvim = {
