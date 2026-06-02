@@ -12,13 +12,13 @@
     nixpkgs-master.url = "nixpkgs/master";
 
     # Also update home.stateVersion bellow in the file
-    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "nixpkgs/nixos-26.05";
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    nixpkgs-prev.url = "nixpkgs/nixos-25.05";
+    nixpkgs-prev.url = "nixpkgs/nixos-25.11";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager-unstable = {
@@ -146,6 +146,7 @@
           };
 
           modules = [
+	    # inputs.home-manager-stable.nixosModules.home-manager
             inputs.nixos-hardware.nixosModules.msi-gl62
             ./system/configuration.nix
             ./devices/msi
@@ -166,7 +167,7 @@
 
           modules = [
             {
-              home.stateVersion = "25.11";
+              home.stateVersion = "26.05";
             }
             ./users/petr/home.nix
             {

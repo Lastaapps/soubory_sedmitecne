@@ -43,7 +43,7 @@ in
       gcc
     ];
 
-    extraLuaConfig =
+    initLua =
       let
         plugins = with pkgs.vimPlugins; [
           plenary-nvim
@@ -133,7 +133,7 @@ in
 
           haskell-tools-nvim
           haskell-snippets-nvim
-          hoogle
+          vim-hoogle
 
           remote-nvim
           nui-nvim

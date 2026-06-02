@@ -8,7 +8,8 @@
     #   packages = [ pkgs.firefoxpwa ];
     # };
     nativeMessagingHosts = [
-      pkgs.firefoxpwa
+      # TODO reenable
+      # pkgs.firefoxpwa
     ];
   };
 

@@ -5,6 +5,6 @@
     # Language servers
     nixd
     nil
-    nixfmt-rfc-style
+    nixfmt
   ];
 }

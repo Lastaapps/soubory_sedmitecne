@@ -39,7 +39,6 @@
       gsconnect
       just-perfection
       native-window-placement
-      openweather-refined
       removable-drive-menu
       # tiling-assistant
       tiling-shell

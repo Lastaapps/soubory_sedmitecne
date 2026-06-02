@@ -16,15 +16,15 @@
     gparted
     postman
     qbittorrent-enhanced
-    pkgs-unstable.thunderbird
+    pear-desktop # youtube-music
+    thunderbird
     ventoy-full
-    youtube-music
     yt-dlg
 
     # C# / Xamarin decompiler
     # ilspycmd
   ];
   nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.10"
+    "ventoy-1.1.12"
   ];
 }

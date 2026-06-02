@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  pkgs-unstable,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -13,7 +7,7 @@
 
   programs.alacritty = {
     enable = true;
-    package = pkgs-unstable.alacritty;
+    package = pkgs.alacritty;
     settings = {
       general = {
         import = [

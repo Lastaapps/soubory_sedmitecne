@@ -11,7 +11,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "*" = {
         # Previous Home Assistant defaults
         forwardAgent = false;
