@@ -56,6 +56,10 @@ ALL_EXCLUDES=( \
   '**/precomputed*' \
   '**/runs*' \
   '**/backup*' \
+  '**/Blackmagic Camera/*' \
+  '**/graphs_store/*' \
+  '**/benchmarks/*' \
+  '**/DCMI/20\d\d*/*' \
 )
 
 # Combine all patterns and add the --exclude= prefix for tar
