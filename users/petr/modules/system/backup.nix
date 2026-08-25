@@ -3,7 +3,7 @@ let
     location = {
       repositories = [
         "/mnt/data/Backup/BorgRepo"
-        # "ssh://myuser@myserver.com/./personal-repo"
+        "ssh://pi4/raid/backups/MSI_BorgRepo"
       ];
       sourceDirectories = sourceDirs;
       extraConfig = {
@@ -44,12 +44,15 @@ let
           "*/Blackmagic Camera"
           "*/graphs_store"
           "*/benchmarks"
-          "*/DCMI/20[0-9][0-9]*"
         ];
       };
     };
-    storage.extraConfig = {
-      compression = "zstd,9";
+    storage = {
+      extraConfig = {
+        compression = "zstd,9";
+      };
+      # TODO build scrip that creates this temporarily from user input
+      encryptionPasscommand = "cat /home/petr/borgmatic_password";
     };
     retention = {
       keepMonthly = 1;
@@ -88,9 +91,14 @@ in
         "/mnt/data/Projects/eagle"
         "/home/petr/dotfiles"
         "/home/petr/Projects"
+        "/mnt/data/Phone/Diary"
+        "/mnt/data/Phone/Documents"
+        "/mnt/data/Phone/Download"
+        "/mnt/data/Phone/Voice Recorder"
       ];
       "pictures" = mkBorgBackup [
-        "/mnt/data/Phone"
+        "/mnt/data/Phone/DCIM"
+        "/mnt/data/Phone/Pictures"
         "/mnt/data/Pictures"
       ];
     };
