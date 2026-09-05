@@ -37,7 +37,7 @@ local my_tree_sitter = {
     },
   },
   config = function(opts)
-    require("nvim-treesitter.configs").setup(opts)
+    require("nvim-treesitter.config").setup(opts)
 
     -- Folding setup
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
@@ -87,7 +87,7 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     config = function()
       -- Inspired by https://github.com/josean-dev/dev-environment-files/blob/main/.config/nvim/lua/josean/plugins/nvim-treesitter-text-objects.lua
-      require("nvim-treesitter.configs").setup({
+      require("nvim-treesitter.config").setup({
         textobjects = {
           select = {
             enable = true,
@@ -169,7 +169,7 @@ return {
         },
       })
 
-      local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+      local ts_repeat_move = require "nvim-treesitter-textobjects.repeatable_move"
 
       -- Repeat movement with ; and ,
       -- ensure ; goes forward and , goes backward regardless of the last direction
