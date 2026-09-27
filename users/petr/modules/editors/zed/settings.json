@@ -19,8 +19,11 @@
   "code_lens": "on",
   "show_whitespaces": "trailing",
   "agent_servers": {
-    "gemini": {
-      "type": "registry",
+    "antigravity-acp": {
+      "default_config_options": {
+        "model": "gemini-3.6-flash-medium"
+      },
+      "type": "registry"
     },
   },
   "git_panel": {
@@ -59,9 +62,10 @@
   "agent": {
     "default_profile": "write",
     "default_model": {
+      "effort": "medium",
       "enable_thinking": true,
       "provider": "google",
-      "model": "gemini-2.5-flash-lite",
+      "model": "gemini-3.5-flash",
     },
     "model_parameters": [],
   },

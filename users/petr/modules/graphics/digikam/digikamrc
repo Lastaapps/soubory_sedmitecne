@@ -92,10 +92,10 @@ TreeView Font=Cantarell,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,,0,0
 Update Type=0
 
 [AlbumFolderView Sidebar]
-CurrentIndex=384
-Expansion=0,117,144,148,149,150,121,123,141,124,126,129,130,133,138,147,299,136,125,300,305,301,378,365,367,383,384,369,118,119,120,122,128,131,132,139,140,142,143,-4,151,163,187,194,196,198,265,279,280,286,-2,1,26,91,43,93,94,95,96,97,98,99,100,101,102,103,104,11,28,298,10,110,112,114,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,105,107,-3
+CurrentIndex=119
+Expansion=0,117,144,148,149,150,121,123,141,124,126,129,130,133,138,147,299,136,125,300,305,301,378,365,367,383,384,386,369,118,119,120,122,128,131,132,139,140,142,143,-2,151,163,187,194,196,198,265,279,280,286,-3,1,26,91,43,93,94,95,96,97,98,99,100,101,102,103,104,11,28,298,10,110,112,114,44,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,105,107,-4
 RestoreChecked=false
-Selection=384
+Selection=119
 SortColumn=0
 SortOrder=0
 
@@ -126,11 +126,11 @@ All Sync XMP Date=true
 All XMP Edit Page=6
 
 [Autotags Settings]
-AlbumComboBox-Checked=149,112,314,-2,93,350,130,62,74,117,91,88,96,79,348,-4,121,367,344,129,300,57,351,133,198,163,45,56,51,148,94,352,103,53,99,316,102,381,46,346,50,124,359,81,125,384,69,52,84,54,107,363,308,11,47,72,126,76,196,279,61,361,66,265,10,313,82,380,309,68,26,324,119,315,128,357,320,312,101,150,138,369,356,100,310,65,343,83,141,75,342,44,49,97,59,77,28,43,95,349,55,64,142,122,286,114,383,323,70,299,306,73,379,87,353,319,280,120,321,104,80,1,347,67,147,143,123,298,78,85,92,132,58,110,317,318,305,378,131,365,71,358,136,322,301,194,89,140,63,60,105,355,345,48,86,144,139,98,118,187,151,354,-3
+AlbumComboBox-Checked=136,132,343,298,148,47,380,141,66,74,345,356,117,354,316,43,97,313,300,82,114,306,65,358,299,353,1,105,92,89,130,144,367,128,318,99,196,93,384,48,310,50,126,-4,70,131,352,163,72,28,91,351,107,348,67,385,140,11,56,81,124,55,110,265,286,94,51,58,365,119,62,-2,309,57,123,342,68,79,349,151,75,53,76,84,324,194,101,118,149,346,347,95,103,379,46,45,350,315,280,71,26,52,319,87,198,49,73,77,305,88,80,122,314,59,129,-3,355,359,54,121,378,102,139,321,301,308,150,100,322,104,323,44,143,64,133,142,98,147,279,120,381,96,320,369,317,112,61,83,125,344,386,78,85,187,361,312,60,138,10,63,357,69,383,86,363
 AlbumComboBox-CurrentIndex=-4
 AlbumComboBox-Expansion=117,151,1
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=151
+AlbumComboBox-Selection=117,-4
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 AlbumTypeEntry=0
@@ -144,7 +144,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=117,151
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=25,4
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=false
@@ -283,7 +283,7 @@ ColorName_white=White
 ColorName_yellow=Yellow
 
 [CoreDB Settings]
-Recently Used Tags=648,36,652,401,650,649,651,647,634,638
+Recently Used Tags=401,36,659,408,405,402,398,397,407,396
 
 [DMetadata Settings]
 readingAllTags=false
@@ -1021,7 +1021,7 @@ tagPaths=1
 
 [Database Settings]
 Database Connectoptions=
-Database Encrypted Password=AwKIiIg=
+Database Encrypted Password=AwKZmZk=
 Database Hostname=
 Database Name=/home/petr/Pictures/
 Database Name Face=/home/petr/Pictures/
@@ -1049,7 +1049,7 @@ SortOrder=0
 1920x1080 screen: Window-Maximized=true
 
 [Digikam Left Sidebar]
-ActiveTab=8
+ActiveTab=0
 Minimized=false
 RestoreSize=-1
 
@@ -1226,11 +1226,11 @@ Detection Accuracy=0.7
 Use Yolo V3=false
 
 [Face Management Settings]
-AlbumComboBox-Checked=149,112,314,-2,93,350,130,62,74,117,91,88,96,79,348,-4,121,367,344,129,300,57,351,133,45,56,51,148,94,352,103,53,99,316,102,381,46,346,50,124,359,81,125,384,69,52,84,54,107,47,11,72,126,76,61,361,66,10,82,380,309,68,26,324,119,315,128,357,320,101,150,138,369,356,100,65,343,83,141,75,342,44,49,97,59,77,28,43,95,349,55,64,142,122,114,383,323,70,299,73,379,87,353,319,120,321,104,80,1,347,67,147,143,123,298,78,85,92,132,58,110,317,318,305,378,131,365,71,358,136,322,301,89,140,63,60,105,355,345,48,86,144,139,98,118,354,-3
+AlbumComboBox-Checked=136,132,343,298,148,47,380,141,66,74,345,356,117,354,316,43,97,300,82,114,65,358,299,353,1,105,92,89,130,144,367,128,318,99,93,384,48,50,126,-4,70,131,352,72,28,91,351,107,348,67,385,140,11,56,81,124,55,110,94,51,58,365,119,62,-2,309,57,123,342,68,79,349,75,53,76,84,324,101,118,149,346,347,95,103,379,46,45,350,315,71,26,52,319,87,49,73,77,305,88,80,122,314,59,129,-3,355,359,54,121,378,102,139,321,301,150,100,322,104,323,44,143,64,133,142,98,147,120,381,96,320,369,317,112,61,83,125,344,386,78,85,361,60,138,10,63,357,69,383,86
 AlbumComboBox-CurrentIndex=346
 AlbumComboBox-Expansion=1,117
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=151,346
+AlbumComboBox-Selection=346,117
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=1
 AlbumTypeEntry=0
@@ -1248,7 +1248,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=117,151
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=25,4
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 Use Full CPU=false
@@ -1257,10 +1257,10 @@ UseWholeTagsEntry=false
 
 [Find Duplicates View]
 AlbumComboBox-Checked=
-AlbumComboBox-CurrentIndex=151
+AlbumComboBox-CurrentIndex=117
 AlbumComboBox-Expansion=
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=151
+AlbumComboBox-Selection=117
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 AlbumTypeEntry=0
@@ -1271,10 +1271,10 @@ Last search album tag relation=0
 Last search results restriction=0
 Lower bound for minimum similarity=40
 TagComboBox-Checked=
-TagComboBox-CurrentIndex=25
+TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=25
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=false
@@ -1301,7 +1301,7 @@ AlbumComboBox-Checked=
 AlbumComboBox-CurrentIndex=1
 AlbumComboBox-Expansion=1
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=151,1
+AlbumComboBox-Selection=117,1
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 UseWholeAlbumsEntry=true
@@ -1396,7 +1396,7 @@ AlbumComboBox-Checked=
 AlbumComboBox-CurrentIndex=1
 AlbumComboBox-Expansion=1
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=151,1
+AlbumComboBox-Selection=117,1
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 AlbumTypeEntry=0
@@ -1421,7 +1421,7 @@ TagComboBox-Checked=
 TagComboBox-CurrentIndex=4
 TagComboBox-Expansion=117,151
 TagComboBox-RestoreChecked=true
-TagComboBox-Selection=25,4
+TagComboBox-Selection=4
 TagComboBox-SortColumn=0
 TagComboBox-SortOrder=0
 UseWholeAlbumsEntry=true
@@ -1865,9 +1865,9 @@ Version Properties Tab=versions
 Version Properties View Mode=2
 
 [MainWindow]
-InitialAlbumID=134217733
+InitialAlbumID=119
 SplitterState=AAAA/wAAAAEAAAADAAABfwAAA/QAAAHJAf////8AAAAAAQE=
-ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAAP0AAAApPwBAAAAAfsAAAAmAG0AYQBpAG4AdwBpAG4AZABvAHcAXwB0AGgAdQBtAGIAYgBhAHIIAAAAAAAAA/QAAABXAP///wAAA/QAAAOVAAAABAAAAAQAAAAIAAAACPwAAAAA
+ThumbbarState=AAAA/wAAAAD9AAAAAQAAAAIAAAP0AAAApPwBAAAAAfsAAAAmAG0AYQBpAG4AdwBpAG4AZABvAHcAXwB0AGgAdQBtAGIAYgBhAHIIAAAAAAAAA/QAAABXAP///wAAA/QAAALrAAAABAAAAAQAAAAIAAAACPwAAAAA
 
 [MaintenanceDlg Settings]
 1920x1080 screen: Window-Maximized=true
@@ -1959,11 +1959,11 @@ CaseSensitive=0
 HelpBoxNotifSeen=true
 
 [People Sidebar]
-CurrentIndex=5
-Expansion=4,7,5,6,539,470,70,56,262,489,633,254,611,382,554,197,586,557,59,331,652,57,64,477,377,190,544,66,288,203,550,353,71,286,357,65,359,553,418,555,243,206,205,517,73,228,69,370,432,105,195,306,411,435,609,621,302,322,616,41,402,440,292,436,618,60,304,385,49,99,619,337,563,62,644,323,83,44,463,651,210,450,589,94,623,225,649,242,310,211,199,97,478,109,76,53,39,85,588,308,91,622,61,74,345,283,79,508,358,355,394,98,512,101,437,280,72,546,37,650,229,634,530,202,579,364,58,591,287,381,93,33,35,36,303,34,75,78,352,552,430,42,38,196,87,401,86,346,486,451,392,390,595,522,490,356,584,369,285,648,597,240,193,585,80,438,215,311,493,284,31,371,637,340,300,363
+CurrentIndex=408
+Expansion=4,7,5,6,405,539,470,70,407,56,653,262,489,633,254,611,382,554,197,586,557,59,331,652,57,64,477,377,190,397,544,66,288,203,550,353,71,286,357,65,359,553,418,555,243,206,205,517,73,228,69,370,432,105,195,306,404,411,435,609,621,302,322,616,41,402,440,292,436,618,60,304,385,49,99,619,337,563,62,644,323,83,44,463,651,210,450,589,94,623,225,649,242,310,211,199,97,478,109,76,53,39,85,588,308,91,622,61,408,74,345,283,79,508,358,355,394,98,512,101,437,280,72,546,37,650,229,398,634,530,202,579,364,58,591,287,381,93,33,35,36,204,303,264,34,75,78,352,552,430,297,42,38,196,87,401,63,86,654,346,486,451,392,390,595,522,490,356,584,369,285,648,597,396,240,193,585,80,438,215,311,493,284,31,371,637,340,300,363
 FaceScanWidgetExpanded=true
 RestoreChecked=false
-Selection=5
+Selection=408
 SortColumn=0
 SortOrder=0
 
@@ -1986,10 +1986,10 @@ CaseSensitive=0
 
 [Select Reference]
 AlbumComboBox-Checked=
-AlbumComboBox-CurrentIndex=151
+AlbumComboBox-CurrentIndex=117
 AlbumComboBox-Expansion=
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=151
+AlbumComboBox-Selection=117
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 UseWholeAlbumsEntry=false
@@ -2015,7 +2015,7 @@ AlbumComboBox-Checked=
 AlbumComboBox-CurrentIndex=1
 AlbumComboBox-Expansion=1
 AlbumComboBox-RestoreChecked=true
-AlbumComboBox-Selection=151,1
+AlbumComboBox-Selection=117,1
 AlbumComboBox-SortColumn=0
 AlbumComboBox-SortOrder=0
 UseWholeAlbumsEntry=true
@@ -2136,10 +2136,10 @@ TypeMimeFilter Expanded=true
 
 [TagView Sidebar]
 AutotagScanWidgetExpanded=true
-CurrentIndex=0
-Expansion=0
+CurrentIndex=431
+Expansion=0,4,431
 RestoreChecked=false
-Selection=0
+Selection=431
 SortColumn=0
 SortOrder=0
 TagsSource=false
