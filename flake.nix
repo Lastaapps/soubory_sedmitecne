@@ -40,6 +40,10 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    just-another-music-player = {
+      url = "github:2latemc/JustAnotherMusicClient/v1.3.2";
+    };
+
     # polymc.url = "github:PolyMC/PolyMC";
 
     ############################################################################
@@ -146,7 +150,7 @@
           };
 
           modules = [
-	    # inputs.home-manager-stable.nixosModules.home-manager
+            # inputs.home-manager-stable.nixosModules.home-manager
             inputs.nixos-hardware.nixosModules.msi-gl62
             ./system/configuration.nix
             ./devices/msi

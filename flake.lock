@@ -439,6 +439,25 @@
         "type": "github"
       }
     },
+    "just-another-music-player": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1786530555,
+        "narHash": "sha256-n5NU84WG7UuOSlxEN7k2Y1fGb1nZ99HS7wWEC1qo9sw=",
+        "owner": "2latemc",
+        "repo": "JustAnotherMusicClient",
+        "rev": "e690a5a2825a0e0d9b23e253ebeec06d309f23fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "2latemc",
+        "ref": "v1.3.2",
+        "repo": "JustAnotherMusicClient",
+        "type": "github"
+      }
+    },
     "nix-vscode-extensions": {
       "inputs": {
         "nixpkgs": [
@@ -461,7 +480,7 @@
     },
     "nixos-hardware": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1789127271,
@@ -555,6 +574,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1789006805,
+        "narHash": "sha256-xB8mKMOx1IA9vTDNLmJZ6n4wCMq/cuWBBOzGCRnqxrU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1767892417,
         "narHash": "sha256-8bW3q88CEg2u4hSP66Vf4lpbLonHz7hqDNBMcCY7E9U=",
@@ -725,6 +760,7 @@
         "home-manager-unstable": "home-manager-unstable",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
+        "just-another-music-player": "just-another-music-player",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs-master": "nixpkgs-master",
