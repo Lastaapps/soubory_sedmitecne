@@ -24,6 +24,12 @@
         identityFile = "/home/petr/.ssh/pi4";
         port = 56943;
       };
+      "pi4-wg" = {
+        hostname = "10.42.69.12";
+        user = "admin";
+        identityFile = "/home/petr/.ssh/pi4";
+        port = 56943;
+      };
       "asus" = {
         hostname = "192.168.1.1";
         user = "root";
